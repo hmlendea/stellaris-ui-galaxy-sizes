@@ -1,0 +1,1 @@
+# stellaris-ui-galaxy-sizes
