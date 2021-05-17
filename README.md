@@ -2,7 +2,7 @@
 
 # About
 
-Mod for Stellaris that add more galaxy sizes to the game.
+Mod for Stellaris that adds more galaxy sizes to the game.
 
 # Additions
 
