@@ -13,6 +13,7 @@ setup_scenario = {
     colonizable_planet_odds = 1.0
     primitive_odds = 1.0
     crisis_strength = 2.0
+    extra_crisis_strength = { 10 25 }
     
     cluster_count = {
         method = one_every_x_empire
