@@ -4,15 +4,6 @@
 
 Mod for Stellaris that adds more galaxy sizes to the game.
 
-# Installation
-
-[![Get it from the Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230) [![Get it from Paradox Mods](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/paradox-mods.png)](https://mods.paradoxplaza.com/mods/25431/Any) [![Get it from the Nexus](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://www.nexusmods.com/stellaris/mods/76)
-
-## Manual installation
-
- - Download the [latest release](https://github.com/hmlendea/more-cultural-names/releases)
- - Extract the contents into your game's mod directory
-
 # Additions
 
  - Ludicrous (2000 stars)
@@ -21,6 +12,15 @@ Mod for Stellaris that adds more galaxy sizes to the game.
  - Immense (1400 stars)
  - Gigantic (1200 stars)
  - Minuscule (100 stars)
+
+# Installation
+
+[![Get it from the Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230) [![Get it from Paradox Mods](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/paradox-mods.png)](https://mods.paradoxplaza.com/mods/25431/Any) [![Get it from the Nexus](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://www.nexusmods.com/stellaris/mods/76)
+
+## Manual installation
+
+ - Download the [latest release](https://github.com/hmlendea/more-cultural-names/releases)
+ - Extract the contents into your game's mod directory
 
 # Universul Unfinitum Collection
 
