@@ -2,10 +2,7 @@
 
 # About
 
-Mod for Stellaris that adds more galaxy sizes to the game.
-
-# Additions
-
+Mod for Stellaris that adds more galaxy sizes to the game:
  - Ludicrous (2000 stars)
  - Titanic (1800 stars)
  - Colossal (1600 stars)
