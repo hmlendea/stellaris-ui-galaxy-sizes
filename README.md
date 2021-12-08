@@ -16,7 +16,7 @@ Mod for Stellaris that adds more galaxy sizes to the game:
 
 ## Manual installation
 
- - Download the [latest release](https://github.com/hmlendea/more-cultural-names/releases)
+ - Download the [latest release](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest)
  - Extract the contents into your game's mod directory
 
 # Universul Unfinitum Collection
