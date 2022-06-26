@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Download the release asset
-      run: wget "https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "ui-galaxy-sizes.zip"
+      run: wget "https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "release.zip"
 
     - name: Upload
       uses: greatness7/nexusmods_file_updater@v2
@@ -29,4 +29,4 @@ jobs:
         new_existing_version: true
         original_file: "ui-galaxy-sizes.*"
         file_description: "Changelog: https://github.com/hmlendea/ui-galaxy-sizes/releases/${{github.ref_name}}"
-        file_path: "ui-galaxy-sizes.zip"
+        file_path: "release.zip"

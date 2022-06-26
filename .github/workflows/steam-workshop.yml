@@ -15,15 +15,15 @@ jobs:
 
     - name: Download the release asset
       run: |
-        wget "https://github.com/hmlendea/ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "ui-galaxy-sizes.zip"
-        unzip "ui-galaxy-sizes.zip" -d "ui-galaxy-sizes/"
+        wget "https://github.com/hmlendea/ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "release.zip"
+        unzip "release.zip" -d "release/"
 
     - name: Upload
       uses: Weilbyte/steam-workshop-upload@v1
       with:
         appid: 281990
         itemid: 2047543230
-        path: "ui-galaxy-sizes/"
+        path: "release/"
         changenote: "[url=https://github.com/hmlendea/ui-galaxy-sizes/releases/tag/${{github.ref_name}}]Version ${{github.ref_name}}[/url]"
       env:
         STEAM_USERNAME: ${{secrets.STEAM_USERNAME}}
