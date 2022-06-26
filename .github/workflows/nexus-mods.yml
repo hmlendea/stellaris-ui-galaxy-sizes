@@ -28,5 +28,5 @@ jobs:
         update_version: true
         new_existing_version: true
         original_file: "ui-galaxy-sizes.*"
-        file_description: "Changelog: https://github.com/hmlendea/ui-galaxy-sizes/releases/${{github.ref_name}}"
+        file_description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{github.ref_name}}"
         file_path: "release.zip"
