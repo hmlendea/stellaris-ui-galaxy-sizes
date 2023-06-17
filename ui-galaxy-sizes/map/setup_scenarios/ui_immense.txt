@@ -14,7 +14,7 @@ setup_scenario = {
     primitive_odds = 1.0
     crisis_strength = 2.0
     extra_crisis_strength = { 10 25 }
-    
+
     cluster_count = {
         method = one_every_x_empire
         #method = constant
@@ -45,20 +45,26 @@ setup_scenario = {
 
         method = depth_first
     }
-    
+
     num_nebulas = 14
     nebula_size = 60
     nebula_min_dist = 200
-    
+
     num_wormhole_pairs = { min = 0 max = 5 }
     num_wormhole_pairs_default = 1
     num_gateways = { min = 0 max = 5 }
     num_gateways_default = 1
     num_hyperlanes = { min=0.5 max= 5 }
     num_hyperlanes_default = 1
-    
-    supports_shape = elliptical
-    supports_shape = spiral_2
-    supports_shape = spiral_4
-    supports_shape = ring
+
+	supports_shape = elliptical
+	supports_shape = spiral_2
+	supports_shape = spiral_3
+	supports_shape = spiral_4
+	supports_shape = spiral_6
+	supports_shape = ring
+	supports_shape = bar
+	supports_shape = starburst
+	supports_shape = cartwheel
+	supports_shape = spoked
 }
