@@ -24,6 +24,6 @@ jobs:
         nexus_game_id: "stellaris"
         nexus_mod_id: "76"
         mod_file_name: "ui-galaxy-sizes"
-        mod_version: true
+        mod_version: ${{github.ref_name}}
         file_description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{github.ref_name}}"
         file_path: "release.zip"
