@@ -19,7 +19,7 @@ jobs:
         unzip "release.zip" -d "release/"
 
     - name: Upload
-      uses: Weilbyte/steam-workshop-upload@v1
+      uses: hmlendea/steam-workshop-update@latest
       with:
         appid: 281990
         itemid: 2047543230
@@ -28,4 +28,4 @@ jobs:
       env:
         STEAM_USERNAME: ${{secrets.STEAM_USERNAME}}
         STEAM_PASSWORD: ${{secrets.STEAM_PASSWORD}}
-        STEAM_TFASEED: ${{secrets.STEAM_2FA_SEED}}
+        STEAM_2FASEED: ${{secrets.STEAM_2FA_SEED}}
