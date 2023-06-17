@@ -17,16 +17,13 @@ jobs:
       run: wget "https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "release.zip"
 
     - name: Upload
-      uses: greatness7/nexusmods_file_updater@v2
+      uses: hmlendea/nexusmods-update@latest
       with:
-        username: ${{secrets.NEXUS_UPLOADER_USERNAME}}
-        password: ${{secrets.NEXUS_UPLOADER_PASSWORD}}
-        game_domain_name: "stellaris"
-        mod_id: "76"
-        file_name: "ui-galaxy-sizes"
-        file_version: ${{github.ref_name}}
-        update_version: true
-        new_existing_version: true
-        original_file: "ui-galaxy-sizes.*"
+        account_email_address: ${{secrets.NEXUS_UPLOADER_USERNAME}}
+        account_password: ${{secrets.NEXUS_UPLOADER_PASSWORD}}
+        nexus_game_id: "stellaris"
+        nexus_mod_id: "76"
+        mod_file_name: "ui-galaxy-sizes"
+        mod_version: true
         file_description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{github.ref_name}}"
         file_path: "release.zip"
