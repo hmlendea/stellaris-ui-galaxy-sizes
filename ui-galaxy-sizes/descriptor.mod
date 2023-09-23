@@ -1,5 +1,5 @@
 version="1.4.1"
-name="Universum Infinitum - Galaxy Sizes"
+name="Universum Infinitum: Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={
     "Galaxy Generation"
