@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: Download the release asset
       run: |
@@ -23,7 +23,7 @@ jobs:
       with:
         appid: 281990
         itemid: 2047543230
-        path: "release/"
+        path: "release/ui-galaxy-sizes/"
         changenote: "[url=https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/tag/${{github.ref_name}}]Version ${{github.ref_name}}[/url]"
       env:
         STEAM_USERNAME: ${{secrets.STEAM_USERNAME}}
