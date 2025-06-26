@@ -1,4 +1,4 @@
-version="1.4.1"
+version="1.4.3"
 name="Universum Infinitum: Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={
