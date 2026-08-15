@@ -4,26 +4,37 @@ on:
   push:
     tags:
     - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
 
+    env:
+      VERSION: ${{ inputs.tag || github.ref_name }}
+
     steps:
     - uses: actions/checkout@v1
 
     - name: Download the release asset
-      run: wget "https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/download/${{github.ref_name}}/ui-galaxy-sizes_${GITHUB_REF:11}.zip" -O "release.zip"
+      run: |
+        RELEASE_ASSET_NAME="ui-galaxy-sizes_${VERSION#v}.zip"
+        wget "https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/download/${VERSION}/${RELEASE_ASSET_NAME}" -O "release.zip"
 
     - name: Upload
-      uses: hmlendea/nexusmods-update@latest
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.10
       with:
-        account_email_address: ${{secrets.NEXUS_UPLOADER_USERNAME}}
-        account_password: ${{secrets.NEXUS_UPLOADER_PASSWORD}}
-        nexus_game_id: "stellaris"
-        nexus_mod_id: "76"
-        mod_file_name: "ui-galaxy-sizes"
-        mod_version: ${{github.ref_name}}
-        file_description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{github.ref_name}}"
-        file_path: "release.zip"
+        api_key: ${{ secrets.NEXUSMODS_API_KEY }}
+        file_id: 922249
+        filename: release.zip
+        display_name: ui-galaxy-sizes.zip
+        version: ${{env.VERSION}}
+        description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{env.VERSION}}"
+        category: main
+        archive_existing_version: true
+        update_mod_version: true
