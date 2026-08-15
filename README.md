@@ -1,46 +1,118 @@
-[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/fund.html) [![Latest GitHub release](https://img.shields.io/github/v/release/hmlendea/stellaris-ui-galaxy-sizes)](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest)
+[![Donate](https://img.shields.io/badge/-%E2%99%A5%20Donate-%23ff69b4)](https://hmlendea.go.ro/funding)
+[![Latest Release](https://img.shields.io/github/v/release/hmlendea/stellaris-ui-galaxy-sizes)](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest)
+[![License](https://img.shields.io/github/license/hmlendea/stellaris-ui-galaxy-sizes)](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/LICENSE)
 
-# About
+# Universum Infinitum: Galaxy Sizes
 
-Mod for Stellaris that adds more galaxy sizes to the game:
- - Ludicrous (2000 stars)
- - Titanic (1800 stars)
- - Colossal (1600 stars)
- - Immense (1400 stars)
- - Gigantic (1200 stars)
- - Minuscule (100 stars)
+A Stellaris mod that adds six galaxy sizes ranging from 100 to 2,000 stars, with scaled generation defaults for each scenario.
 
-# Installation
+## 📑 Table of Contents
 
-[![Get it from the Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230) [![Get it from Paradox Mods](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/paradox-mods.png)](https://mods.paradoxplaza.com/mods/25431/Any) [![Get it from the Nexus](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://nexusmods.com/stellaris/mods/76) [![Get it from GitHub](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/github.png)](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest)
+- [Table of Contents](#-table-of-contents)
+- [Capabilities](#-capabilities)
+- [Usage](#-usage)
+- [Known Limitations](#-known-limitations)
+- [Installation](#-installation)
+	- [Manual Installation](#manual-installation)
+- [Localisation](#-localisation)
+- [Compatibility](#-compatibility)
+- [Integrations](#-integrations)
+- [Contributing](#-contributing)
+- [Related Projects](#-related-projects)
+- [Support](#-support)
+- [Project Engagement](#-project-engagement)
+- [License](#-license)
 
-## Manual installation
+## ✨ Capabilities
 
- - Download the [latest release](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest)
- - Extract the contents into your game's mod directory
+- Select Ludicrous galaxies with 2,000 stars.
+- Select Titanic galaxies with 1,800 stars.
+- Select Colossal galaxies with 1,600 stars.
+- Select Immense galaxies with 1,400 stars.
+- Select Gigantic galaxies with 1,200 stars.
+- Select Minuscule galaxies with 100 stars.
+- Generate every additional size with elliptical, spiral, ring, bar, starburst, cartwheel, or spoked galaxy shapes.
+- Use size-specific defaults for AI empires, fallen empires, marauders, advanced empires, nebulae, and crisis strength.
 
-# Compatibility
+## 🚀 Usage
 
-The mod is **OS-agnostic**, which means that it will work on all of the operating systems supported by the game.
+After installing and activating the mod in the Stellaris launcher:
+1. Start a **New Game**.
+2. Select one of the six additional options from the **Galaxy Size** selector.
+3. Configure the remaining game settings and start the campaign.
 
-It is actively tested (and developed) on **Linux**, where it is guaranteed to work with either the native version of the game or through Steam Play.
+## ⚠️ Known Limitations
 
-It should also be compatible with any other mods.
+- The 2,000-star Ludicrous scenario requires [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names) to provide sufficient system names.
+- [Paradox Mods](https://mods.paradoxplaza.com/mods/25431/Any) currently provides mod version 1.3.0 for Stellaris 3.x. Use Steam Workshop, Nexus Mods, or GitHub for version 1.4.3 with Stellaris 4.0.x.
 
-# Contributions
+## 📦 Installation
 
-You are welcome to bring any suggestion, feedback or modification to this project.
+[![Obtain it from Steam Workshop](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/steam-workshop.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230)
+[![Obtain it from Nexus Mods](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/nexus.png)](https://nexusmods.com/stellaris/mods/76)
+[![Obtain it from Paradox Mods](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/paradox-mods.png)](https://mods.paradoxplaza.com/mods/25431/Any)
+[![Obtain it from GitHub](https://raw.githubusercontent.com/hmlendea/readme-assets/master/badges/stores/github.png)](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases)
 
-Here are a few ways in which you can do so:
- - Commenting directly on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230) or [Nexus](https://www.nexusmods.com/stellaris/mods/76) pages
- - Raising a new [issue](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/issues) for this project
- - Creating a git pull request _(This requires git knowledge)_
+Install the mod through one of the listed platforms, add it to a Stellaris playset, and activate it before starting the game.
 
-# Universul Unfinitum Collection
+### Manual Installation
 
- - [Flags](https://github.com/hmlendea/stellaris-ui-flags)
- - [Galaxy Sizes](https://github.com/hmlendea/stellaris-ui-galaxy-sizes)
- - [Name Lists](https://github.com/hmlendea/stellaris-ui-name-lists)
- - [Prescripted Countries](https://github.com/hmlendea/stellaris-ui-prescripted-countries)
- - [Species Names](https://github.com/hmlendea/stellaris-ui-species-names)
- - [Star Names](https://github.com/hmlendea/stellaris-ui-star-names)
+1. Download the archive from the [latest GitHub release](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/latest).
+2. Extract `ui-galaxy-sizes.mod` and the `ui-galaxy-sizes/` directory into the Stellaris user mod directory.
+3. Add **Universum Infinitum: Galaxy Sizes** to a playset in the Stellaris launcher and activate it.
+4. Install [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names) when using the Ludicrous galaxy size.
+
+## 🌍 Localisation
+
+English labels are included for all six additional galaxy sizes.
+
+| Language | Locale | Status |
+|----------|--------|--------|
+| English | `l_english` | All scenario names included |
+
+## 🧩 Compatibility
+
+| Component | Supported Versions | Notes |
+|-----------|--------------------|-------|
+| Stellaris | `4.4.*` | Declared by both mod descriptors for release 1.4.4 |
+
+## 🔌 Integrations
+
+| Integration | Compatibility | Purpose | Required |
+|-------------|---------------|---------|----------|
+| [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names) | Ludicrous scenario | Provides sufficient names for a 2,000-star galaxy | Only for Ludicrous |
+
+## 🤝 Contributing
+
+You are welcome to submit any suggestion, feedback, or modification to this project.
+
+When doing so, please:
+- Maintain cross-platform compatibility
+- Submit focused pull requests that conform to the existing code style
+- Maintain your branch synchronised with `master`
+- Revise the documentation when functionality changes
+
+## 🔗 Related Projects
+
+- [Universum Infinitum: Flags](https://github.com/hmlendea/stellaris-ui-flags): Companion Stellaris mod from the Universum Infinitum collection.
+- [Universum Infinitum: Name Lists](https://github.com/hmlendea/stellaris-ui-name-lists): Companion Stellaris mod from the Universum Infinitum collection.
+- [Universum Infinitum: Prescripted Countries](https://github.com/hmlendea/stellaris-ui-prescripted-countries): Companion Stellaris mod from the Universum Infinitum collection.
+- [Universum Infinitum: Species Names](https://github.com/hmlendea/stellaris-ui-species-names): Companion Stellaris mod from the Universum Infinitum collection.
+- [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names): Companion mod required by the Ludicrous galaxy size.
+
+## 💬 Support
+
+Use the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2047543230) or [Nexus Mods](https://www.nexusmods.com/stellaris/mods/76) pages for general support and discussion. Submit reproducible problems and project suggestions through [GitHub Issues](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/issues).
+
+## 💝 Project Engagement
+
+Discovered a problem or have a suggestion? [Open an issue](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/issues)!
+
+If you find this project useful, consider [funding it](https://hmlendea.go.ro/funding) or starring ⭐️ it on GitHub!
+
+[![Donate](https://raw.githubusercontent.com/hmlendea/readme-assets/master/donate_generic.png)](https://hmlendea.go.ro/funding)
+
+## 📄 License
+
+This project is being distributed under the `GNU General Public License version 3`.
+See [LICENSE](./LICENSE) for further information.
