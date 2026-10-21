@@ -20,6 +20,7 @@ A Stellaris mod that adds six galaxy sizes ranging from 100 to 2,000 stars, with
 - [Privacy and Data](#-privacy-and-data)
 - [Contributing](#-contributing)
 - [Code of Conduct](#-code-of-conduct)
+- [Security](#-security)
 - [Related Projects](#-related-projects)
 - [Support](#-support)
 - [Project Engagement](#-project-engagement)
@@ -108,6 +109,12 @@ See the [contributing guidelines](./CONTRIBUTING.md) for details on how to repor
 ## 📜 Code of Conduct
 
 See the [Code of Conduct](./CODE_OF_CONDUCT.md) for the standards of conduct expected in all project spaces.
+
+## 🔒 Security
+
+Universum Infinitum: Galaxy Sizes defines galaxy-generation scenarios for Stellaris and does not implement accounts, telemetry, diagnostics, or built-in transfers of personal data.
+
+For information on reporting security vulnerabilities, see [SECURITY.md](./SECURITY.md).
 
 ## 🔗 Related Projects
 

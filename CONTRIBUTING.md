@@ -72,6 +72,10 @@ cd stellaris-ui-galaxy-sizes
 
 This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
+## 🔒 Security
+
+This project follows the [Security Policy](./SECURITY.md). Please do not disclose suspected vulnerabilities publicly before maintainers have had an opportunity to validate and remediate them.
+
 ## 📄 License
 
 By contributing, you agree that your contributions will be licensed under the GNU General Public License version 3.
