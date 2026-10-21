@@ -100,6 +100,9 @@ When doing so, please:
 - Submit focused pull requests that conform to the existing code style
 - Maintain your branch synchronised with `master`
 - Revise the documentation when functionality changes
+- Raise a new [issue](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/issues) for problems or suggestions
+
+See the [contributing guidelines](./CONTRIBUTING.md) for details on how to report issues, suggest enhancements, and submit changes.
 
 ## 🔗 Related Projects
 
