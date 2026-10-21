@@ -17,6 +17,7 @@ A Stellaris mod that adds six galaxy sizes ranging from 100 to 2,000 stars, with
 - [Localisation](#-localisation)
 - [Compatibility](#-compatibility)
 - [Integrations](#-integrations)
+- [Privacy and Data](#-privacy-and-data)
 - [Contributing](#-contributing)
 - [Related Projects](#-related-projects)
 - [Support](#-support)
@@ -81,6 +82,14 @@ English labels are included for all six additional galaxy sizes.
 | Integration | Compatibility | Purpose | Required |
 |-------------|---------------|---------|----------|
 | [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names) | Ludicrous scenario | Provides sufficient names for a 2,000-star galaxy | Only for Ludicrous |
+
+## 🛡️ Privacy and Data
+
+Universum Infinitum: Galaxy Sizes does not request, collect, transmit, or store personal data; its files define galaxy-generation scenarios for Stellaris.
+
+For the detailed description of how the application handles privacy and personal data, see [PRIVACY.md](./PRIVACY.md).
+
+The mod does not implement accounts, telemetry, diagnostics, or built-in transfers of personal data.
 
 ## 🤝 Contributing
 
