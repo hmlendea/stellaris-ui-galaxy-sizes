@@ -19,6 +19,7 @@ A Stellaris mod that adds six galaxy sizes ranging from 100 to 2,000 stars, with
 - [Integrations](#-integrations)
 - [Privacy and Data](#-privacy-and-data)
 - [Contributing](#-contributing)
+- [Code of Conduct](#-code-of-conduct)
 - [Related Projects](#-related-projects)
 - [Support](#-support)
 - [Project Engagement](#-project-engagement)
@@ -103,6 +104,10 @@ When doing so, please:
 - Raise a new [issue](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/issues) for problems or suggestions
 
 See the [contributing guidelines](./CONTRIBUTING.md) for details on how to report issues, suggest enhancements, and submit changes.
+
+## 📜 Code of Conduct
+
+See the [Code of Conduct](./CODE_OF_CONDUCT.md) for the standards of conduct expected in all project spaces.
 
 ## 🔗 Related Projects
 
