@@ -13,6 +13,7 @@ This document covers the guidelines and processes for contributing to this proje
     - [Making Changes](#making-changes)
     - [Pull Request Guidelines](#pull-request-guidelines)
   - [Documentation](#documentation)
+- [Code of Conduct](#-code-of-conduct)
 - [License](#-license)
 - [Getting Assistance](#-getting-assistance)
 
@@ -66,6 +67,10 @@ cd stellaris-ui-galaxy-sizes
 - Revise relevant docs for changes.
 - Follow the documentation style guide.
 - Preview changes locally if possible.
+
+## 📋 Code of Conduct
+
+This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## 📄 License
 
