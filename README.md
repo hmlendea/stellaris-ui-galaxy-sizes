@@ -23,6 +23,12 @@ A Stellaris mod that adds six galaxy sizes ranging from 100 to 2,000 stars, with
 - [Code of Conduct](#-code-of-conduct)
 - [Security](#-security)
 - [Related Projects](#-related-projects)
+- [GitHub Actions](#-github-actions)
+- [Project Structure](#-project-structure)
+- [Documentation](#-documentation)
+- [Versioning](#-versioning)
+- [FAQ](#-faq)
+- [Troubleshooting](#-troubleshooting)
 - [Support](#-support)
 - [Project Engagement](#-project-engagement)
 - [License](#-license)
@@ -128,6 +134,74 @@ The mod is a declarative, data-driven Stellaris extension. It supplies six `setu
 - [Universum Infinitum: Prescripted Countries](https://github.com/hmlendea/stellaris-ui-prescripted-countries): Companion Stellaris mod from the Universum Infinitum collection.
 - [Universum Infinitum: Species Names](https://github.com/hmlendea/stellaris-ui-species-names): Companion Stellaris mod from the Universum Infinitum collection.
 - [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names): Companion mod required by the Ludicrous galaxy size.
+
+## ⚙️ GitHub Actions
+
+| Workflow | Purpose | What it does |
+|----------|---------|--------------|
+| [nexus-mods.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/nexus-mods.yml) | Nexus Mods deployment | Packages and publishes releases to Nexus Mods |
+| [steam-workshop.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/steam-workshop.yml) | Steam Workshop deployment | Packages and publishes releases to Steam Workshop |
+
+## 🗂️ Project Structure
+
+```
+├── ui-galaxy-sizes.mod          # Root descriptor (Steam/GitHub/Nexus)
+├── ui-galaxy-sizes/             # Mod content directory
+│   ├── descriptor.mod           # Local descriptor (Paradox Mods)
+│   ├── localisation/
+│   │   └── engligh/
+│   │       └── ui-galaxy-sizes_l_english.yml
+│   └── map/
+│       └── setup_scenarios/
+│           ├── ui_minuscule.txt
+│           ├── ui_gigantic.txt
+│           ├── ui_immense.txt
+│           ├── ui_colossal.txt
+│           ├── ui_titanic.txt
+│           └── ui_ludicrous.txt
+├── docs/                        # Comprehensive documentation (33 files)
+├── .github/
+│   ├── workflows/               # CI/CD pipelines
+│   ├── FUNDING.yml
+│   └── cover.png
+├── ARCHITECTURE.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── PRIVACY.md
+├── SECURITY.md
+├── LICENSE
+└── README.md
+```
+
+## 📚 Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [Documentation Index](docs/INDEX.md) | Master index of all 33 documentation files |
+| [Architecture](ARCHITECTURE.md) | System context, components, data flows, interfaces |
+| [Quick Start](docs/quick-start.md) | 5-minute installation and first game setup |
+| [FAQ](docs/faq.md) | Frequently asked questions |
+| [Troubleshooting](docs/troubleshooting.md) | Diagnosis table, issue resolution, log analysis |
+| [Testing](docs/testing.md) | Test strategy, validation scripts, manual checklist |
+| [Change Guide](docs/change-guide.md) | Change categories, workflow, versioning, rollback |
+| [Build & Deployment](docs/build-and-deployment.md) | Packaging, deployment targets, CI/CD |
+
+## 🏷️ Versioning
+
+This project follows [Semantic Versioning](https://semver.org/) for mod releases:
+- **Major**: Breaking changes to scenario parameters or Stellaris version support
+- **Minor**: New galaxy sizes, new localisation, parameter rebalancing
+- **Patch**: Bug fixes, typo corrections, metadata updates
+
+The `supported_version` in descriptors declares Stellaris compatibility (currently `v4.5.*`).
+
+## ❓ FAQ
+
+See the [Frequently Asked Questions](docs/faq.md) for responses to frequently raised inquiries.
+
+## 🩺 Troubleshooting
+
+See the [Troubleshooting Guide](docs/troubleshooting.md) for diagnostic procedures and resolutions to recurring problems.
 
 ## 💬 Support
 
