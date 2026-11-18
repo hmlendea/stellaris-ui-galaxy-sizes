@@ -10,25 +10,23 @@ This document defines processes for keeping documentation accurate, current, and
 
 | File | Purpose | Update Trigger |
 |------|---------|----------------|
-| `README.md` | Project overview, install, usage | Every release |
-| `LICENSE` | GNU GPL v3 | Never (unless licence change) |
-| `CHANGELOG.md` | Version history | Every release |
+| `README.md` | Project overview, installation, usage | Every release |
+| `LICENSE` | GNU GPL v3 | Never (unless a licence change) |
 | `CONTRIBUTING.md` | Contribution guidelines | Process changes |
 | `SECURITY.md` | Vulnerability reporting | Policy changes |
 | `PRIVACY.md` | Data handling | Data practice changes |
 | `CODE_OF_CONDUCT.md` | Community standards | Community changes |
-| `ROADMAP.md` | Future plans | Planning updates |
 | `ARCHITECTURE.md` | System architecture | Architecture changes |
 
 ### Documentation Directory (`docs/`)
 
 | File | Purpose | Update Trigger |
 |------|---------|----------------|
-| `repository-overview.md` | High-level repo description | Structural changes |
-| `repository-structure.md` | File tree with descriptions | File add/remove/move |
+| `repository-overview.md` | High-level repository description | Structural changes |
+| `repository-structure.md` | File tree with descriptions | File inclusion, extraction, or move |
 | `architecture.md` | Technical architecture | Architecture changes |
 | `data-model.md` | Parameter reference | Parameter changes |
-| `configuration.md` | Configuration guide | Config changes |
+| `configuration.md` | Configuration guide | Configuration changes |
 | `dependencies.md` | Dependency inventory | Dependency changes |
 | `testing.md` | Test strategy | Test changes |
 | `security.md` | Security analysis | Security changes |
@@ -37,45 +35,45 @@ This document defines processes for keeping documentation accurate, current, and
 | `invariants.md` | System invariants | Invariant changes |
 | `change-guide.md` | Change process | Process changes |
 | `documentation-maintenance.md` | This file | Process changes |
-| `faq.md` | Frequently asked questions | New common questions |
-| `troubleshooting.md` | Problem resolution | New issues/solutions |
+| `faq.md` | Frequently asked questions | New frequent questions |
+| `troubleshooting.md` | Problem resolution | New issues and solutions |
 | `ambiguities-and-open-questions.md` | Unresolved items | New ambiguities |
-| `quick-start.md` | 5-minute start guide | Install/usage changes |
+| `quick-start.md` | 5-minute start guide | Installation and usage changes |
 | `api-usage-examples.md` | Usage examples | New use cases |
 | `design-decisions.md` | Architectural decisions | New decisions |
 | `integrations.md` | Integration points | New integrations |
-| `state-and-persistence.md` | State management | State changes |
+| `state-and-persistence.md` | State and persistence | State changes |
 | `concurrency-and-scheduling.md` | Concurrency model | Concurrency changes |
 | `components/presentation.md` | UI components | UI changes |
-| `components/host-and-composition.md` | Host/composition | Host changes |
-| `components/application-services.md` | App services | Service changes |
+| `components/host-and-composition.md` | Host and composition | Host changes |
+| `components/application-services.md` | Application services | Service changes |
 | `components/integration-models.md` | Integration models | Model changes |
 | `flows/startup-and-rendering.md` | Startup flow | Flow changes |
 | `flows/detail-mutation.md` | Detail mutation flow | Flow changes |
 | `flows/calendar-search.md` | Calendar search flow | Flow changes |
-| `behaviour/browse-and-search.md` | Browse/search behaviour | Behaviour changes |
-| `behaviour/inspect-edit-delete.md` | Inspect/edit/delete | Behaviour changes |
+| `behaviour/browse-and-search.md` | Browse and select behaviour | Behaviour changes |
+| `behaviour/inspect-edit-delete.md` | Inspect, edit, and delete | Behaviour changes |
 | `api-reference/INDEX.md` | API reference index | API changes |
-| `INDEX.md` | Master documentation index | Any doc change |
+| `INDEX.md` | Master documentation index | Any documentation change |
 
 ## Maintenance Principles
 
 ### Single Source of Truth
 
-- Mod files (`ui-galaxy-sizes/`) are the source of truth
-- Documentation reflects mod files, not vice versa
+- Mod files beneath `ui-galaxy-sizes/` constitute the source of truth
+- Documentation reflects mod files, never vice versa
 - Validation scripts enforce consistency
 
 ### Version Alignment
 
 - Documentation version = mod version (in `CHANGELOG.md`)
-- `README.md` version badge matches latest release
-- `ARCHITECTURE.md` `supported_version` matches descriptors
+- The `README.md` version badge corresponds to the latest release
+- The `ARCHITECTURE.md` `supported_version` corresponds to the descriptors
 
 ### Completeness Over Perfection
 
-- Document "not applicable" explicitly for declarative mod
-- Stub sections preferred over missing sections
+- Document "not applicable" explicitly for this declarative mod
+- Stub sections are preferred over absent sections
 - Cross-reference instead of duplicating
 
 ## Update Workflow
@@ -84,19 +82,19 @@ This document defines processes for keeping documentation accurate, current, and
 
 When making a mod change (per `change-guide.md`):
 
-1. Identify affected documentation (see change-guide.md table)
+1. Identify affected documentation (see the change-guide.md table)
 2. Update each affected file
-3. Verify cross-references still valid
+3. Verify that the cross-references remain valid
 4. Run documentation validation (if available)
 
 ### Per-Release Updates
 
 At each release:
 
-1. Update `CHANGELOG.md` with release notes
-2. Update `README.md` version badge and any changed instructions
-3. Update `ARCHITECTURE.md` if Stellaris version changed
-4. Verify `INDEX.md` links all current docs
+1. Update `CHANGELOG.md` with the release notes
+2. Update the `README.md` version badge and any changed instructions
+3. Update `ARCHITECTURE.md` if the Stellaris version changed
+4. Verify that `INDEX.md` links all current documentation
 5. Check for broken internal links
 
 ### Periodic Reviews
@@ -109,7 +107,7 @@ At each release:
 
 ## Validation
 
-### Automated Checks (CI)
+### Automated Checks (Continuous Integration)
 
 ```bash
 # Link validation
@@ -128,37 +126,39 @@ At each release:
 - Repository-relative links preferred
 
 **Structure Validation:**
-- All inventory files exist
+- Every inventory file exists
 - Required sections present per template
-- Markdown syntax valid
+- Valid Markdown syntax
 
 **Cross-Reference Validation:**
-- Parameter names match `data-model.md`
-- File paths match `repository-structure.md`
-- Version numbers consistent
+- Parameter names correspond to `data-model.md`
+- File paths correspond to `repository-structure.md`
+- Version numbers correspond
 
 ### Manual Checks
 
 - Read-through for clarity
-- Verify examples work
-- Check "not applicable" sections still accurate
-- Confirm external links accessible
+- Verify that examples function
+- Confirm "not applicable" sections remain accurate
+- Confirm that external links remain accessible
 
 ## Documentation Standards
 
 ### Formatting
 
-- Markdown (CommonMark + GitHub Flavored)
+- Markdown (CommonMark and GitHub Flavored)
 - Tables for parameter references
 - Code blocks for Clausewitz examples
-- Relative links for internal references
+- Repository-relative links for internal references
 
 ### Templates
 
-Each doc type follows a template (see `github/template-fidelity` instructions):
+### Templates
 
-| Doc Type | Template Source |
-|----------|-----------------|
+Each document type follows a template (see the `github-md-template-fidelity` instructions):
+
+| Document Type | Template Source |
+|---------------|-----------------|
 | README | `github.readme.template` |
 | ARCHITECTURE | `github.architecture.template` |
 | CONTRIBUTING | `github.contributing.template` |
@@ -166,7 +166,7 @@ Each doc type follows a template (see `github/template-fidelity` instructions):
 | PRIVACY | `github.privacy.template` |
 | CODE_OF_CONDUCT | `github.code-of-conduct.template` |
 | ROADMAP | `github.roadmap.template` |
-| Others | Ad-hoc, follow existing patterns |
+| Others | Ad hoc, following existing patterns |
 
 ### Style Guide
 
@@ -188,7 +188,7 @@ For sections not relevant to this declarative mod:
 ```markdown
 ## Section Title
 
-**Not Applicable** — This mod has no [runtime/component/feature].
+**Not Applicable** — This mod has no runtime code, no component model, or no [feature].
 
 ### Reason
 
@@ -196,7 +196,7 @@ For sections not relevant to this declarative mod:
 
 ### Context
 
-[Optional: what the engine does instead, or why it doesn't apply.]
+[Optional: what the engine does instead, or why it does not apply.]
 ```
 
 ## Cross-Reference Management
@@ -205,15 +205,15 @@ For sections not relevant to this declarative mod:
 
 | Reference | Format | Validation |
 |-----------|--------|------------|
-| Internal doc | `[text](file.md)` | Link check |
-| Internal section | `[text](file.md#section)` | Link + anchor check |
+| Internal document | `[text](file.md)` | Link check |
+| Internal section | `[text](file.md#section)` | Link and anchor check |
 | Mod file | `ui-galaxy-sizes/map/setup_scenarios/ui_ludicrous.txt` | Path existence |
-| Parameter | `num_stars` (backticks) | data-model.md presence |
+| Parameter | `num_stars` (backticks) | Presence in `data-model.md` |
 | External | `[text](https://...)` | Periodic manual check |
 
 ### Anchor Standards
 
-Use GitHub-style anchors from headings:
+Use GitHub-style anchors derived from headings:
 - `#repository-overview` → `#repository-overview`
 - `#parameter-reference` → `#parameter-reference`
 - Lowercase, hyphens, no punctuation
@@ -222,18 +222,18 @@ Use GitHub-style anchors from headings:
 
 ### Deprecating Documentation
 
-1. Add deprecation notice at top of file
-2. Update `INDEX.md` to mark deprecated
-3. Keep content for historical reference
-4. Remove after 2 major versions
+1. Include a deprecation notice at the top of the file
+2. Mark the document as deprecated in `INDEX.md`
+3. Keep the content for historical reference
+4. Extract it after two major versions
 
 ### Removing Documentation
 
-1. Ensure no internal links point to it
-2. Remove from `INDEX.md`
-3. Remove from inventory table
-4. Delete file
-5. Update validation scripts
+1. Confirm that no internal links point to it
+2. Removal from `INDEX.md`
+3. Removal from the inventory table
+4. Removing the file
+5. Updating the validation scripts
 
 ## Tooling
 
@@ -241,8 +241,8 @@ Use GitHub-style anchors from headings:
 
 | Tool | Purpose | Installation |
 |------|---------|--------------|
-| `markdownlint` | Lint markdown | `npm install -g markdownlint-cli` |
-| `linkcheck` | Validate links | `npm install -g linkcheck` |
+| `markdownlint` | Lint Markdown | `npm install -g markdownlint-cli` |
+| `linkcheck` | Link validation | `npm install -g linkcheck` |
 | `vale` | Prose linting | `brew install vale` |
 
 ### Validation Scripts
@@ -252,7 +252,7 @@ Use GitHub-style anchors from headings:
 #!/bin/bash
 set -e
 
-echo "Validating markdown syntax..."
+echo "Validating Markdown syntax..."
 markdownlint docs/**/*.md README.md
 
 echo "Validating internal links..."
@@ -270,18 +270,18 @@ echo "All validations passed."
 
 | Metric | Target | Measurement |
 |--------|--------|-------------|
-| Broken links | 0 | CI link check |
-| Missing files | 0 | Inventory check |
-| Outdated version refs | 0 | Release checklist |
+| Broken links | 0 | Continuous integration link check |
+| Absent files | 0 | Inventory check |
+| Outdated version references | 0 | Release checklist |
 | "Not applicable" accuracy | 100% | Quarterly review |
-| Cross-reference consistency | 100% | CI xref check |
+| Cross-reference consistency | 100% | Continuous integration cross-reference check |
 
 ### Documentation Debt
 
 Track in `ambiguities-and-open-questions.md`:
-- Sections needing expansion
-- Assumptions needing verification
-- Engine behaviours needing documentation
+- Sections requiring expansion
+- Premises requiring verification
+- Engine behaviours requiring documentation
 
 ## Onboarding New Maintainers
 
@@ -296,28 +296,28 @@ Track in `ambiguities-and-open-questions.md`:
 
 ### First Contribution
 
-1. Pick item from `ambiguities-and-open-questions.md`
-2. Follow `change-guide.md` workflow
-3. Update documentation per this guide
-4. Submit PR
+1. Select an item from `ambiguities-and-open-questions.md`
+2. Follow the `change-guide.md` workflow
+3. Update the documentation per this guide
+4. Submit a pull request
 
 ## Emergency Documentation Updates
 
 For critical issues (security, data loss, breaking changes):
 
-1. Create hotfix branch
-2. Update only critical docs (README, SECURITY, CHANGELOG)
-3. Fast-track review
-4. Release patch
-5. Full documentation update in next minor release
+1. Create a hotfix branch
+2. Revise only critical documentation (`README.md`, `SECURITY.md`, `CHANGELOG.md`)
+3. Expedite the review
+4. Release a patch
+5. Complete the documentation update in the next minor release
 
 ## Archive Policy
 
 ### Versioned Documentation
 
-- Each release tags documentation state
-- Git history preserves all versions
-- No separate versioned doc site needed
+- Each release tags its documentation state
+- Git history preserves every version
+- A separate versioned documentation site is unnecessary
 
 ### Historical References
 
@@ -328,17 +328,17 @@ For critical issues (security, data loss, breaking changes):
 ## Checklist
 
 ### Per Change
-- [ ] Affected docs identified
-- [ ] Each affected doc updated
+- [ ] Affected documents identified
+- [ ] Each affected document updated
 - [ ] Cross-references verified
 - [ ] No broken links introduced
 
 ### Per Release
-- [ ] CHANGELOG.md updated
-- [ ] README.md version/badge updated
-- [ ] ARCHITECTURE.md version updated
-- [ ] INDEX.md complete
-- [ ] CI validation passes
+- [ ] `CHANGELOG.md` updated
+- [ ] Version and badge updated in `README.md`
+- [ ] Version updated in `ARCHITECTURE.md`
+- [ ] `INDEX.md` complete
+- [ ] Continuous integration validation passes
 
 ### Quarterly
 - [ ] Full inventory review

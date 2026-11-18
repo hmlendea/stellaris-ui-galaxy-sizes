@@ -1,4 +1,4 @@
-git # 📜 Code of Conduct
+# 📜 Code of Conduct
 
 ## 📑 Table of Contents
 
@@ -20,7 +20,7 @@ This project aims to be a constructive, welcoming place for everyone who partici
 Participants are expected to:
 * Treat other people with courtesy, patience, and consideration.
 * Employ clear, inclusive language and accommodate different perspectives.
-* Provide and receive feedback concerning ideas and efforts without attacking people.
+* Provide and receive feedback regarding ideas and efforts without attacking people.
 * Maintain focus on the project in discussions while recognising the people involved.
 * Take responsibility for mistakes and assist in repairing their impact.
 
@@ -42,7 +42,7 @@ Moderation decisions should be explained where doing so does not compromise priv
 
 ## 🌐 Where It Applies
 
-This code applies to repositories, issue trackers, pull requests, discussions, chat spaces, events, and other spaces operated for the project. It also applies when someone is visibly representing the project or acting in an official project role elsewhere.
+This code applies to repositories, issue trackers, pull requests, discussions, chat spaces, events, and other spaces operated for the project. It also applies when someone is visibly representing the project or acting in an official project role in another location.
 
 ## 📣 Reporting Concerns
 

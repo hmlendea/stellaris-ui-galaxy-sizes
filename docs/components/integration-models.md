@@ -8,7 +8,7 @@
 
 The mod is purely declarative configuration. It contains:
 - No data models
-- No serialization/deserialization
+- No serialisation/deserialisation
 - No API contracts
 - No request/response types
 - No event schemas
@@ -66,7 +66,7 @@ l_english:
 ### Descriptor Model (Clausewitz)
 
 ```clausewitz
-name = "Universum Infinitum: Galaxy Sizes"
+name = "Universum Infinitum - Galaxy Sizes"
 version = "1.5.0"
 path = "mod/ui-galaxy-sizes"
 supported_version = "v4.5.*"
@@ -107,6 +107,6 @@ Since this mod has no integration models, the following are **not applicable**:
 - Backward/forward compatibility
 - Data transformation pipelines
 - ETL processes
-- Message serialization (JSON, Protobuf, Avro, etc.)
+- Message serialisation (JSON, Protobuf, Avro, etc.)
 - API gateways
 - BFF (Backend for Frontend)

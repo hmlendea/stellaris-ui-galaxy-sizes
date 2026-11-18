@@ -8,15 +8,15 @@ Represents the mod identity and metadata as declared in `.mod` files.
 
 | Field | Type | Description | Constraints |
 |-------|------|-------------|-------------|
-| `version` | String | Mod version (semantic) | Must match release tag (e.g., "1.5.0") |
-| `name` | String | Display name | "Universum Infinitum: Galaxy Sizes" |
+| `version` | String | Mod version (semantic) | Must correspond to the release tag (e.g. "1.5.0") |
+| `name` | String | Display name | "Universum Infinitum - Galaxy Sizes" |
 | `path` | String | Mount path in Stellaris mod directory | Must be "mod/ui-galaxy-sizes" |
 | `tags` | Array[String] | Workshop categories | ["Galaxy Generation"] |
 | `supported_version` | String | Game version pattern | "v4.5.*" |
 
 **Instances:** Two — root descriptor (`ui-galaxy-sizes.mod`) and local descriptor (`ui-galaxy-sizes/descriptor.mod`). Both must be identical.
 
-### Localisation Entry
+### Localisation Record
 
 Maps a scenario key to a human-readable label for a specific locale.
 
@@ -30,14 +30,14 @@ Maps a scenario key to a human-readable label for a specific locale.
 
 ### Galaxy Scenario (`setup_scenario`)
 
-Defines all parameters for a single galaxy size option. This is the core domain entity consumed by the Stellaris galaxy generator.
+Defines every parameter for a single galaxy size option. This is the central domain entity consumed by the Stellaris galaxy generator.
 
 #### Identity
 
 | Field | Type | Description | Constraints |
 |-------|------|-------------|-------------|
-| `name` | String | Scenario key | Must match filename: `ui_<size>` |
-| `priority` | Integer | Sort order in UI | Unique, monotonic: -1, 5, 6, 7, 8, 9 |
+| `name` | String | Scenario key | Must correspond to the filename: `ui_<size>` |
+| `priority` | Integer | Sort order in the UI | Unique, monotonic: -1, 5, 6, 7, 8, 9 |
 
 #### Star System Parameters
 
@@ -50,7 +50,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
-| `num_empires` | Range(min, max) | Allowed AI empire count | 0-3 → 0-60 |
+| `num_empires` | Range(min, max) | Permitted AI empire count | 0-3 → 0-60 |
 | `num_empire_default` | Integer | Default AI empires | 2 → 30 |
 | `fallen_empire_default` | Integer | Default fallen empires | 0 → 6 |
 | `fallen_empire_max` | Integer | Maximum fallen empires | 1 → 6 |
@@ -82,7 +82,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 | `cluster_count.value` | Integer | Empires per cluster | 1 (all) |
 | `cluster_count.max` | Integer | Maximum clusters | 2 → 6 |
 | `cluster_radius` | Integer | Cluster spatial radius | 60 → 200 |
-| `cluster_distance_from_core` | Integer | Distance from galactic core | 90 (Minuscule), 300 (others) |
+| `cluster_distance_from_core` | Integer | Distance from the galactic centre | 90 (Minuscule), 300 (others) |
 
 #### Hyperlane Parameters
 
@@ -92,7 +92,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 
 #### Partition Parameters
 
-**Home System Partitions** (identical across all scenarios):
+**Home System Partitions** (identical throughout all scenarios):
 
 | Field | Type | Value |
 |-------|------|-------|
@@ -102,7 +102,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 | `max_bridges` | Integer | 4 |
 | `method` | Enum | `breadth_first` |
 
-**Open Space Partitions** (identical across all scenarios):
+**Open Space Partitions** (identical throughout all scenarios):
 
 | Field | Type | Value |
 |-------|------|-------|
@@ -143,7 +143,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 
 #### Shape Support
 
-Minuscule supports the 4 shapes vanilla allows at 100 stars; all other scenarios
+Minuscule supports the 4 shapes vanilla permits at 100 stars; the remaining scenarios
 support all 10 engine shapes:
 
 | Shape | Description |
@@ -163,7 +163,7 @@ support all 10 engine shapes:
 
 ```
 Mod Descriptor (1) ── declares ──> (6) Galaxy Scenario
-Localisation Entry (1) ── labels ──> (1) Galaxy Scenario
+Localisation Record (1) ── labels ──> (1) Galaxy Scenario
 Galaxy Scenario (1) ── requires ──> (0..1) UI Star Names Mod
 ```
 
@@ -171,7 +171,7 @@ Galaxy Scenario (1) ── requires ──> (0..1) UI Star Names Mod
 
 | Relationship | Cardinality | Notes |
 |--------------|-------------|-------|
-| Descriptor → Scenario | 1:6 | Two descriptors, same six scenarios |
+| Descriptor → Scenario | 1:6 | Two descriptors, identical six scenarios |
 | Localisation → Scenario | 1:1 | Each scenario has exactly one English label |
 | Scenario → UI Star Names | 0:1 | Only Ludicrous requires it |
 
@@ -182,18 +182,18 @@ All entities are persisted as static files in the repository:
 | Entity | File | Format |
 |--------|------|--------|
 | Mod Descriptor | `ui-galaxy-sizes.mod`, `ui-galaxy-sizes/descriptor.mod` | Stellaris `.mod` (key-value) |
-| Localisation Entry | `localisation/engligh/ui-galaxy-sizes_l_english.yml` | YAML |
+| Localisation Record | `localisation/engligh/ui-galaxy-sizes_l_english.yml` | YAML |
 | Galaxy Scenario | `map/setup_scenarios/ui_<size>.txt` | Stellaris `setup_scenario` (Clausewitz script) |
 
 ## Validation Rules
 
 ### Cross-Entity Consistency
 
-1. **Descriptor version match**: Both `.mod` files must have identical `version`
-2. **Descriptor path match**: Both must declare `path="mod/ui-galaxy-sizes"`
-3. **Supported version match**: Both must declare `supported_version="v4.5.*"`
-4. **Scenario name match**: Each scenario `name` must match its filename (`ui_<size>.txt`)
-5. **Localisation key match**: Each `l_english` key must match a scenario `name`
+1. **Descriptor version correspondence**: Both `.mod` files must carry an identical `version`
+2. **Descriptor path correspondence**: Both must declare `path="mod/ui-galaxy-sizes"`
+3. **Supported version correspondence**: Both must declare `supported_version="v4.5.*"`
+4. **Scenario name correspondence**: Each scenario `name` must correspond to its filename (`ui_<size>.txt`)
+5. **Localisation key correspondence**: Each `l_english` key must correspond to a scenario `name`
 6. **Priority uniqueness**: All six `priority` values must be distinct
 7. **Priority ordering**: Priorities must increase with galaxy size (-1, 5, 6, 7, 8, 9)
 8. **Shape list validity**: Every `supports_shape` value must be one of the 10 engine shapes; Minuscule declares the 4 vanilla tiny shapes
@@ -202,7 +202,7 @@ All entities are persisted as static files in the repository:
 
 | Parameter | Min | Max | Notes |
 |-----------|-----|-----|-------|
-| `num_stars` | 100 | 2000 | Engine may have hard limits |
+| `num_stars` | 100 | 2000 | The engine may impose firm limits |
 | `radius` | 150 | 500 | Sub-linear with star count; ≤500 engine limit |
 | `num_empires.max` | 3 | 60 | UI slider limits |
 | `fallen_empire_default` | 0 | 6 | Vanilla defines 6 fallen empire types |
@@ -218,22 +218,22 @@ All entities are persisted as static files in the repository:
 
 ### Adding a New Scenario
 
-1. Create `map/setup_scenarios/ui_<newsize>.txt` with valid `setup_scenario`
-2. Add localisation entry to `ui-galaxy-sizes_l_english.yml`
-3. Assign unique `priority` maintaining sort order
-4. Update both `.mod` files' `version`
-5. Test generation for all shapes
+1. Create `map/setup_scenarios/ui_<newsize>.txt` with a valid `setup_scenario`
+2. Include a localisation record in `ui-galaxy-sizes_l_english.yml`
+3. Assign a unique `priority` maintaining sort order
+4. Update the `version` in both `.mod` files
+5. Test generation for every shape
 
 ### Modifying Existing Scenario
 
 1. Edit `map/setup_scenarios/ui_<size>.txt`
-2. Update `version` in both descriptors
+2. Update the `version` in both descriptors
 3. Verify parameter bounds
-4. Test generation for all shapes
+4. Test generation for every shape
 
 ### Removing a Scenario
 
 1. Delete `map/setup_scenarios/ui_<size>.txt`
-2. Remove localisation entry
-3. Update `version` in both descriptors
-4. Verify remaining priorities still unique and ordered
+2. Extract the localisation record
+3. Update the `version` in both descriptors
+4. Verify the remaining priorities are still unique and ordered

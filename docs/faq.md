@@ -4,27 +4,27 @@
 
 ### What is this mod?
 
-Universum Infinitum: Galaxy Sizes adds six new galaxy size options to Stellaris, ranging from 100 to 2000 star systems. It is a purely declarative mod — no code, no scripts, only configuration files that the Stellaris engine reads at galaxy generation time.
+Universum Infinitum - Galaxy Sizes includes six novel galaxy size options for Stellaris, ranging from 100 to 2000 star systems. It is a purely declarative mod — no code, no scripts, only configuration files that the Stellaris engine reads at galaxy generation time.
 
 ### Which Stellaris versions are supported?
 
-Stellaris 4.5.x (see `supported_version` in descriptor). Tested on 4.5.0 through 4.5.2.
+Stellaris 4.5.x (see `supported_version` in the descriptor). Tested against 4.5.0 through 4.5.2.
 
 ### Is this mod compatible with other mods?
 
-Yes, generally compatible with:
+Yes, it is generally compatible with:
 - UI mods (UI Star Names, UI Overhaul, etc.)
-- Gameplay mods that don't modify galaxy generation
-- Species/empire packs
+- Gameplay mods that do not modify galaxy generation
+- Species and empire packs
 - Graphics mods
 
-Known hard dependency: **Ludicrous (2000 stars) requires UI Star Names mod** for unique system names. Without it, duplicate names will occur.
+Known hard dependency: **Ludicrous (2000 stars) requires the UI Star Names mod** for unique system names. Without it, duplicate names occur.
 
 ### Does this mod affect performance?
 
-Yes. Larger galaxies take longer to generate and use more memory:
+Yes. Larger galaxies require longer to generate and consume more memory:
 
-| Size | Stars | Generation Time | RAM (approx) |
+| Size | Stars | Generation Time | Memory (approximate) |
 |------|-------|-----------------|--------------|
 | Minuscule | 100 | < 5s | Baseline |
 | Gigantic | 1200 | 10-20s | ~2x |
@@ -33,88 +33,88 @@ Yes. Larger galaxies take longer to generate and use more memory:
 | Titanic | 1800 | 30-60s | ~3.5x |
 | Ludicrous | 2000 | 60-120s | ~4x |
 
-Recommended: 16GB+ RAM for Titanic/Ludicrous.
+Recommended: 16GB or more memory for Titanic and Ludicrous.
 
 ### Can I use this mod on existing saves?
 
 No. Galaxy size is determined at galaxy generation. You must start a new game.
 
-### Does this mod work in multiplayer?
+### Does this mod function in multiplayer?
 
-Yes, all players must have the mod active with the same version. Host generates the galaxy.
+Yes, but every player must have the mod active with an identical version. The host generates the galaxy.
 
 ## Installation
 
-### How do I install from Steam Workshop?
+### How do I install from the Steam Workshop?
 
-1. Subscribe to "Universum Infinitum: Galaxy Sizes" on Steam Workshop
+1. Subscribe to "Universum Infinitum - Galaxy Sizes" on the Steam Workshop
 2. Launch Stellaris
-3. Open Playsets, create or edit a playset
-4. Enable the mod
+3. Open Playsets and create or edit a playset
+4. Activate the mod
 5. Play
 
 ### How do I install manually?
 
-1. Download latest release from GitHub Releases
-2. Extract `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/` folder to:
+1. Download the latest release from GitHub Releases
+2. Extract `ui-galaxy-sizes.mod` and the `ui-galaxy-sizes/` directory to:
    - Windows: `%USERPROFILE%\Documents\Paradox Interactive\Stellaris\mod\`
    - macOS: `~/Documents/Paradox Interactive/Stellaris/mod/`
    - Linux: `~/.local/share/Paradox Interactive/Stellaris/mod/`
-3. Launch Stellaris, enable in Playsets
+3. Launch Stellaris and activate it in Playsets
 
-### The mod doesn't appear in the launcher
+### The mod does not appear in the launcher
 
 Check:
-- Files in correct mod directory (see above)
-- `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/` folder both present
-- Stellaris version matches `v4.5.*`
+- Files in the correct mod directory (see above)
+- Both `ui-galaxy-sizes.mod` and the `ui-galaxy-sizes/` directory present
+- Stellaris version corresponds to `v4.5.*`
 - No file permission issues
-- Restart launcher
+- Restart the launcher
 
 ### Can I use this with the Paradox Launcher v2?
 
-Yes, works with both launcher versions.
+Yes, it functions with both launcher versions.
 
 ## Gameplay
 
-### Which galaxy size should I choose?
+### Which galaxy size should I select?
 
 | Playstyle | Recommended Size |
 |-----------|------------------|
-| Quick games, testing | Minuscule (100) |
-| Standard with more room | Gigantic (1200) |
+| Rapid games and testing | Minuscule (100) |
+| Standard play with more room | Gigantic (1200) |
 | Long campaigns | Immense (1400) |
 | Epic scale | Colossal (1600) |
 | Maximum vanilla-like | Titanic (1800) |
 | Absolute maximum | Ludicrous (2000) |
 
-### Why are there only 6 sizes? Why not 500, 800, etc.?
+### Why are there only 6 sizes? Why not 500 or 800?
 
-Each size requires a separate scenario file with 40+ tuned parameters. Adding sizes increases maintenance burden. The six sizes cover a logarithmic progression from tiny to extreme.
+Each size requires a separate scenario file with more than 40 tuned parameters. Including sizes increases the maintenance burden. The six sizes span a logarithmic progression from small to extreme.
 
 ### Can I customise empire counts?
 
-The mod sets defaults and maximums per size. You can adjust in game setup:
-- Number of AI Empires (up to scenario max)
+The mod establishes defaults and maximums per size. You can adjust them in game setup:
+- Number of AI Empires (up to the scenario maximum)
 - Advanced AI Starts
-- Fallen Empires (up to scenario max)
+- Fallen Empires (up to the scenario maximum)
 
-### Why does Ludicrous need UI Star Names?
+### Why does Ludicrous require UI Star Names?
 
-Stellaris has ~1000 unique system names in vanilla. Ludicrous generates 2000 systems. Without UI Star Names (which adds thousands more), the engine must reuse names, creating duplicates.
+Stellaris contains roughly 1000 unique system names in vanilla. Ludicrous generates 2000 systems. Without UI Star Names (which includes thousands more), the engine must reuse names, producing duplicates.
 
-### Do galaxy shapes work with all sizes?
+### Do galaxy shapes function with all sizes?
 
 Yes, with one vanilla-derived exception. Gigantic through Ludicrous support all 10 shapes:
 - Elliptical
-- Spiral (2, 3, 4, 6 arms)
+- Spiral (2, 3, 4, and 6 arms)
 - Ring
 - Bar
 - Starburst
 - Cartwheel
 - Spoked
 
-Minuscule declares the same four shapes vanilla allows at 100 stars (elliptical, spiral_2, ring, bar), because multi-arm shapes degenerate at that scale.
+Minuscule declares the identical four shapes vanilla permits at 100 stars (elliptical, spiral_2, ring, bar), because multi-arm shapes degenerate at that scale.
 
 ### Are crisis strengths balanced?
 
@@ -126,81 +126,81 @@ Crisis strength follows the vanilla curve `0.25 + 0.00125 × stars`:
 - Titanic: 2.5x
 - Ludicrous: 2.75x
 
-This matches vanilla scaling exactly, so crisis difficulty feels the same at every size. Adjust in game setup if desired.
+This corresponds exactly to the vanilla scaling, so crisis difficulty feels identical at every size. Adjust it in game setup if desired.
 
 ## Technical
 
-### How does this mod work?
+### How does this mod function?
 
-It provides `setup_scenario` definitions in `map/setup_scenarios/`. The Stellaris engine reads these at galaxy generation and uses the parameters to configure the galaxy. No code execution involved.
+It supplies `setup_scenario` definitions in `map/setup_scenarios/`. The Stellaris engine reads them at galaxy generation and uses the parameters to configure the galaxy. No code execution is involved.
 
 ### Can I edit the parameters myself?
 
-Yes. Edit `ui-galaxy-sizes/map/setup_scenarios/ui_<size>.txt`. But:
+Yes. Edit `ui-galaxy-sizes/map/setup_scenarios/ui_<size>.txt`. However:
 - Changes affect all new games
-- May break balance
-- Updates will overwrite your changes
+- They may break balance
+- Updates overwrite your changes
 - Consider forking instead
 
-### Why is the localisation folder spelled "engligh"?
+### Why is the localisation directory spelled "engligh"?
 
-Historical typo preserved for compatibility. The engine reads it correctly. Fixing would break existing installations.
+A historic typo preserved for compatibility. The engine reads it correctly. Correcting it would break existing installations.
 
-### What file format are the scenarios?
+### What file format do the scenarios use?
 
 Clausewitz script format (Paradox's declarative configuration language). Similar to INI but with nested blocks.
 
-### Can I add more shapes?
+### Can I include additional shapes?
 
-Only if Stellaris engine supports them. The mod declares `supports_shape` for shapes the engine already knows. Adding unknown shapes has no effect.
+Only if the Stellaris engine supports them. The mod declares `supports_shape` for shapes the engine already recognises. Including unknown shapes has no effect.
 
 ## Troubleshooting
 
-### Galaxy generation takes forever / crashes
+### Galaxy generation takes forever or crashes
 
-- Try smaller size
+- Try a smaller size
 - Close other applications
-- Verify RAM (16GB+ for Titanic/Ludicrous)
+- Verify the available memory (16GB or more for Titanic and Ludicrous)
 - Check `game.log` for errors
 
-### Mod shows but sizes missing from dropdown
+### The mod appears but sizes are absent from the dropdown
 
-- Verify all 6 scenario files exist in `map/setup_scenarios/`
+- Verify that all 6 scenario files exist in `map/setup_scenarios/`
 - Check `game.log` for parse errors
-- Reinstall mod
+- Reinstall the mod
 
 ### System names are duplicated
 
 - Expected for Ludicrous without UI Star Names
-- Install UI Star Names mod
-- Or choose smaller size
+- Install the UI Star Names mod
+- Or select a smaller size
 
-### Save game won't load after mod update
+### Save game will not load after a mod update
 
 - Galaxy size mods can break saves if parameters change
-- Start new game
-- Mod version pinned in descriptor to prevent accidental updates
+- Start a new game
+- The mod version is pinned in the descriptor to prevent accidental updates
 
-### Launcher says "mod incompatible"
+### Launcher reports "mod incompatible"
 
-- Your Stellaris version not in `v4.5.*`
-- Update Stellaris or wait for mod update
+- Your Stellaris version is not within `v4.5.*`
+- Update Stellaris or await a mod update
 
 ## Development
 
 ### How do I contribute?
 
 See `CONTRIBUTING.md`. Summary:
-1. Fork repository
-2. Create branch
-3. Make changes
-4. Run validation scripts
+1. Fork the repository
+2. Create a branch
+3. Make the changes
+4. Run the validation scripts
 5. Test in-game
-6. Submit PR
+6. Submit a pull request
 
 ### How do I build/test locally?
 
-No build needed. Copy files to Stellaris mod directory and test in-game.
+No build is required. Copy the files to the Stellaris mod directory and test in-game.
 
 ### Where are the validation scripts?
 

@@ -34,7 +34,6 @@ The Stellaris engine provides the following services that consume this mod's con
 - System naming
 
 **Mod Influence:** Parameters only (no code)
-
 ### Localisation Service
 
 **Input:** YAML localisation files

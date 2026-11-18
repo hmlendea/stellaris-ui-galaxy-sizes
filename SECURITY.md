@@ -1,6 +1,6 @@
 # Security Policy
 
-This policy defines the scope, reporting process, and disclosure expectations for security issues affecting Universum Infinitum: Galaxy Sizes, a Stellaris mod that adds six galaxy-size scenarios ranging from 100 to 2,000 stars.
+This policy defines the scope, reporting process, and disclosure expectations for security issues affecting Universum Infinitum - Galaxy Sizes, a Stellaris mod that supplies six galaxy-size scenarios ranging from 100 to 2,000 stars.
 
 ## 📑 Table of Contents
 
@@ -31,6 +31,8 @@ To report a vulnerability:
 - Contact the maintainers directly
 
 ## 📌 Scope
+
+The original maintainers are not responsible for changes, modifications, or security issues introduced by downstream forks.
 
 The subsequent report categories are in scope for this repository:
 - Galaxy generation scenario definitions

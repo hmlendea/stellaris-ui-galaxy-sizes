@@ -2,19 +2,19 @@
 
 ## Test Strategy
 
-This mod has no executable code, so traditional unit/integration testing does not apply. Testing focuses on validation of declarative configuration and manual verification of galaxy generation behaviour.
+This mod contains no executable code, so traditional unit and integration testing does not apply. Verification concentrates on validation of the declarative configuration and manual confirmation of galaxy generation conduct.
 
 ### Test Categories
 
-| Category | Approach | Automation |
+| Category | Method | Automation |
 |----------|----------|------------|
-| Syntax Validation | Schema validation scripts | CI/CD |
-| Cross-Reference Consistency | Automated checks | CI/CD |
+| Syntax Validation | Schema validation scripts | Continuous integration |
+| Cross-Reference Consistency | Automated checks | Continuous integration |
 | Generation Verification | Manual in-game testing | Release checklist |
-| Compatibility Testing | Manual on target versions | Release checklist |
+| Compatibility Testing | Manual against target versions | Release checklist |
 | Regression Testing | Manual comparison | Per release |
 
-## Automated Validation (CI)
+## Automated Validation (Continuous Integration)
 
 ### Descriptor Validation
 
@@ -22,9 +22,9 @@ This mod has no executable code, so traditional unit/integration testing does no
 
 **Checks:**
 - Both `.mod` files exist
-- Identical `version`, `name`, `path`, `supported_version`, `tags`
+- Identical `version`, `name`, `path`, `supported_version`, and `tags`
 - `path="mod/ui-galaxy-sizes"`
-- `supported_version` matches pattern `v*.*.*`
+- `supported_version` corresponds to the pattern `v*.*.*`
 
 ### Scenario Validation
 
@@ -32,18 +32,18 @@ This mod has no executable code, so traditional unit/integration testing does no
 
 **Checks per scenario file:**
 - File exists at `map/setup_scenarios/ui_<size>.txt`
-- Parses as valid `setup_scenario` block
-- `name` matches filename (`ui_<size>`)
-- `priority` is integer
-- All required parameters present
+- Parses as a valid `setup_scenario` block
+- `name` corresponds to the filename (`ui_<size>`)
+- `priority` is an integer
+- Every required parameter is present
 - Parameter values within bounds (see data-model.md)
-- Minuscule declares 4 shapes; the other five declare all 10
-- `supports_shape` lists identical across Gigantic..Ludicrous
+- Minuscule declares 4 shapes; the remaining five declare all 10
+- `supports_shape` lists identical throughout Gigantic..Ludicrous
 
 **Cross-scenario checks:**
 - Six `priority` values unique
 - Priorities ordered: -1 < 5 < 6 < 7 < 8 < 9
-- All scenarios define same parameter set
+- Every scenario defines an identical parameter set
 
 ### Localisation Validation
 
@@ -52,11 +52,11 @@ This mod has no executable code, so traditional unit/integration testing does no
 **Checks:**
 - `localisation/engligh/ui-galaxy-sizes_l_english.yml` exists
 - Valid YAML
-- Contains `l_english:` root key
+- Contains the `l_english:` root key
 - Six keys: `ui_minuscule`, `ui_gigantic`, `ui_immense`, `ui_colossal`, `ui_titanic`, `ui_ludicrous`
-- Each key has `:0 "Label"` format
-- Labels non-empty
-- Keys match scenario `name` values
+- Each key possesses the `:0 "Label"` format
+- Labels are non-empty
+- Keys correspond to scenario `name` values
 
 ## Manual Verification (Release Checklist)
 
@@ -64,16 +64,16 @@ This mod has no executable code, so traditional unit/integration testing does no
 
 For each of the six scenarios:
 
-1. Install mod on Stellaris `4.5.x`
-2. Activate in launcher
-3. Start New Game
-4. Select scenario from Galaxy Size dropdown
-5. Verify name displays correctly (localised)
-6. Select each declared galaxy shape
-7. Generate galaxy
+1. Install the mod on Stellaris `4.5.x`
+2. Activate it in the launcher
+3. Start a New Game
+4. Select the scenario from the Galaxy Size dropdown
+5. Verify that the name displays correctly (localised)
+6. Select every declared galaxy shape
+7. Generate the galaxy
 8. Verify:
-   - Generation completes without error
-   - Star count approximately matches `num_stars`
+   - Generation concludes without error
+   - Star count approximately corresponds to `num_stars`
    - Empire counts within scenario bounds
    - Nebulae visible
    - Hyperlanes connect systems
@@ -82,33 +82,33 @@ For each of the six scenarios:
 ### Ludicrous Specific Tests
 
 1. **With UI Star Names active:**
-   - Generate Ludicrous galaxy
+   - Generate a Ludicrous galaxy
    - Verify 2000 unique system names (spot check)
-   - No duplicate names in sample
+   - No duplicate names in the sample
 
 2. **Without UI Star Names:**
-   - Generate Ludicrous galaxy
+   - Generate a Ludicrous galaxy
    - Observe duplicate names (expected)
-   - Verify generation completes
+   - Verify generation concludes
 
 ### Cross-Version Compatibility
 
-Test on each supported Stellaris patch:
+Test against every supported Stellaris patch:
 - 4.5.0
 - 4.5.1
 - 4.5.2 (if released)
-- Latest 4.5.x
+- The latest 4.5.x
 
 ### Edge Case Tests
 
 | Test | Expected |
 |------|----------|
-| Mod not activated | Six sizes not in dropdown |
-| Invalid game version | Mod hidden/incompatible in launcher |
-| Missing localisation file | Raw keys in dropdown |
-| Corrupted scenario file | Engine logs error, scenario missing |
-| Maximum empires (60) | Generation completes |
-| All shapes for all sizes | 54 combinations generate |
+| Mod not activated | Six sizes not in the dropdown |
+| Invalid game version | Mod hidden or incompatible in the launcher |
+| Absent localisation file | Raw keys in the dropdown |
+| Corrupted scenario file | The engine logs an error and the scenario is absent |
+| Maximum empires (60) | Generation concludes |
+| Every shape for every size | 54 combinations generate |
 
 ## Test Data
 
@@ -133,18 +133,18 @@ Shapes: `elliptical`, `spiral_2`, `spiral_3`, `spiral_4`, `spiral_6`, `ring`, `b
 
 ### Parameter Drift Detection
 
-CI validates:
-- No scenario parameter removed
-- No new parameter added without review
+Continuous integration validates:
+- No scenario parameter was extracted
+- No parameter was included without review
 - `priority` values unchanged unless intentional
 - `supports_shape` list unchanged
 
 ### Visual Regression
 
 Not automated. Manual spot-check:
-- Galaxy topology matches selected shape
-- Empire distribution looks reasonable
-- Nebulae placement looks reasonable
+- Galaxy topology corresponds to the selected shape
+- Empire distribution appears reasonable
+- Nebulae placement appears reasonable
 
 ## Performance Considerations
 
@@ -161,38 +161,38 @@ Not automated. Manual spot-check:
 
 ### Memory Usage
 
-Scales with `num_stars`. Ludicrous (2000 stars) requires ~2-3x memory of Huge (1000 stars).
+Scales with `num_stars`. Ludicrous (2000 stars) requires approximately 2-3x the memory of Huge (1000 stars).
 
 ## Test Environment Setup
 
 ### Local Testing
 
 ```bash
-# Copy mod to Stellaris mod directory
+# Copy the mod to the Stellaris mod directory
 cp -r ui-galaxy-sizes/ ~/Documents/Paradox\ Interactive/Stellaris/mod/
 cp ui-galaxy-sizes.mod ~/Documents/Paradox\ Interactive/Stellaris/mod/
 
-# Launch Stellaris, activate mod in playset
+# Launch Stellaris and activate the mod in a playset
 ```
 
-### CI Environment
+### Continuous Integration Environment
 
 - Ubuntu latest
-- Stellaris not installable in CI (no GUI)
-- Validation runs on static files only
-- Manual testing required for generation verification
+- Stellaris cannot be installed in continuous integration (no graphical interface)
+- Validation runs against static files only
+- Manual testing required for generation confirmation
 
 ## Known Test Gaps
 
-1. **No automated generation testing** — Requires Stellaris engine, not feasible in CI
+1. **No automated generation testing** — Requires the Stellaris engine, which is not feasible in continuous integration
 2. **No save game compatibility testing** — Manual only
-3. **No multiplayer testing** — Mod is single-player only (galaxy generation)
-4. **No localisation testing beyond English** — Only English supported
+3. **No multiplayer testing** — The mod is single-player only (galaxy generation)
+4. **No localisation testing beyond English** — Only English is supplied
 5. **No performance benchmarking** — Manual observation only
 
 ## Future Test Improvements
 
-- Add Stellaris CLI/headless mode support if available
-- Create parameterised test matrix for CI validation
-- Add schema validation against Stellaris game files (if accessible)
-- Implement visual diff for galaxy topology (screenshot comparison)
+- Include Stellaris command-line or headless mode support if available
+- Create a parameterised test matrix for continuous integration validation
+- Include schema validation against the Stellaris game files (if accessible)
+- Implement visual comparison of galaxy topology (screenshot comparison)

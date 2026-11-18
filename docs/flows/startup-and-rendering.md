@@ -8,11 +8,10 @@
 
 The mod is purely declarative configuration. It contains:
 - No startup sequence
-- No initialization code
+- No initialisation code
 - No rendering pipeline
 - No UI components
 - No client-side code
-
 All flows occur within the Stellaris engine and launcher.
 
 ## Engine Flows (Context)
@@ -26,7 +25,7 @@ All flows occur within the Stellaris engine and launcher.
 4. Validates supported_version
 5. Builds mod list for UI
 6. User selects playset
-7. Launcher writes enabled mods to launcher-v2.sqlite
+7. The launcher writes the activated mods to launcher-v2.sqlite
 8. User clicks Play
 9. Launcher starts Stellaris with mod mount points
 ```
@@ -39,7 +38,7 @@ All flows occur within the Stellaris engine and launcher.
 1. Stellaris starts
 2. Reads mount points from launcher
 3. For each mod:
-   a. Reads descriptor.mod from mod folder
+   a. Reads descriptor.mod from the mod directory
    b. Validates version, path
    c. Mounts mod directory at path
 4. Mods available for game systems
@@ -55,9 +54,9 @@ All flows occur within the Stellaris engine and launcher.
 3. Player selects Galaxy Shape
 4. Player adjusts settings (empires, crisis, etc.)
 5. Player clicks Generate
-6. Engine reads selected setup_scenario
+6. Engine reads the selected setup_scenario
 7. Engine validates parameters
-8. Engine generates galaxy:
+8. Engine generates the galaxy:
    a. Places stars (num_stars, radius, shape)
    b. Builds hyperlanes
    c. Places empires (num_empires, distances)
@@ -65,7 +64,7 @@ All flows occur within the Stellaris engine and launcher.
    e. Places nebulae (num_nebulas)
    f. Generates crisis fleets (crisis_strength)
    g. Assigns system names
-9. Game starts with generated galaxy
+9. Game starts with the generated galaxy
 ```
 
 **Mod Role:** Provides `setup_scenario` parameters in `map/setup_scenarios/ui_*.txt`.
@@ -88,7 +87,7 @@ All flows occur within the Stellaris engine and launcher.
 
 The mod participates in flows **passively**:
 - Files exist at known paths
-- Engine reads files when needed
+- The engine reads files when required
 - No callbacks, no events, no hooks
 - No mod code executes
 
@@ -97,17 +96,17 @@ The mod participates in flows **passively**:
 Since this mod has no startup or rendering flow, the following are **not applicable**:
 
 - Application bootstrap
-- Dependency injection container initialization
+- Dependency injection container initialisation
 - Configuration loading
 - Plugin loading
 - Middleware pipeline
-- Routing initialization
-- Rendering engine initialization
+- Routing initialisation
+- Rendering engine initialisation
 - Virtual DOM mounting
 - Component hydration
 - State hydration
 - Route guards
-- Authentication initialization
+- Authentication initialisation
 - Theme loading
 - Locale loading
 - Asset preloading
