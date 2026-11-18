@@ -77,9 +77,9 @@ ui-galaxy-sizes.mod / descriptor.mod → Launcher → Playset → Engine
 
 **Integration Type:** Distribution + Source hosting
 
-**Mechanism:** Git tags trigger release workflow, ZIP artefact uploaded.
+**Mechanism:** Publishing a GitHub release triggers `.github/workflows/github-release.yml`, which updates the descriptor versions and uploads the ZIP asset. Tag pushes additionally trigger `.github/workflows/steam-workshop-release.yml` and `.github/workflows/nexus-mods-release.yml`.
 
-**Artefact:** `ui-galaxy-sizes-v{version}.zip` containing mod files.
+**Artefact:** `ui-galaxy-sizes_{version}.zip` containing the mod descriptor and mod directory.
 
 **Update Flow:**
 1. User downloads ZIP
@@ -209,21 +209,16 @@ Engine → Draws from combined pool → Unique names
 
 ## Development Tool Integrations
 
-### Validation Scripts
+### Release Workflows
 
-**Integration Type:** Local development
+**Integration Type:** CI/CD
 
-**Scripts:**
-- `scripts/validate-descriptors.sh`
-- `scripts/validate-scenarios.sh`
-- `scripts/validate-localisation.sh`
-- `scripts/validate-all.sh`
+**Workflows:**
+- `.github/workflows/github-release.yml`
+- `.github/workflows/steam-workshop-release.yml`
+- `.github/workflows/nexus-mods-release.yml`
 
-**CI Integration:** GitHub Actions runs on every PR.
-
-### Packaging Script
-
-**Script:** `scripts/package.sh`
+**Trigger:** GitHub release publication (`github-release.yml`), or a `v*.*.*` tag push and manual dispatch (`steam-workshop-release.yml`, `nexus-mods-release.yml`).
 
 **Output:** Versioned ZIP for distribution.
 

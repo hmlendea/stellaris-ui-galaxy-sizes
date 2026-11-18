@@ -1,0 +1,55 @@
+name: Nexus Mods
+
+on:
+  push:
+    tags:
+    - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ inputs.tag || github.ref_name }}
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ env.VERSION }}
+
+    - name: Update the mod version
+      run: |
+        MOD_VERSION="${VERSION#v}"
+
+        for DESCRIPTOR in "ui-galaxy-sizes.mod" "ui-galaxy-sizes/descriptor.mod"
+        do
+          if grep -q '^version=' "${DESCRIPTOR}"; then
+            sed -i "s/^version=.*/version=\"${MOD_VERSION}\"/" "${DESCRIPTOR}"
+          else
+            printf 'version="%s"\n' "${MOD_VERSION}" | cat - "${DESCRIPTOR}" > "${DESCRIPTOR}.tmp"
+            mv "${DESCRIPTOR}.tmp" "${DESCRIPTOR}"
+          fi
+        done
+
+    - name: Build the release archive
+      run: |
+        zip -r "release.zip" "ui-galaxy-sizes/" "ui-galaxy-sizes.mod"
+
+    - name: Upload
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.11
+      with:
+        api_key: ${{ secrets.NEXUSMODS_API_KEY }}
+        file_id: 922249
+        filename: release.zip
+        display_name: ui-galaxy-sizes.zip
+        version: ${{env.VERSION}}
+        description: "Changelog: https://github.com/hmlendea/stellaris-ui-galaxy-sizes/releases/${{env.VERSION}}"
+        category: main
+        archive_existing_version: true
+        update_mod_version: true

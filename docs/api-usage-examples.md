@@ -249,19 +249,23 @@ num_nebulae = 5
 ### GitHub Actions Workflow Snippet
 
 ```yaml
-# .github/workflows/validate.yml
-- name: Validate Mod
+# .github/workflows/github-release.yml
+- name: Update the mod version
   run: |
-    chmod +x scripts/validate-all.sh
-    ./scripts/validate-all.sh
+    MOD_VERSION="${VERSION#v}"
+    sed -i "s/^version=.*/version=\"${MOD_VERSION}\"/" ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
+
+- name: Build the release archive
+  run: |
+    zip -r "ui-galaxy-sizes_${VERSION}.zip" "ui-galaxy-sizes/" "ui-galaxy-sizes.mod"
 ```
 
-### Pre-commit Hook
+### Pre-Release Check
 
 ```bash
-# .git/hooks/pre-commit
-#!/bin/bash
-./scripts/validate-all.sh || exit 1
+# Verify descriptor versions match the tag before publishing
+grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
+git describe --tags --abbrev=0
 ```
 
 ## Not Applicable: Traditional API Examples

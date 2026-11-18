@@ -25,7 +25,7 @@ Files in `ui-galaxy-sizes/` are the exact files the engine reads. No transformat
 A release is a ZIP archive containing:
 
 ```
-ui-galaxy-sizes.zip
+ui-galaxy-sizes_<version>.zip
 ├── ui-galaxy-sizes.mod          # Root descriptor
 └── ui-galaxy-sizes/             # Mod directory
     ├── descriptor.mod           # Local descriptor (identical to root)
@@ -43,101 +43,88 @@ ui-galaxy-sizes.zip
             └── ui_ludicrous.txt
 ```
 
-### Packaging Script
+### Packaging
+
+The release archive is built by GitHub Actions and contains no staging directory:
 
 ```bash
-# scripts/package.sh
-#!/bin/bash
-set -e
-
-VERSION=$(grep 'version=' ui-galaxy-sizes.mod | sed 's/.*version="\([^"]*\)".*/\1/')
-NAME="ui-galaxy-sizes-v${VERSION}"
-
-# Create clean staging directory
-rm -rf "dist/${NAME}"
-mkdir -p "dist/${NAME}"
-
-# Copy mod files
-cp ui-galaxy-sizes.mod "dist/${NAME}/"
-cp -r ui-galaxy-sizes "dist/${NAME}/"
-
-# Verify structure
-./scripts/validate-all.sh "dist/${NAME}"
-
-# Create ZIP
-cd dist
-zip -r "${NAME}.zip" "${NAME}"
-cd ..
-
-echo "Created dist/${NAME}.zip"
+zip -r "ui-galaxy-sizes_${VERSION}.zip" "ui-galaxy-sizes/" "ui-galaxy-sizes.mod"
 ```
 
-### Validation Before Packaging
+Before packaging, both descriptors are updated from the release tag:
 
 ```bash
-# Run all validations on staged files
-./scripts/validate-all.sh dist/ui-galaxy-sizes-v1.4.5
+MOD_VERSION="${VERSION#v}"
+
+for DESCRIPTOR in "ui-galaxy-sizes.mod" "ui-galaxy-sizes/descriptor.mod"
+do
+  if grep -q '^version=' "${DESCRIPTOR}"; then
+    sed -i "s/^version=.*/version=\"${MOD_VERSION}\"/" "${DESCRIPTOR}"
+  else
+    printf 'version="%s"\n' "${MOD_VERSION}" | cat - "${DESCRIPTOR}" > "${DESCRIPTOR}.tmp"
+    mv "${DESCRIPTOR}.tmp" "${DESCRIPTOR}"
+  fi
+done
+```
+
+### Manual Verification Before Release
+
+Inspect the archive structure and confirm the descriptors carry the release version:
+
+```bash
+unzip -l "ui-galaxy-sizes_${VERSION}.zip"
+grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 ```
 
 ## Deployment Targets
 
 | Platform | Method | Automation |
 |----------|--------|------------|
-| GitHub Releases | Manual upload / GitHub Actions | Semi-automated |
-| Steam Workshop | SteamCMD / Workshop Uploader | Manual |
-| Nexus Mods | Web upload / Nexus API | Manual |
+| GitHub Releases | GitHub Actions | Automated |
+| Steam Workshop | GitHub Actions | Automated |
+| Nexus Mods | GitHub Actions | Automated |
 | Paradox Mods | Paradox Mod Portal | Manual |
 | Manual Install | GitHub Releases ZIP | User downloads |
 
 ### GitHub Releases (Primary)
 
-**Trigger:** Git tag push (`v1.4.5`)
+**Trigger:** GitHub release publication
 
-**Workflow:** `.github/workflows/release.yml`
+**Workflow:** `.github/workflows/github-release.yml`
 
-```yaml
-name: Release
-on:
-  push:
-    tags:
-      - 'v*'
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Package
-        run: ./scripts/package.sh
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: dist/*.zip
-          generate_release_notes: true
-```
+**Process:**
+1. Check out the released tag
+2. Set `version=` in `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/descriptor.mod` from the tag, with the leading `v` stripped
+3. Build `ui-galaxy-sizes_<version>.zip` containing `ui-galaxy-sizes/` and `ui-galaxy-sizes.mod`
+4. Attach the archive to the published GitHub release
 
-**Artefacts:** `ui-galaxy-sizes-v1.4.5.zip`
+**Artefacts:** `ui-galaxy-sizes_1.4.5.zip`
 
-**Release Notes:** Auto-generated from `CHANGELOG.md`
+**Release Notes:** As written by the maintainer on the GitHub release
 
 ### Steam Workshop
 
-**Process:**
-1. Install SteamCMD
-2. Login: `steamcmd +login <username> +workshop_build_item <app_id> <vdf_file> +quit`
-3. VDF file references `ui-galaxy-sizes/` directory
-4. Update description/changelog in Workshop UI
+**Trigger:** Tag push matching `v*.*.*`, or manual dispatch with a `tag` input
 
-**Frequency:** Manual per release
+**Workflow:** `.github/workflows/steam-workshop-release.yml`
+
+**Process:**
+1. Check out the requested tag
+2. Set `version=` in both descriptors from the tag, with the leading `v` stripped
+3. Build and extract the release archive
+4. Upload through `hmlendea/steam-workshop-update` with a changelog link to the GitHub release
 
 ### Nexus Mods
 
-**Process:**
-1. Login to Nexus Mods
-2. Upload `ui-galaxy-sizes-v1.4.5.zip`
-3. Set version, Stellaris 4.5.x category
-4. Update changelog
+**Trigger:** Tag push matching `v*.*.*`, or manual dispatch with a `tag` input
 
-**Frequency:** Manual per release
+**Workflow:** `.github/workflows/nexus-mods-release.yml`
+
+**Process:**
+1. Check out the requested tag
+2. Set `version=` in both descriptors from the tag, with the leading `v` stripped
+3. Build the release archive
+4. Upload through `Nexus-Mods/upload-action`, updating the mod version and archiving the existing version
 
 ### Paradox Mods
 
@@ -160,7 +147,7 @@ jobs:
 | Local descriptor | `ui-galaxy-sizes/descriptor.mod` | `version="1.4.5"` |
 | Changelog | `CHANGELOG.md` | `## [1.4.5]` |
 | Release name | GitHub Release | `v1.4.5` |
-| ZIP filename | `dist/` | `ui-galaxy-sizes-v1.4.5.zip` |
+| ZIP filename | GitHub Release asset | `ui-galaxy-sizes_1.4.5.zip` |
 
 ### Version Bump Rules
 
@@ -171,48 +158,44 @@ See `change-guide.md`:
 
 ## CI/CD Pipeline
 
-### Validation Pipeline (Every PR)
+### Validation (Local)
 
-```yaml
-# .github/workflows/validate.yml
-name: Validate
-on: [pull_request, push]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Validate Descriptors
-        run: ./scripts/validate-descriptors.sh
-      - name: Validate Scenarios
-        run: ./scripts/validate-scenarios.sh
-      - name: Validate Localisation
-        run: ./scripts/validate-localisation.sh
+Before tagging, verify the descriptors, scenario files, and localisation by inspection:
+
+```bash
+grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
+ls ui-galaxy-sizes/map/setup_scenarios/
 ```
 
-### Release Pipeline (Tag Push)
+There is no automated validation workflow; the repository ships the release workflows only.
+
+### Release Pipeline (GitHub Release Publication)
 
 ```yaml
-# .github/workflows/release.yml
-name: Release
+# .github/workflows/github-release.yml
+name: GitHub Release
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [ published ]
+permissions:
+  contents: write
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Validate
-        run: ./scripts/validate-all.sh
-      - name: Package
-        run: ./scripts/package.sh
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      - uses: actions/checkout@v7
+      - name: Update the mod version
+        run: |
+          # Set version= in both descriptors from the release tag
+      - name: Build the release archive
+        run: |
+          zip -r "ui-galaxy-sizes_${VERSION}.zip" "ui-galaxy-sizes/" "ui-galaxy-sizes.mod"
+      - uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.zip
+          files: ui-galaxy-sizes_${{ steps.version.outputs.version }}.zip
 ```
+
+The release archive is consumed by `.github/workflows/steam-workshop-release.yml` and `.github/workflows/nexus-mods-release.yml`, which additionally build their own archives from the checked-out tag.
 
 ## Environment Requirements
 

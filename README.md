@@ -139,8 +139,9 @@ The mod is a declarative, data-driven Stellaris extension. It supplies six `setu
 
 | Workflow | Purpose | What it does |
 |----------|---------|--------------|
-| [nexus-mods.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/nexus-mods.yml) | Nexus Mods deployment | Packages and publishes releases to Nexus Mods |
-| [steam-workshop.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/steam-workshop.yml) | Steam Workshop deployment | Packages and publishes releases to Steam Workshop |
+| [github-release.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/github-release.yml) | GitHub Release deployment | Updates the mod version, packages the release archive, and attaches it to the published GitHub release |
+| [nexus-mods-release.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/nexus-mods-release.yml) | Nexus Mods deployment | Updates the mod version, packages the release archive, and publishes it to Nexus Mods |
+| [steam-workshop-release.yml](https://github.com/hmlendea/stellaris-ui-galaxy-sizes/blob/master/.github/workflows/steam-workshop-release.yml) | Steam Workshop deployment | Updates the mod version, packages the release archive, and publishes it to Steam Workshop |
 
 ## 🗂️ Project Structure
 
