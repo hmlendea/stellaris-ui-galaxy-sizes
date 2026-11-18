@@ -97,22 +97,21 @@ Each decision follows:
 
 ---
 
-## 5. All 11 Shapes Supported for All Sizes
+## 5. Vanilla Shape Coverage per Size
 
-**Decision:** Every scenario declares `supports_shape` for all 11 vanilla shapes.
+**Decision:** Gigantic through Ludicrous declare all 10 vanilla shapes. Minuscule declares only the four shapes vanilla allows at 100 stars (elliptical, spiral_2, ring, bar).
 
-**Context:** Engine supports 11 galaxy shapes. Restricting shapes would limit player choice without benefit.
+**Context:** Engine supports 10 galaxy shapes. Vanilla itself gates shapes by size because multi-arm shapes degenerate below ~400 stars.
 
 **Alternatives:**
-- Restrict large sizes to elliptical/spiral — Rejected: no technical reason, player freedom
-- Only support shapes tested — Rejected: all shapes work at all sizes
+- Restrict all large sizes to elliptical/spiral — Rejected: no technical reason, player freedom
+- Declare all 10 shapes at every size — Rejected: spiral_6/cartwheel/spoked produce degenerate layouts at 100 stars
 
 **Consequences:**
-- 66 scenario/shape combinations to test
-- Some combinations may look odd (Ring at 2000 stars)
+- 54 scenario/shape combinations to test (4 + 10×5)
 - No maintenance burden (declaration only)
 
-**Status:** Accepted (v1.0.0)
+**Status:** Accepted (2026)
 
 ---
 
@@ -261,17 +260,17 @@ Each decision follows:
 
 ## 13. Crisis Strength Scaling
 
-**Decision:** Crisis strength increases with galaxy size (0.25 → 2.75).
+**Decision:** Crisis strength follows the vanilla curve `0.25 + 0.00125 × num_stars` (0.375 → 2.75).
 
-**Context:** Larger galaxies have more empires, more resources, need stronger crises to be threatening.
+**Context:** Larger galaxies have more empires, more resources, need stronger crises to be threatening. Vanilla derives crisis strength arithmetically from star count, so matching that curve keeps crisis difficulty consistent across sizes.
 
 **Alternatives:**
 - Fixed crisis strength — Rejected: trivial in large galaxies
-- Linear with stars — Rejected: too strong at 2000
+- Linear with stars — Adopted: this is exactly the vanilla formula
 - Player-adjustable only — Rejected: default should be balanced
 
 **Consequences:**
-- Approximate balance, not mathematically derived
+- Matches vanilla scaling exactly
 - Players can override in game setup
 - May need adjustment per Stellaris patch
 
@@ -281,9 +280,9 @@ Each decision follows:
 
 ## 14. Empire Count Scaling
 
-**Decision:** Empire counts scale roughly linearly with stars (3→30 default, 3→60 max).
+**Decision:** Empire counts scale roughly linearly with stars (2→30 default, 3→60 max).
 
-**Context:** More stars = more room for empires. But too many empires = performance issues, diplomacy clutter.
+**Context:** More stars = more room for empires. But too many empires = performance issues, diplomacy clutter. Vanilla derives its default as `num_stars / 66.67`; the mod follows that ratio exactly.
 
 **Alternatives:**
 - Square root scaling — Rejected: too few at high end
@@ -318,6 +317,35 @@ Each decision follows:
 
 ---
 
+## 16. Vanilla `galaxy_size` Branches Do Not Recognise Custom Sizes
+
+**Decision:** Accept the limitation and document it rather than shipping override scripts.
+
+**Context:** Vanilla scripts branch on the literal scenario names `tiny`, `small`, `medium`, `large`, `huge`. Six of them never match a custom size, so they resolve to their base value:
+
+| Script | Effect on custom sizes |
+|--------|------------------------|
+| `ai_habitat_cap` | Falls to `min = 1` instead of 10 |
+| `storm_size_multiplier` | 1.0 (medium-equivalent) instead of 1.4 |
+| `voidworms_*_spawn_chance` | Large/huge voidworms never spawn |
+| `voidworm_nest_spawn_minimum` | Minimum not applied |
+| `starlit_links_count` | 0 starlit links |
+| `eotc_lvl1/2/3_end` | 0 (no `base`) |
+| `central_crystal_spawn_effect` | No `else` branch — crystal never spawns |
+
+**Alternatives:**
+- Ship overrides of the six vanilla script files — Rejected: fragile across patches, conflicts with other mods, large maintenance surface
+- Ship `scripted_trigger` aliases — Rejected: the vanilla files reference `galaxy_size = tiny` directly, not a trigger
+
+**Consequences:**
+- AI habitats and several DLC systems under-scale on custom sizes
+- Overlord origin degrades gracefully (spawns all 7 systems)
+- Revisit if Paradox exposes a star-count trigger
+
+**Status:** Accepted (2026)
+
+---
+
 ## Decision Index
 
 | # | Decision | Date | Status |
@@ -326,7 +354,7 @@ Each decision follows:
 | 2 | Six Fixed Galaxy Sizes | 2024 | Accepted |
 | 3 | Logarithmic Size Progression | 2024 | Accepted |
 | 4 | Priority Values: -1, 5, 6, 7, 8, 9 | 2024 | Accepted |
-| 5 | All 11 Shapes Supported | 2024 | Accepted |
+| 5 | Vanilla Shape Coverage per Size | 2024 | Accepted |
 | 6 | Ludicrous Requires UI Star Names | 2024 | Accepted |
 | 7 | English-Only Localisation | 2024 | Accepted |
 | 8 | Typo in "engligh" Folder | 2024 | Accepted |
@@ -334,6 +362,7 @@ Each decision follows:
 | 10 | No Build System | 2024 | Accepted |
 | 11 | GNU GPL v3 License | 2024 | Accepted |
 | 12 | Hand-Tuned Parameter Scaling | 2024 | Accepted |
+| 16 | Vanilla `galaxy_size` Branch Limitation | 2026 | Accepted |
 | 13 | Crisis Strength Scaling | 2024 | Accepted |
 | 14 | Empire Count Scaling | 2024 | Accepted |
 | 15 | Static Version Pinning | 2024 | Accepted |

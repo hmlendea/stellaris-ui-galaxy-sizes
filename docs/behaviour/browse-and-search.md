@@ -49,12 +49,13 @@ As a player, I want the galaxy generator to create a galaxy matching my selected
    - 1600 star systems
    - Radius 480
    - 24 default AI empires (max 48)
-   - 7 fallen empires (max 8)
-   - 4 marauders (max 5)
+   - 6 fallen empires (max 6)
+   - 3 marauders (max 3)
+   - 4 nomads (max 16)
    - 7 advanced empires
    - Crisis strength 2.25
    - 16 nebulae
-   - Hyperlane density 0.5-5
+   - Hyperlane density 0.5-3
 4. Generator creates star map
 5. Generator places empires using partition algorithms
 6. Generator builds hyperlane network
@@ -65,7 +66,7 @@ As a player, I want the galaxy generator to create a galaxy matching my selected
 ### Acceptance Criteria
 - Star count matches scenario (1600 for Colossal)
 - Empire counts respect min/max and defaults
-- All 11 shapes available for selection
+- Every declared shape available for selection
 - Generation completes without error
 - Save game records scenario parameters
 
@@ -77,13 +78,13 @@ As a player, I want the galaxy generator to create a galaxy matching my selected
 ## Select Galaxy Shape
 
 ### User Story
-As a player, I want to choose from 11 galaxy shapes for any mod size so that I can customise the galaxy topology.
+As a player, I want to choose from any shape supported by the selected mod size so that I can customise the galaxy topology.
 
 ### Flow
 1. Player selects galaxy size (any of the 6 mod sizes)
 2. Player opens Galaxy Shape dropdown
 3. Engine queries `supports_shape` for selected scenario
-4. All 11 shapes shown (identical for all mod sizes):
+4. Declared shapes are shown; Gigantic..Ludicrous declare all 10, Minuscule declares the 4 vanilla tiny shapes (elliptical, spiral_2, ring, bar):
    - Elliptical
    - Spiral (2-arm)
    - Spiral (3-arm)
@@ -98,7 +99,7 @@ As a player, I want to choose from 11 galaxy shapes for any mod size so that I c
 6. Generator creates galaxy with chosen topology
 
 ### Acceptance Criteria
-- All 11 shapes available for all 6 mod sizes
+- Every declared shape available for all 6 mod sizes
 - Shape selection independent of size selection
 - Generated galaxy matches selected topology
 
@@ -113,7 +114,7 @@ As a player, I want to customise empire counts within scenario limits so that I 
 
 ### Flow
 1. Player selects galaxy size (e.g., Gigantic)
-2. Engine reads `num_empires` range (1-36) and default (18)
+2. Engine reads `num_empires` range (0-36) and default (18)
 3. Player adjusts "AI Empires" slider
 4. Slider constrained to scenario min/max
 5. Player adjusts "Fallen Empires" slider (0-6, default 5)
@@ -148,7 +149,7 @@ As a player, I want crisis difficulty to scale with galaxy size so that larger g
 
 | Size | crisis_strength | extra_crisis_strength |
 |------|-----------------|----------------------|
-| Minuscule | 0.25 | {10, 25} |
+| Minuscule | 0.375 | {10, 25} |
 | Gigantic | 1.75 | {10, 25} |
 | Immense | 2.0 | {10, 25} |
 | Colossal | 2.25 | {10, 25} |
@@ -161,7 +162,7 @@ As a player, I want crisis difficulty to scale with galaxy size so that larger g
 - Crisis fleets appropriately challenging for galaxy scale
 
 ### Edge Cases
-- Minuscule crisis very weak (0.25x)
+- Minuscule crisis very weak (0.375x)
 - Ludicrous crisis very strong (2.75x)
 - Player can further adjust via game settings
 
@@ -256,7 +257,7 @@ As a player, I want empire clusters to create interesting regional politics at a
 
 | Size | cluster_count.max | cluster_radius | cluster_distance_from_core |
 |------|------------------|----------------|---------------------------|
-| Minuscule | 2 | 70 | 70 |
+| Minuscule | 2 | 60 | 90 |
 | Gigantic | 6 | 160 | 300 |
 | Immense | 6 | 170 | 300 |
 | Colossal | 6 | 180 | 300 |

@@ -98,7 +98,7 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 3. Build `ui-galaxy-sizes_<version>.zip` containing `ui-galaxy-sizes/` and `ui-galaxy-sizes.mod`
 4. Attach the archive to the published GitHub release
 
-**Artefacts:** `ui-galaxy-sizes_1.4.5.zip`
+**Artefacts:** `ui-galaxy-sizes_1.5.0.zip`
 
 **Release Notes:** As written by the maintainer on the GitHub release
 
@@ -142,12 +142,12 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 
 | Source | Location | Format |
 |--------|----------|--------|
-| Git tag | `git tag` | `v1.4.5` |
-| Descriptor | `ui-galaxy-sizes.mod` | `version="1.4.5"` |
-| Local descriptor | `ui-galaxy-sizes/descriptor.mod` | `version="1.4.5"` |
-| Changelog | `CHANGELOG.md` | `## [1.4.5]` |
-| Release name | GitHub Release | `v1.4.5` |
-| ZIP filename | GitHub Release asset | `ui-galaxy-sizes_1.4.5.zip` |
+| Git tag | `git tag` | `v1.5.0` |
+| Descriptor | `ui-galaxy-sizes.mod` | `version="1.5.0"` |
+| Local descriptor | `ui-galaxy-sizes/descriptor.mod` | `version="1.5.0"` |
+| Changelog | `CHANGELOG.md` | `## [1.5.0]` |
+| Release name | GitHub Release | `v1.5.0` |
+| ZIP filename | GitHub Release asset | `ui-galaxy-sizes_1.5.0.zip` |
 
 ### Version Bump Rules
 
@@ -222,9 +222,9 @@ The release archive is consumed by `.github/workflows/steam-workshop-release.yml
 
 ```bash
 # Delete release and tag
-gh release delete v1.4.5 --yes
-git tag -d v1.4.5
-git push origin :refs/tags/v1.4.5
+gh release delete v1.5.0 --yes
+git tag -d v1.5.0
+git push origin :refs/tags/v1.5.0
 ```
 
 ### Steam Workshop

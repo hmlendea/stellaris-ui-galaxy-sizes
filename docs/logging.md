@@ -22,7 +22,7 @@ For reference, the Stellaris engine logs the following relevant to this mod:
 ### Mod Loading Logs
 
 ```
-[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.4.5)
+[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.5.0)
 [mod] Supported version: v4.5.*
 [mod] Mount path: mod/ui-galaxy-sizes
 ```
@@ -32,9 +32,9 @@ For reference, the Stellaris engine logs the following relevant to this mod:
 ```
 [galaxy] Parsing setup_scenario: ui_ludicrous
 [galaxy]   num_stars=2000, radius=500
-[galaxy]   num_empires=1-60, default=30
+[galaxy]   num_empires=0-60, default=30
 [galaxy]   crisis_strength=2.75
-[galaxy]   supports_shape: 11 shapes
+[galaxy]   supports_shape: 10 shapes
 ```
 
 ### Generation Logs
@@ -42,7 +42,9 @@ For reference, the Stellaris engine logs the following relevant to this mod:
 ```
 [galaxy] Generating galaxy: Ludicrous (2000 stars)
 [galaxy] Placing 30 AI empires
-[galaxy] Placing 9 fallen empires
+[galaxy] Placing 6 fallen empires
+[galaxy] Placing 3 marauders
+[galaxy] Placing 6 nomads
 [galaxy] Building hyperlane network
 [galaxy] Placing 20 nebulae
 [galaxy] Assigning system names
@@ -72,7 +74,7 @@ When debugging mod-related issues, correlate on:
 | Field | Source | Purpose |
 |-------|--------|---------|
 | Mod name | `Universum Infinitum: Galaxy Sizes` | Identify mod |
-| Mod version | `1.4.5` | Version tracking |
+| Mod version | `1.5.0` | Version tracking |
 | Scenario name | `ui_ludicrous` | Which scenario |
 | Stellaris version | `4.5.1` | Compatibility |
 | Timestamp | Engine log | Temporal correlation |

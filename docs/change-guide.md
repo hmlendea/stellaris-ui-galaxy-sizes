@@ -179,11 +179,11 @@ Format: `v4.5.*` (wildcard for patches)
 
 - [ ] Unique name `ui_<name>`
 - [ ] Unique priority (integer)
-- [ ] All 15 required parameters
-- [ ] All 11 `supports_shape` entries
+- [ ] All required parameters
+- [ ] All declared `supports_shape` entries
 - [ ] Localisation key added
 - [ ] Parameter scaling consistent with existing
-- [ ] Generation tested on all 11 shapes
+- [ ] Generation tested on every declared shape
 - [ ] Documentation updated
 
 ## Stellaris Version Upgrade

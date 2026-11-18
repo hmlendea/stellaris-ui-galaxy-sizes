@@ -42,7 +42,7 @@ Full parameter reference: [`data-model.md`](../data-model.md)
 | Field | Type | Value |
 |-------|------|-------|
 | `name` | string | `"Universum Infinitum: Galaxy Sizes"` |
-| `version` | string | `"1.4.5"` |
+| `version` | string | `"1.5.0"` |
 | `path` | string | `"mod/ui-galaxy-sizes"` |
 | `supported_version` | string | `"v4.5.*"` |
 | `tags` | string array | `{"Gameplay" "Map"}` |

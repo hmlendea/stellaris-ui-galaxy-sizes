@@ -65,7 +65,7 @@ sequenceDiagram
     participant Engine
     participant GalaxyGen
     Player->>Launcher: Selects "Universum Infinitum: Galaxy Sizes" in playset
-    Launcher->>Engine: Loads mod descriptors (version 1.4.5, v4.5.*)
+    Launcher->>Engine: Loads mod descriptors (version 1.5.0, v4.5.*)
     Player->>Engine: Starts New Game, picks galaxy size (e.g. "Ludicrous")
     Engine->>GalaxyGen: Passes selected setup_scenario parameters
     GalaxyGen->>GalaxyGen: Generates 2000-star galaxy with defaults
@@ -102,7 +102,7 @@ Paths:
 - `ui-galaxy-sizes/descriptor.mod`
 
 Responsibilities:
-- Declare mod name, version (1.4.5), supported game version (`v4.5.*`), tags, and filesystem path.
+- Declare mod name, version (1.5.0), supported game version (`v4.5.*`), tags, and filesystem path.
 
 Boundary rules:
 - Both descriptors must remain identical in version, name, and supported_version.
@@ -183,22 +183,23 @@ sequenceDiagram
 
 Ordering and invariants:
 - Scenario `priority` determines sort order in the UI (Minuscule = -1, Ludicrous = 9).
-- All scenarios share identical `supports_shape` lists; shape selection is player-driven.
-- Crisis strength scales with galaxy size (0.25 for Minuscule → 2.75 for Ludicrous).
+- Minuscule declares the 4 vanilla tiny shapes; Gigantic..Ludicrous declare all 10 engine shapes. Shape selection is player-driven.
+- Crisis strength follows the vanilla curve (0.375 for Minuscule → 2.75 for Ludicrous).
 - Empire limits scale proportionally (max 3 for Minuscule → max 60 for Ludicrous).
 
 ## ⚙️ Domain-Specific Concern: Scenario Parameter Scaling
 
 The six scenarios form a progression where each parameter scales with `num_stars`:
 - **Star count:** 100 → 2000 (×20)
-- **Radius:** 100 → 500 (×5)
+- **Radius:** 150 → 500 (×3.3)
 - **Max empires:** 3 → 60 (×20)
-- **Fallen empire max:** 1 → 10 (×10)
-- **Marauder max:** 1 → 6 (×6)
+- **Fallen empire max:** 1 → 6 (capped by the 6 vanilla fallen empire types)
+- **Marauder max:** 1 → 3 (capped by the 3 vanilla marauder clans)
+- **Nomad max:** 2 → 20
 - **Advanced empire default:** 0 → 9
-- **Crisis strength:** 0.25 → 2.75 (×11)
+- **Crisis strength:** 0.375 → 2.75 (vanilla `0.25 + 0.00125 × stars`)
 - **Nebula count:** 1 → 20 (×20)
-- **Hyperlane density range:** 0.5–3 → 0.5–5
+- **Hyperlane density range:** 0.5–3 for every size
 
 This scaling is hand-tuned per scenario; there is no algorithmic generator.
 
@@ -223,7 +224,7 @@ No logging, metrics, or telemetry are produced by the mod. The Stellaris engine 
 
 | Configuration Area | Source | Responsibility | Override or Secret Policy |
 |--------------------|--------|----------------|---------------------------|
-| Mod version | `ui-galaxy-sizes.mod` / `descriptor.mod` | Declares release version (1.4.5) | Updated manually per release |
+| Mod version | `ui-galaxy-sizes.mod` / `descriptor.mod` | Declares release version (1.5.0) | Updated manually per release |
 | Supported game version | Both `.mod` files | `supported_version="v4.5.*"` | Updated when new Stellaris version validated |
 | Scenario parameters | `map/setup_scenarios/*.txt` | All generation defaults | Static per release; no runtime override |
 | Display names | `localisation/engligh/ui-galaxy-sizes_l_english.yml` | UI labels | Static per release; additive for locales |

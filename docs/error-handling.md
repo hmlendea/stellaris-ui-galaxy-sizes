@@ -74,7 +74,7 @@ scripts/validate-localisation.sh
 | Parameter bounds | Documented in data-model.md, validated in CI |
 | Required parameters | Checklist in validation scripts |
 | Cross-scenario consistency | CI validates identical parameter sets |
-| Shape support consistency | CI validates 11 shapes in all scenarios |
+| Shape support consistency | CI validates declared shapes against the engine set |
 | Priority uniqueness | CI validates unique, ordered priorities |
 | Localisation completeness | CI validates 6 keys present |
 
@@ -210,7 +210,7 @@ Users see engine errors, not mod errors. Common messages:
 
 - [ ] All validation scripts pass
 - [ ] Manual generation test on all 6 sizes
-- [ ] Manual test on all 11 shapes (spot check)
+- [ ] Manual test on every declared shape (spot check)
 - [ ] Localisation displays correctly
 - [ ] Version bumped in both descriptors
 - [ ] Changelog updated

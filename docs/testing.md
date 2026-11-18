@@ -37,8 +37,8 @@ This mod has no executable code, so traditional unit/integration testing does no
 - `priority` is integer
 - All required parameters present
 - Parameter values within bounds (see data-model.md)
-- All 11 `supports_shape` declarations present
-- `supports_shape` list identical across all six files
+- Minuscule declares 4 shapes; the other five declare all 10
+- `supports_shape` lists identical across Gigantic..Ludicrous
 
 **Cross-scenario checks:**
 - Six `priority` values unique
@@ -69,7 +69,7 @@ For each of the six scenarios:
 3. Start New Game
 4. Select scenario from Galaxy Size dropdown
 5. Verify name displays correctly (localised)
-6. Select each of 11 galaxy shapes
+6. Select each declared galaxy shape
 7. Generate galaxy
 8. Verify:
    - Generation completes without error
@@ -108,7 +108,7 @@ Test on each supported Stellaris patch:
 | Missing localisation file | Raw keys in dropdown |
 | Corrupted scenario file | Engine logs error, scenario missing |
 | Maximum empires (60) | Generation completes |
-| All shapes for all sizes | All 11 shapes generate |
+| All shapes for all sizes | 54 combinations generate |
 
 ## Test Data
 
@@ -116,16 +116,16 @@ Test on each supported Stellaris patch:
 
 | Scenario | Stars | Default Empires | Max Empires | Fallen Default | Crisis | Nebulas |
 |----------|-------|-----------------|-------------|----------------|--------|---------|
-| Minuscule | 100 | 3 | 3 | 0 | 0.25 | 1 |
+| Minuscule | 100 | 2 | 3 | 0 | 0.375 | 1 |
 | Gigantic | 1200 | 18 | 36 | 5 | 1.75 | 12 |
 | Immense | 1400 | 21 | 42 | 6 | 2.0 | 14 |
-| Colossal | 1600 | 24 | 48 | 7 | 2.25 | 16 |
-| Titanic | 1800 | 27 | 54 | 8 | 2.5 | 18 |
-| Ludicrous | 2000 | 30 | 60 | 9 | 2.75 | 20 |
+| Colossal | 1600 | 24 | 48 | 6 | 2.25 | 16 |
+| Titanic | 1800 | 27 | 54 | 6 | 2.5 | 18 |
+| Ludicrous | 2000 | 30 | 60 | 6 | 2.75 | 20 |
 
 ### Shape Test Matrix
 
-All 11 shapes for all 6 scenarios = 66 combinations.
+Minuscule 4 shapes + 5 sizes × 10 shapes = 54 combinations.
 
 Shapes: `elliptical`, `spiral_2`, `spiral_3`, `spiral_4`, `spiral_6`, `ring`, `bar`, `starburst`, `cartwheel`, `spoked`
 

@@ -17,7 +17,7 @@
 
 | Mod Version | Stellaris Version | Status |
 |-------------|-------------------|--------|
-| 1.4.5 | 4.5.x | ✅ Supported |
+| 1.5.0 | 4.5.x | ✅ Supported |
 | 1.3.0 | 3.x | ⚠️ Legacy (Paradox Mods only) |
 | < 1.3.0 | < 3.x | ❌ Unsupported |
 
@@ -130,10 +130,10 @@ All version-bearing files must be updated together:
 
 | Stellaris Version | Mod Version | UI Star Names | Test Status |
 |-------------------|-------------|---------------|-------------|
-| 4.5.0 | 1.4.5 | Any | ✅ Required |
-| 4.5.1 | 1.4.5 | Any | ✅ Required |
-| 4.5.x | 1.4.5 | Any | ✅ Required |
-| 4.6.0 | 1.4.5 | Any | ❓ Untested |
+| 4.5.0 | 1.5.0 | Any | ✅ Required |
+| 4.5.1 | 1.5.0 | Any | ✅ Required |
+| 4.5.x | 1.5.0 | Any | ✅ Required |
+| 4.6.0 | 1.5.0 | Any | ❓ Untested |
 | 3.x | 1.3.0 | Any | ⚠️ Legacy |
 
 ## Dependency Update Process
@@ -157,6 +157,6 @@ All version-bearing files must be updated together:
 If Stellaris changes `setup_scenario` schema:
 1. Analyse new schema
 2. Update all six scenario files
-3. Test all 11 shapes for all six sizes
+3. Test every declared shape for all six sizes
 4. Update `supported_version` and `version`
 5. Release major version bump

@@ -31,7 +31,7 @@
 3. **Descriptor syntax:** Validate `ui-galaxy-sizes.mod`:
    ```clausewitz
    name="Universum Infinitum: Galaxy Sizes"
-   version="1.4.5"
+   version="1.5.0"
    path="mod/ui-galaxy-sizes"
    supported_version="v4.5.*"
    tags={"Gameplay" "Map"}
@@ -102,7 +102,7 @@
 **Symptoms:** Wrong shape, disconnected systems, missing empires
 
 **Checks:**
-1. **Shape support:** All 11 shapes should work. If one fails, try another.
+1. **Shape support:** Gigantic..Ludicrous support all 10 shapes; Minuscule supports the 4 vanilla tiny shapes. If one fails, try another.
 2. **Parameter bounds:** Engine clamps extreme values. Check `game.log` for warnings.
 3. **Mod conflicts:** Disable other galaxy/map mods.
 
@@ -188,7 +188,7 @@ grep -i "setup_scenario" game.log
 
 **Mod loading:**
 ```
-[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.4.5)
+[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.5.0)
 [mod]   path: mod/ui-galaxy-sizes
 [mod]   supported_version: v4.5.*
 ```
@@ -197,7 +197,7 @@ grep -i "setup_scenario" game.log
 ```
 [galaxy] Parsing setup_scenario: ui_ludicrous
 [galaxy]   num_stars=2000
-[galaxy]   supports_shape: 11 entries
+[galaxy]   supports_shape: 10 entries
 ```
 
 **Warnings (non-fatal):**
@@ -272,7 +272,7 @@ grep -i "setup_scenario" game.log
 
 ```markdown
 **Stellaris Version:** 4.5.2
-**Mod Version:** 1.4.5
+**Mod Version:** 1.5.0
 **Scenario:** Ludicrous (2000 stars)
 **Shape:** Spiral 4-arm
 **Other Mods:** UI Star Names v2.1, [list others]

@@ -105,7 +105,7 @@ Stellaris has ~1000 unique system names in vanilla. Ludicrous generates 2000 sys
 
 ### Do galaxy shapes work with all sizes?
 
-Yes. All 11 shapes supported for all 6 sizes:
+Yes, with one vanilla-derived exception. Gigantic through Ludicrous support all 10 shapes:
 - Elliptical
 - Spiral (2, 3, 4, 6 arms)
 - Ring
@@ -114,17 +114,19 @@ Yes. All 11 shapes supported for all 6 sizes:
 - Cartwheel
 - Spoked
 
+Minuscule declares the same four shapes vanilla allows at 100 stars (elliptical, spiral_2, ring, bar), because multi-arm shapes degenerate at that scale.
+
 ### Are crisis strengths balanced?
 
-Crisis strength scales with galaxy size:
-- Minuscule: 0.25x
+Crisis strength follows the vanilla curve `0.25 + 0.00125 × stars`:
+- Minuscule: 0.375x
 - Gigantic: 1.75x
 - Immense: 2.0x
 - Colossal: 2.25x
 - Titanic: 2.5x
 - Ludicrous: 2.75x
 
-This approximates vanilla scaling. Adjust in game setup if desired.
+This matches vanilla scaling exactly, so crisis difficulty feels the same at every size. Adjust in game setup if desired.
 
 ## Technical
 

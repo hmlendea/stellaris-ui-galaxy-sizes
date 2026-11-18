@@ -46,7 +46,7 @@ flowchart LR
 Both `.mod` files share the same structure:
 
 ```text
-version="1.4.5"
+version="1.5.0"
 name="Universum Infinitum: Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={ "Galaxy Generation" }
@@ -93,6 +93,8 @@ setup_scenario = {
     fallen_empire_max = <int>
     marauder_empire_default = <int>
     marauder_empire_max = <int>
+    nomad_empire_default = <int>
+    nomad_empire_max = <int>
     advanced_empire_default = <int>
     colonizable_planet_odds = <float>
     primitive_odds = <float>
@@ -136,6 +138,8 @@ setup_scenario = {
     num_hyperlanes = { min=<float> max=<float> }
     num_hyperlanes_default = <int>
 
+    # Gigantic..Ludicrous declare all 10 shapes; Minuscule declares only
+    # elliptical, spiral_2, ring and bar (the vanilla tiny set).
     supports_shape = elliptical
     supports_shape = spiral_2
     supports_shape = spiral_3
@@ -155,19 +159,24 @@ setup_scenario = {
 |-----------|-----------|----------|---------|----------|---------|-----------|
 | `priority` | -1 | 5 | 6 | 7 | 8 | 9 |
 | `num_stars` | 100 | 1200 | 1400 | 1600 | 1800 | 2000 |
-| `radius` | 100 | 460 | 470 | 480 | 490 | 500 |
+| `radius` | 150 | 460 | 470 | 480 | 490 | 500 |
+| `num_empires.min` | 0 | 0 | 0 | 0 | 0 | 0 |
 | `num_empires.max` | 3 | 36 | 42 | 48 | 54 | 60 |
-| `num_empire_default` | 3 | 18 | 21 | 24 | 27 | 30 |
-| `fallen_empire_default` | 0 | 5 | 6 | 7 | 8 | 9 |
-| `fallen_empire_max` | 1 | 6 | 7 | 8 | 9 | 10 |
-| `marauder_empire_default` | 1 | 3 | 4 | 4 | 5 | 5 |
-| `marauder_empire_max` | 1 | 4 | 4 | 5 | 5 | 6 |
+| `num_empire_default` | 2 | 18 | 21 | 24 | 27 | 30 |
+| `fallen_empire_default` | 0 | 5 | 6 | 6 | 6 | 6 |
+| `fallen_empire_max` | 1 | 6 | 6 | 6 | 6 | 6 |
+| `marauder_empire_default` | 1 | 3 | 3 | 3 | 3 | 3 |
+| `marauder_empire_max` | 1 | 3 | 3 | 3 | 3 | 3 |
+| `nomad_empire_default` | 0 | 3 | 4 | 4 | 5 | 6 |
+| `nomad_empire_max` | 2 | 12 | 14 | 16 | 18 | 20 |
 | `advanced_empire_default` | 0 | 5 | 6 | 7 | 8 | 9 |
-| `crisis_strength` | 0.25 | 1.75 | 2.0 | 2.25 | 2.5 | 2.75 |
+| `crisis_strength` | 0.375 | 1.75 | 2.0 | 2.25 | 2.5 | 2.75 |
 | `cluster_count.max` | 2 | 6 | 6 | 6 | 6 | 6 |
-| `cluster_radius` | 70 | 160 | 170 | 180 | 190 | 200 |
+| `cluster_radius` | 60 | 160 | 170 | 180 | 190 | 200 |
+| `cluster_distance_from_core` | 90 | 300 | 300 | 300 | 300 | 300 |
 | `num_nebulas` | 1 | 12 | 14 | 16 | 18 | 20 |
-| `num_hyperlanes.max` | 3 | 5 | 5 | 5 | 5 | 5 |
+| `num_hyperlanes.max` | 3 | 3 | 3 | 3 | 3 | 3 |
+| `supports_shape` count | 4 | 10 | 10 | 10 | 10 | 10 |
 
 ### Invariant Parameters (Same Across All Scenarios)
 
@@ -178,19 +187,18 @@ setup_scenario = {
 | `extra_crisis_strength` | { 10 25 } |
 | `cluster_count.method` | one_every_x_empire |
 | `cluster_count.value` | 1 |
-| `cluster_distance_from_core` | 70 (Minuscule), 300 (others) |
 | `max_hyperlane_distance` | 50 |
 | `home_system_partitions` | Identical across all |
 | `open_space_partitions` | Identical across all |
-| `nebula_size` | 60 |
-| `nebula_min_dist` | 50 (Minuscule), 200 (others) |
+| `nebula_size` | 60 (40 on Minuscule) |
+| `nebula_min_dist` | 100 (Minuscule), 200 (others) |
 | `num_wormhole_pairs` | { min = 0 max = 5 } |
 | `num_wormhole_pairs_default` | 1 |
 | `num_gateways` | { min = 0 max = 5 } |
 | `num_gateways_default` | 1 |
 | `num_hyperlanes.min` | 0.5 |
 | `num_hyperlanes_default` | 1 |
-| `supports_shape` | All 11 shapes |
+| `supports_shape` | Minuscule: vanilla tiny set (4); all others: all 10 shapes |
 
 ## Interfaces and Integrations
 
@@ -342,4 +350,4 @@ Player adds mod to a playset in Stellaris launcher and activates it.
 
 - Test each scenario on each supported Stellaris `4.5.x` patch
 - Verify no duplicate system names in Ludicrous with UI Star Names
-- Verify all 11 galaxy shapes generate correctly for each scenario
+- Verify every declared galaxy shape generates correctly for each scenario

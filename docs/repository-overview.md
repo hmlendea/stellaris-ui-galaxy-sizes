@@ -71,7 +71,8 @@ stellaris-ui-galaxy-sizes/
 - All scenario files are valid `setup_scenario` blocks parseable by Stellaris `v4.5.*`
 - Each scenario defines a unique `name` key matching its filename
 - Priority values are unique and monotonically increasing (-1, 5, 6, 7, 8, 9)
-- All scenarios support the same set of 11 galaxy shapes
+- All scenarios define valid `supports_shape` lists (Minuscule 4 shapes, others 10)
+- Fallen empire and marauder counts stay within the vanilla type pools (6 and 3)
 - Localisation keys match scenario `name` values exactly
-- Mod version in both descriptors matches the release version (1.4.5)
+- Mod version in both descriptors matches the release version (1.5.0)
 - Supported game version in both descriptors matches (`v4.5.*`)
