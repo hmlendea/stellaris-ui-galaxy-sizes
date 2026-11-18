@@ -62,7 +62,7 @@ All flows occur within the Stellaris engine and launcher.
    b. Builds hyperlanes
    c. Places empires (num_empires, distances)
    d. Places fallen empires
-   e. Places nebulae (num_nebulae)
+   e. Places nebulae (num_nebulas)
    f. Generates crisis fleets (crisis_strength)
    g. Assigns system names
 9. Game starts with generated galaxy

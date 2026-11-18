@@ -28,7 +28,7 @@ Localisation → *_l_english.yml → UI display
 ### Schema
 
 ```text
-version="1.4.5"
+version="1.5.0"
 name="Universum Infinitum: Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={ "Galaxy Generation" }
@@ -108,7 +108,9 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 | `fallen_empire_default` | Integer | Default fallen empires |
 | `fallen_empire_max` | Integer | Max fallen empires |
 | `marauder_empire_default` | Integer | Default marauders |
-| `marauder_empire_max` | Integer | Max marauders |
+| `marauder_empire_max` | Integer | Max marauders (≤ 3, vanilla clan pool) |
+| `nomad_empire_default` | Integer | Default nomads |
+| `nomad_empire_max` | Integer | Max nomads |
 | `advanced_empire_default` | Integer | Default advanced AI |
 
 #### Planetary (Constant)
@@ -165,7 +167,7 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 #### Shapes (Constant)
 | Parameter | Type | Value |
 |-----------|------|-------|
-| `supports_shape` | String (×11) | All 11 shapes |
+| `supports_shape` | String (Minuscule ×4, others ×10) | All engine shapes for large sizes |
 
 ### Validation Rules
 
@@ -178,7 +180,8 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 7. `crisis_strength` ≥ 0
 8. `cluster_count.max` ≥ `cluster_count.value`
 9. `num_hyperlanes.min` ≤ `num_hyperlanes.max`
-10. All 11 `supports_shape` present and identical across scenarios
+10. Every `supports_shape` present in the engine shape set; identical across Gigantic..Ludicrous
+11. `fallen_empire_max` ≤ 6 and `marauder_empire_max` ≤ 3 (vanilla type pools)
 
 ## Player-Configurable Settings
 
@@ -189,6 +192,7 @@ The following scenario parameters are exposed to players in the New Game screen:
 | AI Empires | `num_empires` range, `num_empire_default` | Slider within min/max |
 | Fallen Empires | `fallen_empire_max`, `fallen_empire_default` | Slider 0 to max |
 | Marauders | `marauder_empire_max`, `marauder_empire_default` | Slider 0 to max |
+| Nomads | `nomad_empire_max`, `nomad_empire_default` | Slider 0 to max |
 | Advanced AI | `advanced_empire_default` | Slider 0 to max |
 | Crisis Strength | `crisis_strength` | Multiplier slider |
 | Hyperlane Density | `num_hyperlanes` range, `num_hyperlanes_default` | Slider within range |
@@ -208,7 +212,7 @@ None — the mod has no environment-specific configuration. It is purely declara
 
 1. Edit `map/setup_scenarios/ui_<size>.txt`
 2. Update `version` in both `.mod` files
-3. Test generation for all 11 shapes
+3. Test generation for every declared shape
 4. Verify parameter bounds
 5. Release new version
 

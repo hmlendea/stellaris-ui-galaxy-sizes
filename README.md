@@ -54,7 +54,8 @@ After installing and activating the mod in the Stellaris launcher:
 ## ⚠️ Known Limitations
 
 - The 2,000-star Ludicrous scenario requires [Universum Infinitum: Star Names](https://github.com/hmlendea/stellaris-ui-star-names) to provide sufficient system names.
-- [Paradox Mods](https://mods.paradoxplaza.com/mods/25431/Any) currently provides mod version 1.3.0 for Stellaris 3.x. Use Steam Workshop, Nexus Mods, or GitHub for version 1.4.5 with Stellaris 4.5.x.
+- Vanilla scripts branch on the five built-in galaxy size names, so systems scaled by galaxy size (AI habitat caps, cosmic storms, voidworms, starlit links, the Central Crystal, and Eater-of-Worlds thresholds) fall back to their default values on the additional sizes.
+- [Paradox Mods](https://mods.paradoxplaza.com/mods/25431/Any) currently provides mod version 1.3.0 for Stellaris 3.x. Use Steam Workshop, Nexus Mods, or GitHub for version 1.5.0 with Stellaris 4.5.x.
 
 ## 📦 Installation
 
@@ -84,7 +85,7 @@ English labels are included for all six additional galaxy sizes.
 
 | Component | Supported Versions | Notes |
 |-----------|--------------------|-------|
-| Stellaris | `4.5.*` | Declared by both mod descriptors for release 1.4.5 |
+| Stellaris | `4.5.*` | Declared by both mod descriptors for release 1.5.0 |
 
 ## 🔌 Integrations
 

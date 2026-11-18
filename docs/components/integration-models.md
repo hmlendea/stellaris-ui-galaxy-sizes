@@ -26,17 +26,20 @@ setup_scenario = {
     priority = int
     num_stars = int
     radius = int
-    num_empires = int
-    num_empires_default = int
-    num_advanced_empires = int
-    num_fallen_empires = int
-    num_fallen_empires_default = int
+    num_empires = { min = int max = int }
+    num_empire_default = int
+    advanced_empire_default = int
+    fallen_empire_default = int
+    fallen_empire_max = int
+    marauder_empire_default = int
+    marauder_empire_max = int
+    nomad_empire_default = int
+    nomad_empire_max = int
     crisis_strength = float
-    num_nebulae = int
-    num_systems_per_empire = int
-    min_distance_between_empires = int
-    guaranteed_habitable = int
-    supports_shape = "string"  # repeated 11x
+    num_nebulas = int
+    cluster_radius = int
+    cluster_distance_from_core = int
+    supports_shape = "string"  # repeated 4x (Minuscule) or 10x (others)
 }
 ```
 
@@ -64,7 +67,7 @@ l_english:
 
 ```clausewitz
 name = "Universum Infinitum: Galaxy Sizes"
-version = "1.4.5"
+version = "1.5.0"
 path = "mod/ui-galaxy-sizes"
 supported_version = "v4.5.*"
 tags = { "Gameplay" "Map" }

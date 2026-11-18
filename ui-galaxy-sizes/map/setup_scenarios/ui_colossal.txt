@@ -3,12 +3,14 @@ setup_scenario = {
     priority = 7
     num_stars = 1600
     radius = 480
-    num_empires = { min = 1 max = 48 }
+    num_empires = { min = 0 max = 48 }
     num_empire_default = 24
-    fallen_empire_default = 7
-    fallen_empire_max = 8
-    marauder_empire_default = 4
-    marauder_empire_max = 5
+    fallen_empire_default = 6
+    fallen_empire_max = 6
+    marauder_empire_default = 3
+    marauder_empire_max = 3
+    nomad_empire_default = 4
+    nomad_empire_max = 16
     advanced_empire_default = 7
     colonizable_planet_odds = 1.0
     primitive_odds = 1.0
@@ -54,7 +56,7 @@ setup_scenario = {
     num_wormhole_pairs_default = 1
     num_gateways = { min = 0 max = 5 }
     num_gateways_default = 1
-    num_hyperlanes = { min=0.5 max= 5 }
+    num_hyperlanes = { min=0.5 max= 3 }
     num_hyperlanes_default = 1
 
 	supports_shape = elliptical

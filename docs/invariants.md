@@ -26,38 +26,44 @@ These invariants must hold for the mod to function correctly. Violations indicat
 | `name` matches filename | `name = "ui_<size>"` | CI string match |
 | `priority` unique integer | No duplicates across 6 scenarios | CI uniqueness |
 | `priority` ordering | `-1 < 5 < 6 < 7 < 8 < 9` | CI ordering |
-| All 11 shapes declared | `supports_shape` = 11 entries | CI count + set |
-| Shape set identical | All scenarios support same 11 shapes | CI set equality |
-| Required parameters present | 15 core parameters (see below) | CI presence |
+| Shape declarations valid | Minuscule = 4 vanilla tiny shapes; others = all 10 shapes | CI count + set |
+| Fallen empire counts within vanilla type pool | `fallen_empire_max` ≤ 6 | CI bound |
+| Marauder counts within vanilla clan pool | `marauder_empire_max` ≤ 3 | CI bound |
+| Required parameters present | 20 core parameters (see below) | CI presence |
 | Parameter types correct | Integers, floats, strings as specified | CI type check |
 
-**Required Parameters (15):**
+**Required Parameters (20):**
 
 ```clausewitz
 name                    # string, matches filename
 priority                # integer, unique
 num_stars               # integer > 0
 radius                  # integer > 0
-num_empires             # integer >= 0
-num_empires_default     # integer >= 0, <= num_empires
-num_advanced_empires    # integer >= 0
-num_fallen_empires      # integer >= 0
-num_fallen_empires_default # integer >= 0, <= num_fallen_empires
+num_empires             # range, min >= 0
+num_empire_default      # integer >= 0, within num_empires
+fallen_empire_default   # integer >= 0, <= fallen_empire_max
+fallen_empire_max       # integer <= 6 (vanilla type pool)
+marauder_empire_default # integer >= 0, <= marauder_empire_max
+marauder_empire_max     # integer <= 3 (vanilla clan pool)
+nomad_empire_default    # integer >= 0, <= nomad_empire_max
+nomad_empire_max        # integer >= 0
+advanced_empire_default # integer >= 0
 crisis_strength         # float >= 0
-num_nebulae             # integer >= 0
-num_systems_per_empire  # integer > 0
-min_distance_between_empires # integer > 0
-guaranteed_habitable    # integer >= 0
-supports_shape          # 11x string from known set
+extra_crisis_strength   # two integers
+cluster_radius          # integer > 0
+cluster_distance_from_core # integer > 0
+num_nebulas             # integer >= 0
+num_hyperlanes          # range, max <= 3
+supports_shape          # string from known set (4x Minuscule, 10x others)
 ```
 
 ### Cross-Scenario Invariants
 
 | Invariant | Description | Validation |
 |-----------|-------------|------------|
-| Parameter set identical | All 6 scenarios define same 15 parameters | CI set equality |
+| Parameter set identical | All 6 scenarios define same 20 parameters | CI set equality |
 | `num_stars` strictly increasing | 100 < 1200 < 1400 < 1600 < 1800 < 2000 | CI ordering |
-| `radius` strictly increasing | 50 < 300 < 350 < 400 < 450 < 500 | CI ordering |
+| `radius` strictly increasing | 150 < 460 < 470 < 480 < 490 < 500 | CI ordering |
 | Empire counts scale with stars | Roughly linear scaling | CI ratio check |
 | Crisis strength scales | Monotonic increase with stars | CI ordering |
 | Nebulae count scales | Monotonic increase with stars | CI ordering |
@@ -76,7 +82,7 @@ supports_shape          # 11x string from known set
 
 ### Shape Invariants
 
-**Known Shape Set (11):**
+**Known Shape Set (10):**
 
 ```
 elliptical
@@ -95,7 +101,7 @@ spoked
 |-----------|-------------|------------|
 | All shapes known | Each `supports_shape` in known set | CI set membership |
 | No unknown shapes | Engine would ignore unknown | CI set membership |
-| All scenarios identical | Same 11 shapes in same order | CI list equality |
+| Large sizes complete | Gigantic..Ludicrous declare all 10 shapes in the same order | CI list equality |
 
 ### Version Invariants
 
@@ -123,7 +129,7 @@ spoked
 | `radius` ≤ engine max | Engine has internal limit | Generation fails |
 | `num_empires` ≤ engine max | Engine has internal limit | Clamped, warning |
 | Memory sufficient | `num_stars` × overhead < RAM | Generation fails/OOM |
-| Shape supported by engine | All 11 shapes in engine | Fallback to default |
+| Shape supported by engine | All 10 shapes in engine | Fallback to default |
 
 ## Invariant Violation Response
 

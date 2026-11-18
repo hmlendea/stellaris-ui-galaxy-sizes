@@ -15,26 +15,23 @@ setup_scenario = {
     priority = 9
     num_stars = 2000
     radius = 500
-    num_empires = 60
-    num_empires_default = 30
-    num_advanced_empires = 15
-    num_fallen_empires = 9
-    num_fallen_empires_default = 9
+    num_empires = { min = 0 max = 60 }
+    num_empire_default = 30
+    fallen_empire_default = 6
+    fallen_empire_max = 6
+    marauder_empire_default = 3
+    marauder_empire_max = 3
+    nomad_empire_default = 6
+    nomad_empire_max = 20
+    advanced_empire_default = 9
     crisis_strength = 2.75
-    num_nebulae = 20
-    num_systems_per_empire = 4
-    min_distance_between_empires = 3
-    guaranteed_habitable = 2
-    supports_shape = "elliptical"
-    supports_shape = "spiral_2"
-    supports_shape = "spiral_3"
-    supports_shape = "spiral_4"
-    supports_shape = "spiral_6"
-    supports_shape = "ring"
-    supports_shape = "bar"
-    supports_shape = "starburst"
-    supports_shape = "cartwheel"
-    supports_shape = "spoked"
+    num_nebulas = 20
+    cluster_radius = 200
+    cluster_distance_from_core = 300
+    num_hyperlanes = { min=0.5 max= 3 }
+    num_hyperlanes_default = 1
+    supports_shape = elliptical
+    supports_shape = spiral_2
 }
 ```
 
@@ -46,17 +43,20 @@ setup_scenario = {
 | `priority` | int | `9` | UI sort order, higher = later in list |
 | `num_stars` | int | `2000` | Target star count |
 | `radius` | int | `500` | Galaxy radius (affects density) |
-| `num_empires` | int | `60` | Maximum AI empires player can select |
-| `num_empires_default` | int | `30` | Default AI empires in UI |
-| `num_advanced_empires` | int | `15` | Maximum advanced AI starts |
-| `num_fallen_empires` | int | `9` | Maximum fallen empires |
-| `num_fallen_empires_default` | int | `9` | Default fallen empires |
+| `num_empires` | range | `{ 0 60 }` | Allowed AI empire count range |
+| `num_empire_default` | int | `30` | Default AI empires in UI |
+| `fallen_empire_default` | int | `6` | Default fallen empires |
+| `fallen_empire_max` | int | `6` | Maximum fallen empires (vanilla type pool) |
+| `marauder_empire_default` | int | `3` | Default marauder clans |
+| `marauder_empire_max` | int | `3` | Maximum marauder clans (vanilla clan pool) |
+| `nomad_empire_default` | int | `6` | Default nomad empires |
+| `nomad_empire_max` | int | `20` | Maximum nomad empires |
+| `advanced_empire_default` | int | `9` | Default advanced AI starts |
 | `crisis_strength` | float | `2.75` | Crisis fleet power multiplier |
-| `num_nebulae` | int | `20` | Number of nebulae to place |
-| `num_systems_per_empire` | int | `4` | Initial systems per empire |
-| `min_distance_between_empires` | int | `3` | Minimum hyperlane distance |
-| `guaranteed_habitable` | int | `2` | Guaranteed habitable worlds per empire |
-| `supports_shape` | string[] | 11 entries | Supported galaxy shapes |
+| `num_nebulas` | int | `20` | Number of nebulae to place |
+| `cluster_radius` | int | `200` | Cluster radius |
+| `cluster_distance_from_core` | int | `300` | Cluster distance from galactic core |
+| `supports_shape` | string | 10 entries | Supported galaxy shapes |
 
 ## Creating a Custom Scenario (Fork Example)
 
@@ -74,27 +74,30 @@ setup_scenario = {
     name = "ui_custom"
     priority = 3          # Between Minuscule (-1) and Gigantic (5)
     num_stars = 800       # Custom star count
-    radius = 250          # Proportional radius
-    num_empires = 12      # Scaled from Gigantic (18)
-    num_empires_default = 6
-    num_advanced_empires = 3
-    num_fallen_empires = 3
-    num_fallen_empires_default = 3
-    crisis_strength = 1.25
-    num_nebulae = 8
-    num_systems_per_empire = 4
-    min_distance_between_empires = 3
-    guaranteed_habitable = 2
-    supports_shape = "elliptical"
-    supports_shape = "spiral_2"
-    supports_shape = "spiral_3"
-    supports_shape = "spiral_4"
-    supports_shape = "spiral_6"
-    supports_shape = "ring"
-    supports_shape = "bar"
-    supports_shape = "starburst"
-    supports_shape = "cartwheel"
-    supports_shape = "spoked"
+    radius = 450          # Keep below the 500 engine limit
+    num_empires = { min = 0 max = 24 }
+    num_empire_default = 12
+    fallen_empire_default = 3
+    fallen_empire_max = 6
+    marauder_empire_default = 3
+    marauder_empire_max = 3
+    nomad_empire_default = 3
+    nomad_empire_max = 12
+    advanced_empire_default = 3
+    crisis_strength = 1.25   # Vanilla curve: 0.25 + 0.00125 x stars
+    num_nebulas = 8
+    cluster_radius = 150
+    cluster_distance_from_core = 300
+    supports_shape = elliptical
+    supports_shape = spiral_2
+    supports_shape = spiral_3
+    supports_shape = spiral_4
+    supports_shape = spiral_6
+    supports_shape = ring
+    supports_shape = bar
+    supports_shape = starburst
+    supports_shape = cartwheel
+    supports_shape = spoked
 }
 ```
 
@@ -154,31 +157,35 @@ l_english:
 
 ## Parameter Tuning Examples
 
-### Scaling Formula (Used for Original 6 Sizes)
+### Scaling Formulas (Derived from Vanilla)
 
-```python
-# Approximate scaling used by mod author
-def scale_parameter(base_value, star_ratio, exponent=1.0):
-    return round(base_value * (star_ratio ** exponent))
-
-# Example: crisis_strength scales with exponent ~0.3
-# Gigantic (1200) / Huge (1000) = 1.2
-# crisis: 1.5 * 1.2^0.3 ≈ 1.55 → 1.75 (rounded/tuned)
+```text
+num_empire_default  = num_stars / 66.67       (vanilla ratio, rounded)
+num_empires.max     = 2 x num_empire_default
+crisis_strength         = 0.25 + 0.00125 x num_stars
+num_nebulas             = num_stars / 100
+cluster_radius          = radius - 300        (for radius >= 440)
 ```
+
+Example: 800 stars -> 12 default empires (max 24), crisis 1.25, 8 nebulae.
 
 ### Conservative Scaling (For New Sizes)
 
 ```clausewitz
 # For a 900-star size (between Minuscule and Gigantic)
 num_stars = 900
-radius = 220
-num_empires = 10
-num_empires_default = 5
-num_advanced_empires = 2
-num_fallen_empires = 2
-num_fallen_empires_default = 2
-crisis_strength = 1.0
-num_nebulae = 6
+radius = 455
+num_empires = { min = 0 max = 27 }
+num_empire_default = 13
+fallen_empire_default = 5
+fallen_empire_max = 6
+marauder_empire_default = 3
+marauder_empire_max = 3
+nomad_empire_default = 3
+nomad_empire_max = 13
+advanced_empire_default = 5
+crisis_strength = 1.375
+num_nebulas = 9
 ```
 
 ### Aggressive Scaling (For Performance Testing)
@@ -186,13 +193,17 @@ num_nebulae = 6
 ```clausewitz
 # Minimal empires for maximum stars (stress test)
 num_stars = 2000
-num_empires = 5
-num_empires_default = 1
-num_advanced_empires = 0
-num_fallen_empires = 0
-num_fallen_empires_default = 0
+num_empires = { min = 0 max = 60 }
+num_empire_default = 1
+advanced_empire_default = 0
+fallen_empire_default = 0
+fallen_empire_max = 1
+marauder_empire_default = 0
+marauder_empire_max = 1
+nomad_empire_default = 0
+nomad_empire_max = 2
 crisis_strength = 0.5
-num_nebulae = 5
+num_nebulas = 5
 ```
 
 ## Validation Examples
@@ -241,7 +252,7 @@ num_nebulae = 5
 | Parameter | Minuscule | Gigantic | Immense | Colossal | Titanic | Ludicrous |
 |-----------|-----------|----------|---------|----------|---------|-----------|
 | num_stars | 100 | 1200 | 1400 | 1600 | 1800 | 2000 |
-| radius | 50 | 300 | 350 | 400 | 450 | 500 |
+| radius | 150 | 460 | 470 | 480 | 490 | 500 |
 | ... | ... | ... | ... | ... | ... | ... |
 
 ## CI/CD Integration Examples

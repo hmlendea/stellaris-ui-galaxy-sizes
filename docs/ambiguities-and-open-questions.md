@@ -36,11 +36,11 @@ This document tracks unresolved design questions, engine behaviours that need ve
 
 **Question:** How does the engine distribute `num_empires` across the galaxy?
 
-**Current Assumption:** Roughly even distribution with `min_distance_between_empires` constraint.
+**Current Assumption:** Roughly even distribution governed by `home_system_partitions` and `open_space_partitions`.
 
 **Unknowns:**
-- Does `num_advanced_empires` affect placement?
-- How does `guaranteed_habitable` interact with empire spawns?
+- Does `advanced_empire_default` affect placement?
+- How does each empire's home system partition interact with nebula and cluster placement?
 - What happens when empires can't fit (clamping behaviour)?
 
 **Verification Needed:** Map empire positions for different sizes.
@@ -88,7 +88,7 @@ This document tracks unresolved design questions, engine behaviours that need ve
 
 ### 7. Nebulae Placement Rules
 
-**Question:** How does `num_nebulae` translate to actual nebula count and placement?
+**Question:** How does `num_nebulas` translate to actual nebula count and placement?
 
 **Current Assumption:** Engine places approximately that many nebulae.
 
@@ -102,9 +102,9 @@ This document tracks unresolved design questions, engine behaviours that need ve
 
 ### 8. Fallen Empire Spawn Logic
 
-**Question:** How do `num_fallen_empires` and `num_fallen_empires_default` interact?
+**Question:** How do `fallen_empire_max` and `fallen_empire_default` interact?
 
-**Current Assumption:** Default = UI default, max = cap for player adjustment.
+**Current Assumption:** Default = UI default, max = cap for player adjustment. Vanilla defines exactly 6 fallen empire types, so any `fallen_empire_max` above 6 cannot be honoured.
 
 **Unknowns:**
 - Does engine guarantee fallen empire spawns?

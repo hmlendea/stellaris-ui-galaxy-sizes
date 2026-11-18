@@ -131,7 +131,7 @@ The six `setup_scenario` files collectively form a parameter service for the Ste
 |----------|------------|
 | Identity | `name`, `priority` |
 | Scale | `num_stars`, `radius` |
-| Empires | `num_empires`, `num_empire_default`, `fallen_empire_default`, `fallen_empire_max`, `marauder_empire_default`, `marauder_empire_max`, `advanced_empire_default` |
+| Empires | `num_empires`, `num_empire_default`, `fallen_empire_default`, `fallen_empire_max`, `marauder_empire_default`, `marauder_empire_max`, `nomad_empire_default`, `nomad_empire_max`, `advanced_empire_default` |
 | Planets | `colonizable_planet_odds`, `primitive_odds` |
 | Crisis | `crisis_strength`, `extra_crisis_strength` |
 | Clusters | `cluster_count`, `cluster_radius`, `cluster_distance_from_core` |
@@ -140,7 +140,7 @@ The six `setup_scenario` files collectively form a parameter service for the Ste
 | Nebulae | `num_nebulas`, `nebula_size`, `nebula_min_dist` |
 | Wormholes | `num_wormhole_pairs`, `num_wormhole_pairs_default` |
 | Gateways | `num_gateways`, `num_gateways_default` |
-| Shapes | `supports_shape` (×11) |
+| Shapes | `supports_shape` (×4 Minuscule, ×10 others) |
 
 **Dependencies:**
 - Stellaris Galaxy Generator (consumer)
@@ -152,7 +152,7 @@ Player selects size → Engine loads scenario → Generator applies all paramete
 
 **Invariants:**
 - All scenarios define identical parameter set
-- `supports_shape` list identical across all scenarios
+- `supports_shape` list identical across Gigantic..Ludicrous; Minuscule uses the vanilla tiny set
 - `priority` values unique and ordered
 
 ## Browser State and Localisation

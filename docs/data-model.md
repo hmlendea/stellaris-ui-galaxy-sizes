@@ -8,7 +8,7 @@ Represents the mod identity and metadata as declared in `.mod` files.
 
 | Field | Type | Description | Constraints |
 |-------|------|-------------|-------------|
-| `version` | String | Mod version (semantic) | Must match release tag (e.g., "1.4.5") |
+| `version` | String | Mod version (semantic) | Must match release tag (e.g., "1.5.0") |
 | `name` | String | Display name | "Universum Infinitum: Galaxy Sizes" |
 | `path` | String | Mount path in Stellaris mod directory | Must be "mod/ui-galaxy-sizes" |
 | `tags` | Array[String] | Workshop categories | ["Galaxy Generation"] |
@@ -44,18 +44,20 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
 | `num_stars` | Integer | Total star systems in galaxy | 100 → 2000 |
-| `radius` | Integer | Galaxy radius (arbitrary units) | 100 → 500 |
+| `radius` | Integer | Galaxy radius (arbitrary units) | 150 → 500 |
 
 #### Empire Parameters
 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
-| `num_empires` | Range(min, max) | Allowed AI empire count | 1-3 → 1-60 |
-| `num_empire_default` | Integer | Default AI empires | 3 → 30 |
-| `fallen_empire_default` | Integer | Default fallen empires | 0 → 9 |
-| `fallen_empire_max` | Integer | Maximum fallen empires | 1 → 10 |
-| `marauder_empire_default` | Integer | Default marauder empires | 1 → 5 |
-| `marauder_empire_max` | Integer | Maximum marauder empires | 1 → 6 |
+| `num_empires` | Range(min, max) | Allowed AI empire count | 0-3 → 0-60 |
+| `num_empire_default` | Integer | Default AI empires | 2 → 30 |
+| `fallen_empire_default` | Integer | Default fallen empires | 0 → 6 |
+| `fallen_empire_max` | Integer | Maximum fallen empires | 1 → 6 |
+| `marauder_empire_default` | Integer | Default marauder empires | 1 → 3 |
+| `marauder_empire_max` | Integer | Maximum marauder empires | 1 → 3 |
+| `nomad_empire_default` | Integer | Default nomad empires | 0 → 6 |
+| `nomad_empire_max` | Integer | Maximum nomad empires | 2 → 20 |
 | `advanced_empire_default` | Integer | Default advanced AI empires | 0 → 9 |
 
 #### Planetary Parameters
@@ -69,7 +71,7 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
-| `crisis_strength` | Float | Base crisis multiplier | 0.25 → 2.75 |
+| `crisis_strength` | Float | Base crisis multiplier | 0.375 → 2.75 |
 | `extra_crisis_strength` | Tuple(int, int) | Additional crisis scaling | {10, 25} (all) |
 
 #### Cluster Parameters
@@ -79,8 +81,8 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 | `cluster_count.method` | Enum | Cluster distribution algorithm | `one_every_x_empire` (all) |
 | `cluster_count.value` | Integer | Empires per cluster | 1 (all) |
 | `cluster_count.max` | Integer | Maximum clusters | 2 → 6 |
-| `cluster_radius` | Integer | Cluster spatial radius | 70 → 200 |
-| `cluster_distance_from_core` | Integer | Distance from galactic core | 70 (Minuscule), 300 (others) |
+| `cluster_radius` | Integer | Cluster spatial radius | 60 → 200 |
+| `cluster_distance_from_core` | Integer | Distance from galactic core | 90 (Minuscule), 300 (others) |
 
 #### Hyperlane Parameters
 
@@ -115,8 +117,8 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
 | `num_nebulas` | Integer | Number of nebulae | 1 → 20 |
-| `nebula_size` | Integer | Nebula radius | 60 (all) |
-| `nebula_min_dist` | Integer | Minimum distance between nebulae | 50 (Minuscule), 200 (others) |
+| `nebula_size` | Integer | Nebula radius | 60 (40 on Minuscule) |
+| `nebula_min_dist` | Integer | Minimum distance between nebulae | 100 (Minuscule), 200 (others) |
 
 #### Wormhole Parameters
 
@@ -136,12 +138,13 @@ Defines all parameters for a single galaxy size option. This is the core domain 
 
 | Field | Type | Description | Scaling |
 |-------|------|-------------|---------|
-| `num_hyperlanes` | Range(min, max) | Hyperlane density multiplier | {0.5, 3} → {0.5, 5} |
+| `num_hyperlanes` | Range(min, max) | Hyperlane density multiplier | {0.5, 3} (all) |
 | `num_hyperlanes_default` | Integer | Default hyperlane density | 1 (all) |
 
 #### Shape Support
 
-All scenarios support the same 11 galaxy shapes:
+Minuscule supports the 4 shapes vanilla allows at 100 stars; all other scenarios
+support all 10 engine shapes:
 
 | Shape | Description |
 |-------|-------------|
@@ -193,19 +196,23 @@ All entities are persisted as static files in the repository:
 5. **Localisation key match**: Each `l_english` key must match a scenario `name`
 6. **Priority uniqueness**: All six `priority` values must be distinct
 7. **Priority ordering**: Priorities must increase with galaxy size (-1, 5, 6, 7, 8, 9)
-8. **Shape list identity**: All scenarios must declare identical `supports_shape` lists
+8. **Shape list validity**: Every `supports_shape` value must be one of the 10 engine shapes; Minuscule declares the 4 vanilla tiny shapes
 
 ### Parameter Bounds
 
 | Parameter | Min | Max | Notes |
 |-----------|-----|-----|-------|
 | `num_stars` | 100 | 2000 | Engine may have hard limits |
-| `radius` | 100 | 500 | Proportional to star count |
+| `radius` | 150 | 500 | Sub-linear with star count; ≤500 engine limit |
 | `num_empires.max` | 3 | 60 | UI slider limits |
-| `crisis_strength` | 0.25 | 2.75 | Multiplier, not absolute |
+| `fallen_empire_default` | 0 | 6 | Vanilla defines 6 fallen empire types |
+| `fallen_empire_max` | 1 | 6 | Vanilla defines 6 fallen empire types |
+| `marauder_empire_default` | 1 | 3 | Vanilla defines 3 marauder clans |
+| `marauder_empire_max` | 1 | 3 | Vanilla defines 3 marauder clans |
+| `crisis_strength` | 0.375 | 2.75 | Multiplier, not absolute |
 | `cluster_count.max` | 2 | 6 | Minuscule capped at 2 |
 | `num_nebulas` | 1 | 20 | Proportional to star count |
-| `num_hyperlanes.max` | 3 | 5 | Minuscule capped at 3 |
+| `num_hyperlanes.max` | 3 | 3 | Matches vanilla maximum |
 
 ## Schema Evolution
 

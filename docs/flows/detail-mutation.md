@@ -14,13 +14,14 @@ sequenceDiagram
     participant NameAssigner
     Generator->>StarMap: Create 2000 star positions (radius 500)
     Generator->>EmpirePlacer: Place 30 AI empires (max 60)
-    Generator->>EmpirePlacer: Place 9 fallen empires (max 10)
-    Generator->>EmpirePlacer: Place 5 marauders (max 6)
+    Generator->>EmpirePlacer: Place 6 fallen empires (max 6)
+    Generator->>EmpirePlacer: Place 3 marauders (max 3)
+    Generator->>EmpirePlacer: Place 6 nomads (max 20)
     Generator->>EmpirePlacer: Place 9 advanced empires
     Generator->>StarMap: Apply cluster_count (max 6, value 1)
     Generator->>StarMap: Apply cluster_radius 200
     Generator->>StarMap: Apply cluster_distance_from_core 300
-    Generator->>HyperlaneBuilder: Build network (max_dist 50, density 0.5-5)
+    Generator->>HyperlaneBuilder: Build network (max_dist 50, density 0.5-3)
     Generator->>NebulaPlacer: Place 20 nebulae (size 60, min_dist 200)
     Generator->>StarMap: Add wormhole pairs (0-5, default 1)
     Generator->>StarMap: Add gateways (0-5, default 1)
@@ -52,7 +53,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[HyperlaneBuilder starts] --> B[Read max_hyperlane_distance=50]
-    B --> C[Read num_hyperlanes range 0.5-5]
+    B --> C[Read num_hyperlanes range 0.5-3]
     C --> D{Player customised density?}
     D -->|Yes| E[Use player value]
     D -->|No| F[Use num_hyperlanes_default=1]
@@ -112,7 +113,7 @@ sequenceDiagram
     Generator->>SaveSystem: Serialises generated galaxy
     SaveSystem->>SaveFile: Writes star systems, empires, hyperlanes, nebulae
     SaveSystem->>SaveFile: Writes scenario parameters used
-    SaveSystem->>SaveFile: Writes mod version (1.4.5)
+    SaveSystem->>SaveFile: Writes mod version (1.5.0)
     SaveFile-->>Player: Save game created
 ```
 
@@ -130,7 +131,7 @@ sequenceDiagram
     participant Launcher
     participant Engine
     participant SaveFile
-    Player->>Launcher: Activates mod v1.4.5
+    Player->>Launcher: Activates mod v1.5.0
     Player->>Engine: Loads save game
     Engine->>SaveFile: Reads mod version
     Engine->>Engine: Validates mod active and version matches
