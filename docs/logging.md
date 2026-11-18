@@ -22,7 +22,7 @@ For reference, the Stellaris engine logs the following relevant to this mod:
 ### Mod Loading Logs
 
 ```
-[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.5.0)
+[mod] Loading mod: Universum Infinitum - Galaxy Sizes (v1.5.0)
 [mod] Supported version: v4.5.*
 [mod] Mount path: mod/ui-galaxy-sizes
 ```
@@ -55,7 +55,7 @@ For reference, the Stellaris engine logs the following relevant to this mod:
 
 ```
 [error] Failed to parse setup_scenario: ui_colossal.txt
-[error]   Missing required parameter: num_stars
+[error]   Absent required parameter: num_stars
 [error] Using default values for scenario
 ```
 
@@ -73,7 +73,7 @@ When debugging mod-related issues, correlate on:
 
 | Field | Source | Purpose |
 |-------|--------|---------|
-| Mod name | `Universum Infinitum: Galaxy Sizes` | Identify mod |
+| Mod name | `Universum Infinitum - Galaxy Sizes` | Identify mod |
 | Mod version | `1.5.0` | Version tracking |
 | Scenario name | `ui_ludicrous` | Which scenario |
 | Stellaris version | `4.5.1` | Compatibility |
@@ -88,14 +88,13 @@ When debugging mod-related issues, correlate on:
 | Linux | `~/.local/share/Paradox Interactive/Stellaris/logs/` |
 
 **Primary log file:** `game.log` (or `error.log` for errors)
-
 ## Debugging Mod Issues via Logs
 
 ### Common Patterns
 
 **Mod not loading:**
 ```
-[mod] Skipping mod: Universum Infinitum: Galaxy Sizes
+[mod] Skipping mod: Universum Infinitum - Galaxy Sizes
 [mod]   Reason: supported_version mismatch (v4.5.* vs v4.6.0)
 ```
 
@@ -106,10 +105,10 @@ When debugging mod-related issues, correlate on:
 [galaxy]   Scenario ignored
 ```
 
-**Missing localisation:**
+**Absent localisation:**
 ```
 [localisation] Key not found: ui_immense
-[localisation] Using raw key for display
+[localisation] Using the raw key for display
 ```
 
 **Generation failure:**
@@ -121,18 +120,18 @@ When debugging mod-related issues, correlate on:
 
 ## Logging Configuration (Engine)
 
-Not configurable by mod. Engine logging controlled by:
+Not configurable through the mod. The engine logging is controlled by:
 - Stellaris launch options (`-debug`, `-logfile`)
 - `user_settings.txt` log level settings
 - Platform-specific logging (Steam overlay, etc.)
 
 ## Recommendations for Mod Users
 
-### Enabling Debug Logs
+### Activating Debug Logs
 
 Launch Stellaris with:
 ```bash
-# Linux/macOS
+# Linux and macOS
 ./stellaris -debug -logfile debug.log
 
 # Windows
@@ -153,16 +152,16 @@ grep -i "setup_scenario" game.log
 
 Since the mod has no runtime, validation is static:
 
-1. **Syntax:** Run validation scripts (CI)
-2. **Schema:** Compare against Stellaris game files (if accessible)
+1. **Syntax:** Run the validation scripts (continuous integration)
+2. **Schema:** Compare against the Stellaris game files (if accessible)
 3. **Generation:** Manual in-game testing
-4. **Logs:** Only engine logs available post-generation
+4. **Logs:** Only engine logs are available after generation
 
-### Adding Diagnostic Information
+### Including Diagnostic Information
 
-If needed for debugging, mod author can:
-- Add comments to scenario files (ignored by engine)
-- Use descriptive parameter names (already done)
+If required for debugging, the mod author can:
+- Include comments in scenario files (ignored by the engine)
+- Use descriptive parameter names (already applied)
 - Maintain parameter documentation (data-model.md)
 
 ## Summary
@@ -173,6 +172,6 @@ If needed for debugging, mod author can:
 | Engine logging | Yes (Stellaris internal) |
 | Mod-controllable logging | No |
 | Structured logging | Engine-dependent |
-| Correlation IDs | Not applicable |
+| Correlation identifiers | Not applicable |
 | Log retention | Engine-dependent |
-| Performance impact | None (mod has no runtime) |
+| Performance impact | None (the mod has no runtime) |

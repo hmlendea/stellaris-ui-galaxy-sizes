@@ -53,7 +53,7 @@ This document complements the root `SECURITY.md` with implementation-level secur
 
 ### Theoretical (Extremely Low Probability)
 
-| Scenario | Likelihood | Impact | Mitigation |
+| Scenario | Probability | Impact | Mitigation |
 |----------|------------|--------|------------|
 | Malicious `.mod` descriptor | Near zero (open source, platform review) | Mod not loaded | Launcher validation |
 | Corrupted scenario file | Low (file corruption) | Generation error | Engine fallback defaults |
@@ -98,12 +98,12 @@ This document complements the root `SECURITY.md` with implementation-level secur
 
 ### Code Review Checklist
 
-- [ ] No executable code added
-- [ ] No network calls added
-- [ ] No file writes added
-- [ ] Descriptor versions match
+- [ ] No executable code included
+- [ ] No network calls included
+- [ ] No file writes included
+- [ ] Descriptor versions correspond
 - [ ] Scenario parameters within bounds
-- [ ] Localisation keys match scenarios
+- [ ] Localisation keys correspond to scenarios
 
 ## Incident Response
 
@@ -117,7 +117,7 @@ Per root `SECURITY.md`:
 ### Response Process
 
 1. Acknowledge report
-2. Assess impact (likely negligible for this mod type)
+2. Assess the impact (probably negligible for this mod type)
 3. If valid: fix in source, release patch version
 4. Deploy to all platforms
 5. Credit reporter

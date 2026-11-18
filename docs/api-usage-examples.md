@@ -101,7 +101,7 @@ setup_scenario = {
 }
 ```
 
-### 3. Add Localisation
+### 3. Include Localisation
 
 ```yaml
 # ui-galaxy-sizes/localisation/engligh/ui-galaxy-sizes_l_english.yml
@@ -128,19 +128,19 @@ l_english:
 ```text
 # launcher-v2.sqlite playset order (first = highest priority)
 1. UI Star Names (provides names)
-2. Universum Infinitum: Galaxy Sizes (consumes names)
+2. Universum Infinitum - Galaxy Sizes (consumes names)
 3. Other mods...
 ```
 
 ### Playset Configuration
 
 ```json
-// Example playset with mod enabled
+// Example playset with the mod active
 {
   "name": "My Playset",
   "mods": [
     "ugc_123456789",  // UI Star Names (Steam Workshop ID)
-    "ugc_987654321",  // Universum Infinitum: Galaxy Sizes
+    "ugc_987654321",  // Universum Infinitum - Galaxy Sizes
     "mod/ui-galaxy-sizes"  // Manual install path
   ],
   "game_version": "4.5.2"
@@ -152,7 +152,7 @@ l_english:
 ```bash
 # All players must have identical mod versions
 # Host generates galaxy
-# Verify in launcher: all players show same mod version
+# Verify in the launcher: every player displays the identical mod version
 ```
 
 ## Parameter Tuning Examples
@@ -233,9 +233,9 @@ num_nebulas = 5
 
 ```
 ✗ Scenario validation failed: ui_custom.txt
-  - Missing required parameter: crisis_strength
+  - Absent required parameter: crisis_strength
   - supports_shape count: 10 (expected 11)
-  - priority 3 conflicts with existing (use unique value)
+  - priority 3 conflicts with an existing value (use a unique value)
 ```
 
 ## Documentation Generation Examples
@@ -282,7 +282,6 @@ git describe --tags --abbrev=0
 ## Not Applicable: Traditional API Examples
 
 Since this mod has no runtime API, the following are **not applicable**:
-
 - REST API calls
 - GraphQL queries
 - SDK usage

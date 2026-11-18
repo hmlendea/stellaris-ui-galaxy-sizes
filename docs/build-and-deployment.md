@@ -6,13 +6,13 @@
 
 ### Reason
 
-The mod consists entirely of static configuration files (Clausewitz script, YAML, PNG) that are consumed directly by the Stellaris engine. There is no:
+The mod consists entirely of static configuration files (Clausewitz script, YAML, PNG) that the Stellaris engine consumes directly. There is no:
 - Compilation
 - Transpilation
 - Bundling
 - Minification
 - Code generation
-- Artifact creation beyond packaging
+- Artefact creation beyond packaging
 
 ### Source = Distribution
 
@@ -69,7 +69,7 @@ done
 
 ### Manual Verification Before Release
 
-Inspect the archive structure and confirm the descriptors carry the release version:
+Inspect the archive structure and confirm that the descriptors carry the release version:
 
 ```bash
 unzip -l "ui-galaxy-sizes_${VERSION}.zip"
@@ -94,7 +94,7 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 
 **Process:**
 1. Check out the released tag
-2. Set `version=` in `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/descriptor.mod` from the tag, with the leading `v` stripped
+2. Set `version=` in `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/descriptor.mod` from the tag, with the leading `v` extracted
 3. Build `ui-galaxy-sizes_<version>.zip` containing `ui-galaxy-sizes/` and `ui-galaxy-sizes.mod`
 4. Attach the archive to the published GitHub release
 
@@ -110,7 +110,7 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 
 **Process:**
 1. Check out the requested tag
-2. Set `version=` in both descriptors from the tag, with the leading `v` stripped
+2. Set `version=` in both descriptors from the tag, with the leading `v` extracted
 3. Build and extract the release archive
 4. Upload through `hmlendea/steam-workshop-update` with a changelog link to the GitHub release
 
@@ -122,41 +122,40 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 
 **Process:**
 1. Check out the requested tag
-2. Set `version=` in both descriptors from the tag, with the leading `v` stripped
+2. Set `version=` in both descriptors from the tag, with the leading `v` extracted
 3. Build the release archive
 4. Upload through `Nexus-Mods/upload-action`, updating the mod version and archiving the existing version
 
 ### Paradox Mods
 
 **Process:**
-1. Login to Paradox Mod Portal
-2. Upload mod files
-3. Set metadata (version, supported version, tags)
+1. Authenticate in the Paradox Mod Portal
+2. Upload the mod files
+3. Set the metadata (version, supported version, tags)
 4. Submit for review
 
 **Frequency:** Manual per release
 
 ## Versioning
 
-### Version Sources (Must Match)
+### Version Sources (Must Correspond)
 
 | Source | Location | Format |
 |--------|----------|--------|
 | Git tag | `git tag` | `v1.5.0` |
 | Descriptor | `ui-galaxy-sizes.mod` | `version="1.5.0"` |
 | Local descriptor | `ui-galaxy-sizes/descriptor.mod` | `version="1.5.0"` |
-| Changelog | `CHANGELOG.md` | `## [1.5.0]` |
 | Release name | GitHub Release | `v1.5.0` |
-| ZIP filename | GitHub Release asset | `ui-galaxy-sizes_1.5.0.zip` |
+| Archive filename | GitHub Release asset | `ui-galaxy-sizes_1.5.0.zip` |
 
 ### Version Bump Rules
 
 See `change-guide.md`:
-- PATCH: Bug fixes, parameter tweaks
-- MINOR: New sizes, shapes, localisations
-- MAJOR: Breaking changes, Stellaris major version
+- PATCH: defect corrections, parameter adjustments
+- MINOR: new sizes, shapes, and localisations
+- MAJOR: breaking changes, Stellaris major version
 
-## CI/CD Pipeline
+## Continuous Delivery Pipeline
 
 ### Validation (Local)
 
@@ -167,7 +166,7 @@ grep '^version=' ui-galaxy-sizes.mod ui-galaxy-sizes/descriptor.mod
 ls ui-galaxy-sizes/map/setup_scenarios/
 ```
 
-There is no automated validation workflow; the repository ships the release workflows only.
+No automated validation workflow exists; the repository supplies the release workflows only.
 
 ### Release Pipeline (GitHub Release Publication)
 
@@ -232,25 +231,23 @@ git push origin :refs/tags/v1.5.0
 - Revert to previous version via Workshop UI
 - Or upload previous ZIP
 
-### Nexus Mods / Paradox Mods
+### Nexus Mods or Paradox Mods
 
-- Upload previous version
-- Or mark current as hidden
+- Upload the preceding version
+- Or mark the current version as hidden
 
 ## Deployment Checklist
 
 ### Pre-Deployment
 
-- [ ] All validation scripts pass
+- [ ] Every validation script passes
 - [ ] Manual in-game test (all 6 sizes, spot-check shapes)
 - [ ] Version bumped in both descriptors
-- [ ] CHANGELOG.md updated
-- [ ] Git tag created and signed
-- [ ] CHANGELOG.md matches tag version
+- [ ] Archive tag created and signed
 
 ### Deployment
 
-- [ ] GitHub Release created with ZIP
+- [ ] GitHub Release created with the archive
 - [ ] Steam Workshop updated
 - [ ] Nexus Mods updated
 - [ ] Paradox Mods updated
@@ -258,12 +255,11 @@ git push origin :refs/tags/v1.5.0
 
 ### Post-Deployment
 
-- [ ] Verify GitHub Release downloads work
-- [ ] Verify Steam Workshop shows new version
+- [ ] Verify that GitHub Release downloads function
+- [ ] Verify that Steam Workshop displays the new version
 - [ ] Monitor for issue reports (24-48 hours)
-- [ ] Update `ROADMAP.md` if needed
 
-## Not Applicable: Traditional Build/Deploy
+## Not Applicable: Traditional Build and Deployment
 
 Since this mod has no build process, the following are **not applicable**:
 
@@ -275,27 +271,27 @@ Since this mod has no build process, the following are **not applicable**:
 - Code coverage (Istanbul, coverlet, etc.)
 - Static analysis (ESLint, SonarQube, etc.)
 - Dependency installation (npm, nuget, cargo, etc.)
-- Docker images
+- Container images
 - Kubernetes manifests
 - Helm charts
 - Terraform
 - Ansible
-- CI runners with specific language runtimes
-- Artifact repositories (npm, NuGet, Maven, PyPI, etc.)
-- Blue/green deployment
+- Continuous integration runners with specific language runtimes
+- Artefact repositories (npm, NuGet, Maven, PyPI, etc.)
+- Blue and green deployment
 - Canary releases
 - Feature flags
 - Database migrations
 - Health checks
 - Load balancers
-- CDN invalidation
-- SSL certificates
-- Environment variables / secrets management
+- Content delivery network invalidation
+- TLS certificates
+- Environment variables and secret management
 - Service discovery
 - Circuit breakers
 - Retry policies
 - Observability (metrics, traces, logs)
-- Auto-scaling
+- Automatic scaling
 - Rolling updates
 
 ## Related Documents

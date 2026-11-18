@@ -1,24 +1,34 @@
-# Universum Infinitum: Galaxy Sizes Architecture
+# Universum Infinitum - Galaxy Sizes Architecture
 
-This document describes the current architecture of the Stellaris mod "Universum Infinitum: Galaxy Sizes". The mod is a data-driven extension that adds six galaxy-size scenarios to the Stellaris galaxy generator.
+This document describes the current architecture of the Stellaris mod "Universum Infinitum - Galaxy Sizes". The mod is a data-driven extension that includes six galaxy-size scenarios for the Stellaris galaxy generator.
 
 ## 📑 Table of Contents
 
 - [Purpose](#-purpose)
 - [System Context](#-system-context)
 - [Architectural Style](#-architectural-style)
-- [Runtime Flow](#-runtime-flow)
+- [Runtime Process](#-runtime-process)
 - [Components](#-components)
 - [Architectural Areas](#-architectural-areas)
+  - [Mod Metadata](#mod-metadata)
+  - [Localisation](#localisation)
+  - [Galaxy Scenarios](#galaxy-scenarios)
 - [Data Architecture](#-data-architecture)
 - [Interfaces and Integrations](#-interfaces-and-integrations)
 - [Key Flows](#-key-flows)
+  - [Galaxy Generation with Custom Size](#galaxy-generation-with-custom-size)
+- [Domain-Specific Concern: Scenario Parameter Scaling](#-domain-specific-concern-scenario-parameter-scaling)
 - [Cross-Cutting Concerns](#-cross-cutting-concerns)
+  - [Security and Privacy](#security-and-privacy)
+  - [Error Handling](#error-handling)
+  - [Observability](#observability)
+  - [Configuration](#configuration)
 - [Dependency Direction and Rules](#-dependency-direction-and-rules)
 - [External Dependencies](#-external-dependencies)
 - [Deployment and Operations](#-deployment-and-operations)
 - [Compatibility Contracts](#-compatibility-contracts)
 - [Testing and Verification](#-testing-and-verification)
+- [Design Constraints](#-design-constraints)
 
 ## 🎯 Purpose
 
@@ -38,7 +48,7 @@ flowchart LR
 The principal external boundaries are:
 - **Stellaris Launcher:** Loads `ui-galaxy-sizes.mod` and `descriptor.mod` to register the mod and its supported game version (`v4.5.*`).
 - **Stellaris Engine:** Parses `setup_scenario` definitions from `map/setup_scenarios/` at galaxy generation time.
-- **Universum Infinitum: Star Names (optional):** Supplies additional system names required by the 2,000-star Ludicrous scenario.
+- **Universum Infinitum - Star Names (optional):** Supplies additional system names required by the 2,000-star Ludicrous scenario.
 
 ## 🏗️ Architectural Style
 
@@ -56,7 +66,7 @@ The principal architecture boundaries are:
 - **Localisation:** Maps scenario keys to human-readable labels.
 - **Scenario Definitions:** Each file in `map/setup_scenarios/` is a self-contained `setup_scenario` block consumed directly by the galaxy generator.
 
-## 🔄 Runtime Flow
+## 🔄 Runtime Process
 
 ```mermaid
 sequenceDiagram
@@ -64,7 +74,7 @@ sequenceDiagram
     participant Launcher
     participant Engine
     participant GalaxyGen
-    Player->>Launcher: Selects "Universum Infinitum: Galaxy Sizes" in playset
+    Player->>Launcher: Selects "Universum Infinitum - Galaxy Sizes" in playset
     Launcher->>Engine: Loads mod descriptors (version 1.5.0, v4.5.*)
     Player->>Engine: Starts New Game, picks galaxy size (e.g. "Ludicrous")
     Engine->>GalaxyGen: Passes selected setup_scenario parameters
@@ -74,7 +84,7 @@ sequenceDiagram
 
 The principal runtime sequence is:
 1. Launcher reads both `.mod` descriptors and registers the mod for Stellaris `v4.5.*`.
-2. Player selects a galaxy size from the six added options in the New Game screen.
+2. Player selects a galaxy size from the six supplied options in the New Game screen.
 3. Engine loads the corresponding `setup_scenario` file (e.g., `ui_ludicrous.txt`).
 4. Galaxy generator applies all parameters (star count, empire limits, crisis strength, hyperlane settings, supported shapes).
 5. Optional: If Ludicrous is selected and UI Star Names is active, generator draws from the extended name pool.
@@ -118,7 +128,7 @@ Responsibilities:
 
 Boundary rules:
 - Keys must match the `name` field in each `setup_scenario` file.
-- Only English is currently provided; additional locales follow the same pattern.
+- Only English is currently supplied; additional locales follow the identical pattern.
 
 ### Galaxy Scenarios
 
@@ -135,7 +145,7 @@ Responsibilities:
 
 Boundary rules:
 - Each file is independent; the engine selects by `name` and `priority`.
-- All scenarios support the same ten galaxy shapes (elliptical, spiral_2/3/4/6, ring, bar, starburst, cartwheel, spoked).
+- Every scenario supports the identical ten galaxy shapes (elliptical, spiral_2/3/4/6, ring, bar, starburst, cartwheel, spoked).
 - Parameter ranges must remain valid for the Stellaris `v4.5.*` generator.
 
 ## 💾 Data Architecture
@@ -211,9 +221,9 @@ The mod contains no executable code, no network access, no file I/O beyond readi
 
 ### Error Handling
 
-- Missing or malformed `.mod` descriptor → launcher omits mod.
+- An absent or malformed `.mod` descriptor → the launcher omits the mod.
 - Malformed `setup_scenario` → engine logs error and falls back to vanilla galaxy sizes.
-- Missing localisation key → UI displays raw key (e.g., `ui_ludicrous`).
+- An absent localisation key → the UI displays the raw key (e.g., `ui_ludicrous`).
 - UI Star Names absent when Ludicrous selected → name pool exhausted, duplicates appear.
 
 ### Observability
@@ -222,7 +232,7 @@ No logging, metrics, or telemetry are produced by the mod. The Stellaris engine 
 
 ### Configuration
 
-| Configuration Area | Source | Responsibility | Override or Secret Policy |
+| Configuration Area | Source | Responsibility | Supersede or Secret Policy |
 |--------------------|--------|----------------|---------------------------|
 | Mod version | `ui-galaxy-sizes.mod` / `descriptor.mod` | Declares release version (1.5.0) | Updated manually per release |
 | Supported game version | Both `.mod` files | `supported_version="v4.5.*"` | Updated when new Stellaris version validated |
@@ -248,14 +258,14 @@ The principal dependency rules are:
 
 | Dependency | Responsibility | Integration Boundary | Architectural Consequence |
 |------------|----------------|----------------------|---------------------------|
-| Stellaris Engine `v4.5.*` | Executes galaxy generation using provided scenarios | Mod descriptors + scenario files | Mod must track engine schema changes across versions |
+| Stellaris Engine `v4.5.*` | Executes galaxy generation using supplied scenarios | Mod descriptors and scenario files | The mod must track engine schema changes throughout versions |
 | UI Star Names (optional) | Supplies extended system-name pool | Stellaris name resolver | Only affects Ludicrous scenario; no hard requirement |
 
 ## 🚀 Deployment and Operations
 
 | Concern | Current Design | Architectural Consequence |
 |---------|----------------|---------------------------|
-| Distribution | Four channels: Steam Workshop, Nexus Mods, Paradox Mods, GitHub Releases | Each channel consumes the same `ui-galaxy-sizes.mod` + `ui-galaxy-sizes/` directory |
+| Distribution | Four channels: Steam Workshop, Nexus Mods, Paradox Mods, GitHub Releases | Every channel consumes the identical `ui-galaxy-sizes.mod` and `ui-galaxy-sizes/` directory |
 | Installation | Launcher playset activation (Steam/Paradox) or manual extraction to `mod/` | No installer, no scripts, no dependencies beyond Stellaris |
 | Persistent state | None (mod is read-only) | No migrations, no save-game coupling beyond engine-owned galaxy state |
 | Startup | Launcher parses descriptors at playset load | Descriptor errors prevent mod activation |
@@ -267,7 +277,7 @@ The principal dependency rules are:
 |----------|-------|-----------|--------------|---------------|
 | Mod descriptor schema | Stellaris launcher | `version`, `name`, `path`, `supported_version`, `tags` present | Launcher validation on load | Update `supported_version` when new Stellaris major version validated |
 | `setup_scenario` schema | Stellaris engine | All referenced fields valid for `v4.5.*` generator | Engine logs errors on malformed fields | Test each scenario in-game after Stellaris updates |
-| Localisation key parity | Mod author | Every `name` in scenarios has a matching `l_english` key | Manual review / in-game UI check | Add keys when new scenarios added |
+| Localisation key parity | Mod author | Every `name` in scenarios has a corresponding `l_english` key | Manual review / in-game UI check | Include keys when new scenarios are included |
 | UI Star Names name pool | UI Star Names mod | ≥2000 unique names for Ludicrous | In-game observation (duplicates indicate shortage) | Coordinate releases when name pool expanded |
 
 ## ✅ Testing and Verification
@@ -285,3 +295,11 @@ Execute the principal manual verification with:
 ```bash
 # No automated commands; use Stellaris launcher and in-game UI
 ```
+
+## ⚠️ Design Constraints
+
+- **Declarative content only:** The mod supplies parameters rather than conduct, so it cannot include galaxy shapes, generation algorithms, or conditional logic beyond the engine's supported schema.
+- **Manual verification only:** Galaxy generation cannot be exercised in continuous integration, so every parameter change relies on in-game inspection.
+- **Vanilla script gating:** Vanilla scripts branch on the five built-in galaxy size names, so systems scaled by galaxy size fall back to their default values on the supplied sizes.
+- **Name pool dependence:** The 2,000-star Ludicrous scenario relies on an external name pool; without it the engine reuses vanilla names.
+- **Descriptor duplication:** Both descriptors must declare identical values, which requires the release workflow to update each file together.

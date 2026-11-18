@@ -1,15 +1,15 @@
 # Troubleshooting
 
-## Quick Diagnosis
+## Rapid Diagnosis
 
-| Symptom | Likely Cause | First Step |
+| Symptom | Probable Cause | First Step |
 |---------|--------------|------------|
-| Mod not in launcher | Wrong install path | Verify mod directory |
-| Sizes missing from dropdown | Scenario parse error | Check `game.log` |
-| Generation crashes | Out of memory | Try smaller size |
+| Mod not in launcher | Incorrect install path | Verify mod directory |
+| Sizes absent from dropdown | Scenario parse error | Check `game.log` |
+| Generation crashes | Out of memory | Try a smaller size |
 | Duplicate system names | Ludicrous without UI Star Names | Install UI Star Names |
 | "Mod incompatible" | Stellaris version mismatch | Check version |
-| Save won't load | Parameter change broke save | Start new game |
+| Save won't load | Parameter change broke save | Start a new game |
 
 ## Installation Issues
 
@@ -24,13 +24,13 @@
    macOS: ~/Documents/Paradox Interactive/Stellaris/mod/
    Linux: ~/.local/share/Paradox Interactive/Stellaris/mod/
    ```
-   Must contain: `ui-galaxy-sizes.mod` + `ui-galaxy-sizes/` folder
+   Must contain: `ui-galaxy-sizes.mod` + `ui-galaxy-sizes/` directory
 
 2. **File permissions:** Readable by user running Stellaris
 
 3. **Descriptor syntax:** Validate `ui-galaxy-sizes.mod`:
    ```clausewitz
-   name="Universum Infinitum: Galaxy Sizes"
+   name="Universum Infinitum - Galaxy Sizes"
    version="1.5.0"
    path="mod/ui-galaxy-sizes"
    supported_version="v4.5.*"
@@ -50,10 +50,10 @@
 
 ### Manual Install Not Working
 
-**Common mistakes:**
-- Extracting zip but not placing both `.mod` file AND folder
-- Placing in `mod/` subfolder instead of directly in mod directory
-- Using old Paradox Launcher v1 path with v2 launcher
+**Prevalent mistakes:**
+- Extracting the archive but not placing both the `.mod` file AND the directory
+- Placing files in a `mod/` subdirectory instead of directly in the mod directory
+- Using an obsolete Paradox Launcher v1 path with the v2 launcher
 
 ## Galaxy Generation Issues
 
@@ -68,14 +68,14 @@
 | Minuscule | < 5s | 30s | Restart, try again |
 | Gigantic | 10-20s | 60s | Check RAM, close apps |
 | Immense | 15-30s | 90s | Check RAM, close apps |
-| Colossal | 20-40s | 120s | Need 16GB+ RAM |
-| Titanic | 30-60s | 180s | Need 16GB+ RAM |
-| Ludicrous | 60-120s | 300s | Need 32GB+ RAM |
+| Colossal | 20-40s | 120s | Require 16GB+ RAM |
+| Titanic | 30-60s | 180s | Require 16GB+ RAM |
+| Ludicrous | 60-120s | 300s | Require 32GB+ RAM |
 
 **General fixes:**
-- Close browser, other games, heavy apps
-- Verify RAM available (Task Manager / `free -h`)
-- Try smaller size first to verify mod works
+- Close the browser, other games, and demanding applications
+- Verify the available memory (Task Manager / `free -h`)
+- Try a smaller size first to verify that the mod functions
 - Check `game.log` for repeated warnings
 
 ### Generation Crashes / "Out of Memory"
@@ -83,9 +83,9 @@
 **Symptoms:** Game closes, or "Out of memory" error
 
 **Fixes:**
-1. Reduce galaxy size
-2. Add more RAM
-3. Increase swap/page file
+1. Reduce the galaxy size
+2. Install additional memory
+3. Increase the swap or page file
 4. Close all other applications
 5. Launch with `-lowmem` (if supported)
 
@@ -97,46 +97,46 @@
 - Titanic: 16-24GB
 - Ludicrous: 24-32GB
 
-### Galaxy Generates But Looks Wrong
+### Galaxy Generates But Appears Incorrect
 
-**Symptoms:** Wrong shape, disconnected systems, missing empires
+**Symptoms:** Incorrect shape, disconnected systems, absent empires
 
 **Checks:**
-1. **Shape support:** Gigantic..Ludicrous support all 10 shapes; Minuscule supports the 4 vanilla tiny shapes. If one fails, try another.
-2. **Parameter bounds:** Engine clamps extreme values. Check `game.log` for warnings.
-3. **Mod conflicts:** Disable other galaxy/map mods.
+1. **Shape support:** Gigantic through Ludicrous support all 10 shapes; Minuscule supports the 4 vanilla tiny shapes. If one fails, try another.
+2. **Parameter bounds:** The engine clamps extreme values. Check `game.log` for warnings.
+3. **Mod conflicts:** Deactivate other galaxy and map mods.
 
-### "Failed to Generate Galaxy" Error Dialog
+### "Failed to Generate Galaxy" Error Dialogue
 
-**Symptoms:** Explicit error dialog after generation attempt
+**Symptoms:** Explicit error dialogue after generation attempt
 
-**Common causes:**
-- `num_stars` exceeds engine hard limit (~2000-2500)
-- `radius` too large for engine
+**Prevalent causes:**
+- `num_stars` exceeds the engine firm limit (~2000-2500)
+- `radius` too large for the engine
 - Corrupted scenario file
 - Mod conflict
 
 **Debug:**
-1. Check `game.log` for `[galaxy]` and `[error]` entries
-2. Try Minuscule (100 stars) — if works, mod loads correctly
-3. Disable other mods
-4. Verify scenario file syntax
+1. Check `game.log` for `[galaxy]` and `[error]` records
+2. Try Minuscule (100 stars) — if it functions, the mod loads correctly
+3. Deactivate other mods
+4. Verify the scenario file syntax
 
 ## UI Issues
 
-### Sizes Show as Raw Keys (ui_gigantic, etc.)
+### Sizes Display as Raw Keys (ui_gigantic, etc.)
 
-**Cause:** Localisation file missing or not loading
+**Cause:** Localisation file absent or not loading
 
 **Fixes:**
-1. Verify `ui-galaxy-sizes/localisation/engligh/ui-galaxy-sizes_l_english.yml` exists
-2. Check YAML syntax (no tabs, proper indentation)
-3. Restart game (localisation caches)
-4. Verify file encoding (UTF-8)
+1. Verify that `ui-galaxy-sizes/localisation/engligh/ui-galaxy-sizes_l_english.yml` exists
+2. Check the YAML syntax (no tabs, correct indentation)
+3. Restart the game (localisation caches)
+4. Verify the file encoding (UTF-8)
 
-### Missing Thumbnail in Launcher
+### Absent Thumbnail in Launcher
 
-**Cause:** `thumbnail.png` missing or wrong format
+**Cause:** `thumbnail.png` absent or of incorrect format
 
 **Fix:**
 - Ensure `ui-galaxy-sizes/thumbnail.png` exists
@@ -147,24 +147,24 @@
 
 ### Save Won't Load After Mod Update
 
-**Cause:** Galaxy generation parameters changed, save references old values
+**Cause:** Galaxy generation parameters changed, and the save references preceding values
 
-**Fix:** Start new game. Galaxy size mods are not save-compatible across parameter changes.
+**Fix:** Start a new game. Galaxy size mods are not save-compatible throughout parameter changes.
 
-### Save Won't Load After Mod Removal
+### Save Won't Load After Mod Extraction
 
-**Cause:** Save references mod's scenario, mod not loaded
+**Cause:** Save references the mod's scenario, but the mod is not loaded
 
-**Fix:** Re-enable mod, or start new game.
+**Fix:** Re-activate the mod, or start a new game.
 
 ### Multiplayer Desync
 
 **Cause:** Players have different mod versions or different mods active
 
 **Fix:**
-- All players same mod version
-- All players same mod set
-- Host generates galaxy
+- All players have identical mod versions
+- All players have identical mod sets
+- Host generates the galaxy
 
 ## Log Analysis
 
@@ -188,7 +188,7 @@ grep -i "setup_scenario" game.log
 
 **Mod loading:**
 ```
-[mod] Loading mod: Universum Infinitum: Galaxy Sizes (v1.5.0)
+[mod] Loading mod: Universum Infinitum - Galaxy Sizes (v1.5.0)
 [mod]   path: mod/ui-galaxy-sizes
 [mod]   supported_version: v4.5.*
 ```
@@ -219,9 +219,9 @@ grep -i "setup_scenario" game.log
 
 | Mod Type | Examples | Notes |
 |----------|----------|-------|
-| UI | UI Star Names, UI Overhaul Dynamic | Ludicrous needs UI Star Names |
+| UI | UI Star Names, UI Overhaul Dynamic | Ludicrous requires UI Star Names |
 | Species | More Species, Species Pack | No conflict |
-| Graphics | Better Stars, Colored Stars | No conflict |
+| Graphics | Better Stars, Coloured Stars | No conflict |
 | Gameplay | Guilli's Planet Modifiers | Usually compatible |
 
 ### Known Incompatible Mods
@@ -229,15 +229,15 @@ grep -i "setup_scenario" game.log
 | Mod Type | Conflict |
 |----------|----------|
 | Other galaxy size mods | Duplicate scenarios, undefined behaviour |
-| Map generation overhauls | May override scenarios |
+| Map generation overhauls | May supersede scenarios |
 | Total conversions | May not support custom scenarios |
 
 ### Debugging Conflicts
 
-1. Disable all other mods
+1. Deactivate all other mods
 2. Test each size
-3. Re-enable mods one by one
-4. Identify conflicting mod
+3. Re-activate mods one by one
+4. Identify the conflicting mod
 5. Report to both mod authors
 
 ## Platform-Specific Issues
@@ -250,23 +250,23 @@ grep -i "setup_scenario" game.log
 
 ### GitHub Releases / Manual
 
-- **Wrong version:** Re-download, verify checksum
-- **Missing files:** Extract entire archive, not just folder
+- **Incorrect version:** Re-download and verify the checksum
+- **Absent files:** Extract the entire archive, not merely the directory
 
 ### Nexus Mods / Paradox Mods
 
-- **Version mismatch:** Check mod version matches Stellaris version
-- **Installer issues:** Use manual install as fallback
+- **Version mismatch:** Check that the mod version matches the Stellaris version
+- **Installer issues:** Use manual installation as a fallback
 
 ## Reporting Issues
 
 ### Before Reporting
 
-1. Check this troubleshooting guide
-2. Check GitHub Issues (open/closed)
-3. Try minimal reproduction (only this mod active)
-4. Note exact Stellaris version (main menu bottom right)
-5. Note mod version (launcher or descriptor)
+1. Consult this troubleshooting guide
+2. Check GitHub Issues (open and closed)
+3. Try a minimal reproduction (with only this mod active)
+4. Note the exact Stellaris version (bottom right of the main menu)
+5. Note the mod version (launcher or descriptor)
 
 ### Issue Template
 
@@ -297,17 +297,17 @@ grep -i "setup_scenario" game.log
 
 ### Log Excerpt Guidelines
 
-- Include 20 lines before and after error
+- Include 20 lines before and after the error
 - Redact nothing (no personal data in logs)
 - Use code blocks
 
 ## Emergency Workarounds
 
-### Need to Play Now, Mod Broken
+### Requirement to Play Immediately, Mod Broken
 
-1. **Use smaller size** — Minuscule/Gigantic usually work
-2. **Disable mod** — Play vanilla sizes
-3. **Rollback mod version** — Download previous release from GitHub
+1. **Use a smaller size** — Minuscule and Gigantic usually work
+2. **Deactivate the mod** — Play vanilla sizes
+3. **Restore a preceding mod version** — Download a previous release from GitHub
 
 ### Mod Author Unavailable
 
@@ -327,8 +327,8 @@ grep -i "setup_scenario" game.log
 
 ## Related Documents
 
-- `faq.md` — Common questions
-- `error-handling.md` — Engine error behaviour
+- `faq.md` — Prevalent questions
+- `error-handling.md` — Engine error conduct
 - `logging.md` — Log reference
 - `invariants.md` — Configuration constraints
 - `change-guide.md` — Fix release process

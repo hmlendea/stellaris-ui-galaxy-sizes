@@ -3,13 +3,13 @@
 ## Browse and Select Galaxy Size
 
 ### User Story
-As a player, I want to choose from six additional galaxy sizes so that I can play on smaller or larger galaxies than vanilla provides.
+As a player, I want to select from six supplied galaxy sizes so that I can play on smaller or larger galaxies than vanilla supplies.
 
 ### Flow
-1. Player opens Stellaris Launcher
-2. Player activates "Universum Infinitum: Galaxy Sizes" in a playset
+1. Player opens the Stellaris Launcher
+2. Player activates "Universum Infinitum - Galaxy Sizes" in a playset
 3. Player clicks "New Game"
-4. Player opens Galaxy Size dropdown
+4. Player opens the Galaxy Size dropdown
 5. Player sees 11 options (5 vanilla + 6 mod):
    - Minuscule (100 stars) — new, smallest
    - Tiny (200 stars) — vanilla
@@ -22,20 +22,20 @@ As a player, I want to choose from six additional galaxy sizes so that I can pla
    - Colossal (1600 stars) — new
    - Titanic (1800 stars) — new
    - Ludicrous (2000 stars) — new, largest
-6. Player selects desired size
-7. Player configures remaining settings
-8. Player starts game
+6. Player selects the desired size
+7. Player configures the remaining settings
+8. Player starts the game
 
 ### Acceptance Criteria
-- All six mod sizes appear in dropdown
+- All six mod sizes appear in the dropdown
 - Names display correctly in English (localised)
 - Sort order: Minuscule first, Ludicrous last
 - Selection persists through game start
 
 ### Edge Cases
-- Mod not activated → Sizes not shown
-- Localisation missing → Raw keys shown (ui_ludicrous, etc.)
-- Unsupported game version → Mod hidden in launcher
+- Mod not activated → Sizes not displayed
+- Localisation absent → Raw keys displayed (ui_ludicrous, etc.)
+- Unsupported game version → Mod hidden in the launcher
 
 ## Generate Galaxy with Selected Size
 
@@ -43,9 +43,9 @@ As a player, I want to choose from six additional galaxy sizes so that I can pla
 As a player, I want the galaxy generator to create a galaxy matching my selected size with appropriate defaults so that gameplay scales correctly.
 
 ### Flow
-1. Player selects galaxy size (e.g., Colossal)
-2. Engine loads corresponding `setup_scenario` (ui_colossal.txt)
-3. Generator applies all parameters:
+1. Player selects a galaxy size (e.g. Colossal)
+2. Engine loads the corresponding `setup_scenario` (ui_colossal.txt)
+3. Generator applies every parameter:
    - 1600 star systems
    - Radius 480
    - 24 default AI empires (max 48)
@@ -56,35 +56,35 @@ As a player, I want the galaxy generator to create a galaxy matching my selected
    - Crisis strength 2.25
    - 16 nebulae
    - Hyperlane density 0.5-3
-4. Generator creates star map
+4. Generator creates the star map
 5. Generator places empires using partition algorithms
-6. Generator builds hyperlane network
-7. Generator places nebulae, wormholes, gateways
+6. Generator builds the hyperlane network
+7. Generator places nebulae, wormholes, and gateways
 8. Generator assigns system names
-9. Galaxy displayed to player
+9. Galaxy displayed to the player
 
 ### Acceptance Criteria
-- Star count matches scenario (1600 for Colossal)
+- Star count corresponds to the scenario (1600 for Colossal)
 - Empire counts respect min/max and defaults
-- Every declared shape available for selection
-- Generation completes without error
+- Every declared shape is available for selection
+- Generation concludes without error
 - Save game records scenario parameters
 
 ### Edge Cases
 - Ludicrous without UI Star Names → Duplicate system names
-- Very large galaxies → Longer generation time, higher memory
+- Very large galaxies → Longer generation time, greater memory use
 - Invalid parameter → Engine uses default, logs warning
 
 ## Select Galaxy Shape
 
 ### User Story
-As a player, I want to choose from any shape supported by the selected mod size so that I can customise the galaxy topology.
+As a player, I want to select from any shape supported by the selected mod size so that I can customise the galaxy topology.
 
 ### Flow
-1. Player selects galaxy size (any of the 6 mod sizes)
-2. Player opens Galaxy Shape dropdown
-3. Engine queries `supports_shape` for selected scenario
-4. Declared shapes are shown; Gigantic..Ludicrous declare all 10, Minuscule declares the 4 vanilla tiny shapes (elliptical, spiral_2, ring, bar):
+1. Player selects a galaxy size (any of the 6 mod sizes)
+2. Player opens the Galaxy Shape dropdown
+3. Engine queries `supports_shape` for the selected scenario
+4. Declared shapes are displayed; Gigantic..Ludicrous declare all 10, Minuscule declares the 4 vanilla tiny shapes (elliptical, spiral_2, ring, bar):
    - Elliptical
    - Spiral (2-arm)
    - Spiral (3-arm)
@@ -95,16 +95,16 @@ As a player, I want to choose from any shape supported by the selected mod size 
    - Starburst
    - Cartwheel
    - Spoked
-5. Player selects shape
-6. Generator creates galaxy with chosen topology
+5. Player selects a shape
+6. Generator creates a galaxy with the selected topology
 
 ### Acceptance Criteria
-- Every declared shape available for all 6 mod sizes
-- Shape selection independent of size selection
-- Generated galaxy matches selected topology
+- Every declared shape is available for all 6 mod sizes
+- Shape selection is independent of size selection
+- The generated galaxy corresponds to the selected topology
 
 ### Edge Cases
-- Engine doesn't recognise shape → Shape filtered from UI
+- Engine does not recognise a shape → Shape filtered from the UI
 - Shape generation fails → Fallback to elliptical
 
 ## Configure Empire Settings
@@ -113,18 +113,18 @@ As a player, I want to choose from any shape supported by the selected mod size 
 As a player, I want to customise empire counts within scenario limits so that I can control game density.
 
 ### Flow
-1. Player selects galaxy size (e.g., Gigantic)
-2. Engine reads `num_empires` range (0-36) and default (18)
-3. Player adjusts "AI Empires" slider
-4. Slider constrained to scenario min/max
-5. Player adjusts "Fallen Empires" slider (0-6, default 5)
-6. Player adjusts "Marauders" slider (0-4, default 3)
-7. Player adjusts "Advanced AI" slider (0-5, default 5)
+1. Player selects a galaxy size (e.g. Gigantic)
+2. Engine reads the `num_empires` range (0-36) and default (18)
+3. Player adjusts the "AI Empires" slider
+4. Slider constrained to the scenario min/max
+5. Player adjusts the "Fallen Empires" slider (0-6, default 5)
+6. Player adjusts the "Marauders" slider (0-4, default 3)
+7. Player adjusts the "Advanced AI" slider (0-5, default 5)
 8. Generator uses player values within scenario bounds
 
 ### Acceptance Criteria
 - Sliders respect scenario min/max
-- Defaults match scenario `*_default` values
+- Defaults correspond to scenario `*_default` values
 - Player cannot exceed scenario maximums
 - Changes reflected in generation
 
@@ -141,7 +141,7 @@ As a player, I want crisis difficulty to scale with galaxy size so that larger g
 ### Flow
 1. Player selects galaxy size
 2. Engine reads `crisis_strength` and `extra_crisis_strength`
-3. Generator applies base multiplier to crisis fleets
+3. Generator applies the base multiplier to crisis fleets
 4. Generator applies extra scaling at crisis milestones
 5. Crisis events spawn with scaled power
 
@@ -158,8 +158,8 @@ As a player, I want crisis difficulty to scale with galaxy size so that larger g
 
 ### Acceptance Criteria
 - Crisis strength increases with galaxy size
-- Extra crisis strength constant across sizes
-- Crisis fleets appropriately challenging for galaxy scale
+- Extra crisis strength constant throughout sizes
+- Crisis fleets appropriately demanding for the galaxy scale
 
 ### Edge Cases
 - Minuscule crisis very weak (0.375x)
@@ -169,13 +169,13 @@ As a player, I want crisis difficulty to scale with galaxy size so that larger g
 ## Nebula Density Scaling
 
 ### User Story
-As a player, I want nebula count to scale with galaxy size so that exploration feels consistent across sizes.
+As a player, I want nebula count to scale with galaxy size so that exploration feels consistent throughout sizes.
 
 ### Flow
-1. Player selects galaxy size
+1. Player selects a galaxy size
 2. Engine reads `num_nebulas`, `nebula_size`, `nebula_min_dist`
-3. Generator places nebulae across galaxy
-4. Nebulae provide strategic terrain
+3. Generator places nebulae throughout the galaxy
+4. Nebulae supply strategic terrain
 
 ### Parameter Scaling
 
@@ -191,8 +191,8 @@ As a player, I want nebula count to scale with galaxy size so that exploration f
 ### Acceptance Criteria
 - Nebula count scales with star count
 - Nebula size constant (60)
-- Minimum distance larger for bigger galaxies
-- Nebulae distributed across galaxy
+- Minimum distance greater for larger galaxies
+- Nebulae distributed throughout the galaxy
 
 ## Hyperlane Density Configuration
 
@@ -200,10 +200,10 @@ As a player, I want nebula count to scale with galaxy size so that exploration f
 As a player, I want hyperlane connectivity to scale with galaxy size so that travel time feels appropriate.
 
 ### Flow
-1. Player selects galaxy size
-2. Engine reads `num_hyperlanes` range and default
-3. Player can adjust "Hyperlane Density" slider
-4. Generator builds network within distance limit (50)
+1. Player selects a galaxy size
+2. Engine reads the `num_hyperlanes` range and default
+3. Player can adjust the "Hyperlane Density" slider
+4. Generator builds the network within the distance limit (50)
 5. Partition algorithms applied (breadth_first for home, depth_first for open)
 
 ### Parameter Scaling
@@ -218,9 +218,9 @@ As a player, I want hyperlane connectivity to scale with galaxy size so that tra
 | Ludicrous | 0.5 | 5 | 1 |
 
 ### Acceptance Criteria
-- Minuscule has lower max density (3 vs 5)
-- Default density same (1) for all sizes
-- Max hyperlane distance constant (50)
+- Minuscule has lower maximum density (3 vs 5)
+- Default density identical (1) for all sizes
+- Maximum hyperlane distance constant (50)
 - Network connectivity maintained
 
 ## Wormhole and Gateway Placement
@@ -229,18 +229,18 @@ As a player, I want hyperlane connectivity to scale with galaxy size so that tra
 As a player, I want wormholes and gateways to provide strategic shortcuts scaled to galaxy size.
 
 ### Flow
-1. Player selects galaxy size
-2. Engine reads wormhole/gateway ranges (0-5, default 1 for all sizes)
-3. Player can adjust counts
-4. Generator places pairs across galaxy
+1. Player selects a galaxy size
+2. Engine reads the wormhole and gateway ranges (0-5, default 1 for all sizes)
+3. Player can adjust the counts
+4. Generator places pairs throughout the galaxy
 5. Wormholes connect distant regions
-6. Gateways enable late-game fast travel
+6. Gateways permit late-game rapid travel
 
 ### Acceptance Criteria
-- Identical ranges across all sizes (0-5)
+- Identical ranges throughout all sizes (0-5)
 - Default 1 pair each
 - Placement respects galaxy topology
-- Strategic value maintained at all scales
+- Strategic value maintained at every scale
 
 ## Cluster Configuration
 
@@ -248,10 +248,10 @@ As a player, I want wormholes and gateways to provide strategic shortcuts scaled
 As a player, I want empire clusters to create interesting regional politics at all galaxy sizes.
 
 ### Flow
-1. Player selects galaxy size
+1. Player selects a galaxy size
 2. Engine reads `cluster_count`, `cluster_radius`, `cluster_distance_from_core`
 3. Generator groups empires into clusters
-4. Clusters create natural alliance/conflict zones
+4. Clusters create natural alliance and conflict zones
 
 ### Parameter Scaling
 
@@ -265,7 +265,7 @@ As a player, I want empire clusters to create interesting regional politics at a
 | Ludicrous | 6 | 200 | 300 |
 
 ### Acceptance Criteria
-- Minuscule limited to 2 clusters (small galaxy)
+- Minuscule limited to 2 clusters (minor galaxy)
 - Larger galaxies support up to 6 clusters
 - Cluster radius scales with galaxy radius
 - Core distance constant for large galaxies (300)

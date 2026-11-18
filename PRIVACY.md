@@ -1,6 +1,6 @@
 # Privacy and Personal Data
 
-This document covers Universum Infinitum: Galaxy Sizes, a user-installed Stellaris mod. The mod consists of scenario and localisation files and does not request, collect, transmit, or store personal data. Information is current as of 2026-10-21.
+This document covers Universum Infinitum - Galaxy Sizes, a user-installed Stellaris mod. The mod consists of scenario and localisation files and does not request, collect, transmit, or store personal data. Information is current as of 2026-10-21.
 
 ## 📑 Table of Contents
 
@@ -19,7 +19,7 @@ This document covers Universum Infinitum: Galaxy Sizes, a user-installed Stellar
 
 ## 🔎 What This Document Covers
 
-This document describes how Universum Infinitum: Galaxy Sizes at https://github.com/hmlendea/stellaris-ui-galaxy-sizes handles personal data. It covers the application behaviour and verified integrations described below. Where the software is self-hosted, the instance operator may have separate responsibilities described below.
+This document describes how Universum Infinitum - Galaxy Sizes at https://github.com/hmlendea/stellaris-ui-galaxy-sizes handles personal data. It covers the application behaviour and verified integrations described below. Where the software is self-hosted, the instance operator may have separate responsibilities described below.
 
 ## 📥 Data We Handle
 
@@ -39,7 +39,7 @@ This document describes how Universum Infinitum: Galaxy Sizes at https://github.
 
 The application processes the data described above for these verified functions:
 - Provide additional galaxy-size scenarios and generation settings — scenario configuration files; no personal data is involved.
-- Provide English names for the added scenarios — localisation strings; no personal data is involved.
+- Supply English names for the six scenarios — localisation strings; no personal data is involved.
 
 ## 🗄️ Storage, Retention, and Deletion
 
@@ -52,6 +52,8 @@ The mod has no built-in external data transfer or integration that receives pers
 ## 🛡️ Data Protection and Security
 
 This repository contains game configuration and localisation files, not a service that collects or stores personal data. The mod does not define safeguards for personal data. Review the privacy and security information provided by Stellaris and the platform used to obtain or run the mod for their respective practices.
+
+The original maintainers are not responsible for changes, modifications, or privacy issues introduced by downstream forks.
 
 ## 🔄 Document Changes
 

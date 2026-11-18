@@ -23,8 +23,8 @@ sequenceDiagram
     Generator->>StarMap: Apply cluster_distance_from_core 300
     Generator->>HyperlaneBuilder: Build network (max_dist 50, density 0.5-3)
     Generator->>NebulaPlacer: Place 20 nebulae (size 60, min_dist 200)
-    Generator->>StarMap: Add wormhole pairs (0-5, default 1)
-    Generator->>StarMap: Add gateways (0-5, default 1)
+    Generator->>StarMap: Include wormhole pairs (0-5, default 1)
+    Generator->>StarMap: Include gateways (0-5, default 1)
     Generator->>NameAssigner: Assign names from pool
     Generator-->>Player: Complete galaxy
 ```
@@ -90,7 +90,7 @@ sequenceDiagram
     Player->>UI: Opens Galaxy Shape dropdown
     UI->>Engine: Queries supports_shape for selected scenario
     Engine-->>UI: Returns [elliptical, spiral_2, spiral_3, spiral_4, spiral_6, ring, bar, starburst, cartwheel, spoked]
-    UI->>Player: Shows 11 shape options
+    UI->>Player: Displays 11 shape options
     Player->>UI: Selects "spiral_4"
     UI->>Engine: Passes shape=spiral_4
     Engine->>Generator: Generates 4-arm spiral galaxy
@@ -98,7 +98,7 @@ sequenceDiagram
 
 **Shape Support Invariants:**
 - All six scenarios declare identical `supports_shape` list
-- Engine filters UI to only show supported shapes
+- The engine filters the UI to display only supported shapes
 - No scenario restricts shapes differently
 
 ## Save Game Flow
@@ -138,8 +138,8 @@ sequenceDiagram
     alt Mod active, version matches
         Engine->>Engine: Loads galaxy state
         Engine-->>Player: Resumes game
-    else Mod missing or version mismatch
-        Engine-->>Player: Error: missing/incompatible mod
+    else Mod absent or version mismatch
+        Engine-->>Player: Error: absent or incompatible mod
     end
 ```
 

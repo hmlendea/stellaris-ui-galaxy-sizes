@@ -27,7 +27,7 @@ The Stellaris engine acts as the host that consumes this mod's configuration:
 | Mod loading | Mounts `mod/ui-galaxy-sizes` |
 | Scenario parsing | Reads `setup_scenario` blocks |
 | Galaxy generation | Uses scenario parameters |
-| UI rendering | Reads localisation for dropdown |
+| UI rendering | Reads localisation for the dropdown |
 
 ### Mod Responsibilities
 
@@ -40,7 +40,7 @@ The Stellaris engine acts as the host that consumes this mod's configuration:
 
 ## Composition
 
-**No Composition** — The mod does not compose other mods, nor is it composed by other mods (except soft dependency on UI Star Names).
+**No Composition** — The mod does not compose other mods, nor is it composed by other mods (except the soft dependency on UI Star Names).
 
 ### Soft Dependency: UI Star Names
 

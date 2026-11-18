@@ -8,7 +8,7 @@ This mod integrates with the Stellaris engine and several external platforms. It
 
 ### Integration Point: Galaxy Generation
 
-**Mechanism:** Engine reads `setup_scenario` blocks from `map/setup_scenarios/` at galaxy generation time.
+**Mechanism:** The engine reads `setup_scenario` blocks from `map/setup_scenarios/` at galaxy generation time.
 
 **Data Flow:**
 ```
@@ -19,16 +19,16 @@ Mod files → Engine parser → Galaxy generator → Game state
 - File format: Clausewitz script
 - Location: `mod/ui-galaxy-sizes/map/setup_scenarios/ui_*.txt`
 - Required block: `setup_scenario = { ... }`
-- Required parameters: 15 core parameters (see data-model.md)
+- Required parameters: the 20 core parameters (see data-model.md)
 
 **Version Compatibility:**
-- `supported_version="v4.5.*"` in descriptor
-- Engine validates version at mod load
-- Incompatible = mod hidden in launcher
+- `supported_version="v4.5.*"` in the descriptor
+- The engine validates the version at mod load
+- Incompatible = mod hidden in the launcher
 
 ### Integration Point: Localisation
 
-**Mechanism:** Engine reads YAML localisation files for UI strings.
+**Mechanism:** The engine reads YAML localisation files for UI strings.
 
 **Data Flow:**
 ```
@@ -36,13 +36,13 @@ localisation/engligh/ui-galaxy-sizes_l_english.yml → Engine localisation syste
 ```
 
 **Contract:**
-- File format: YAML with `l_english:` root
+- File format: YAML with an `l_english:` root
 - Keys: `ui_minuscule`, `ui_gigantic`, `ui_immense`, `ui_colossal`, `ui_titanic`, `ui_ludicrous`
 - Format: `key:0 "Label"`
 
 ### Integration Point: Mod Descriptor
 
-**Mechanism:** Launcher reads `.mod` files to discover and validate mods.
+**Mechanism:** The launcher reads `.mod` files to discover and validate mods.
 
 **Data Flow:**
 ```
@@ -60,31 +60,31 @@ ui-galaxy-sizes.mod / descriptor.mod → Launcher → Playset → Engine
 
 **Integration Type:** Distribution platform
 
-**Mechanism:** Steam Workshop hosts mod files, Steam client downloads to mod directory.
+**Mechanism:** The Steam Workshop hosts the mod files; the Steam client downloads them to the mod directory.
 
 **Requirements:**
-- `ui-galaxy-sizes.mod` at root of uploaded content
-- `ui-galaxy-sizes/` folder with all mod files
+- `ui-galaxy-sizes.mod` at the root of the uploaded content
+- The `ui-galaxy-sizes/` directory containing every mod file
 - Thumbnail: `thumbnail.png` (256x256)
 - App ID: 281990 (Stellaris)
 
 **Update Flow:**
-1. Author uploads new version via SteamCMD
-2. Steam propagates to subscribers
-3. Launcher detects update on next start
+1. The author uploads the new version through SteamCMD
+2. Steam propagates it to subscribers
+3. The launcher detects the update at the next start
 
 ### GitHub Releases
 
 **Integration Type:** Distribution + Source hosting
 
-**Mechanism:** Publishing a GitHub release triggers `.github/workflows/github-release.yml`, which updates the descriptor versions and uploads the ZIP asset. Tag pushes additionally trigger `.github/workflows/steam-workshop-release.yml` and `.github/workflows/nexus-mods-release.yml`.
+**Mechanism:** Publishing a GitHub release initiates `.github/workflows/github-release.yml`, which updates the descriptor versions and uploads the archive asset. Tag pushes additionally initiate `.github/workflows/steam-workshop-release.yml` and `.github/workflows/nexus-mods-release.yml`.
 
 **Artefact:** `ui-galaxy-sizes_{version}.zip` containing the mod descriptor and mod directory.
 
 **Update Flow:**
-1. User downloads ZIP
-2. Manual install to mod directory
-3. No auto-update
+1. The user downloads the archive
+2. Manual installation to the mod directory
+3. No automatic update
 
 ### Nexus Mods
 
@@ -101,12 +101,12 @@ ui-galaxy-sizes.mod / descriptor.mod → Launcher → Playset → Engine
 
 **Integration Type:** Official Paradox platform
 
-**Mechanism:** Upload via Paradox Mod Portal, review process, then available in launcher.
+**Mechanism:** Upload through the Paradox Mod Portal, then a review process, after which the mod is available in the launcher.
 
 **Requirements:**
-- Paradox account
+- A Paradox account
 - Mod metadata (version, supported version, tags)
-- Review approval (can take days)
+- Review approval (may require several days)
 
 ## Mod-to-Mod Integrations
 
@@ -114,32 +114,32 @@ ui-galaxy-sizes.mod / descriptor.mod → Launcher → Playset → Engine
 
 **Integration Type:** Content dependency
 
-**Mechanism:** UI Star Names mod adds thousands of system names to engine's name pool. Ludicrous scenario (2000 stars) needs this pool.
+**Mechanism:** The UI Star Names mod includes thousands of system names in the engine name pool. The Ludicrous scenario (2000 stars) requires this pool.
 
 **Data Flow:**
 ```
-UI Star Names (loads first) → Extends engine name pool
+UI Star Names (loads first) → Extends the engine name pool
 Universum Infinitum (loads second) → Generates 2000 stars
-Engine → Draws from combined pool → Unique names
+Engine → Draws from the combined pool → Unique names
 ```
 
 **Load Order Requirement:** UI Star Names must load before or alongside this mod.
 
-**Without UI Star Names:** Engine exhausts ~1000 vanilla names, duplicates occur.
+**Without UI Star Names:** The engine exhausts the ~1000 vanilla names, and duplicates occur.
 
-**Contract:** None (soft dependency). Mod functions without it.
+**Contract:** None (soft dependency). The mod functions without it.
 
 ### Other Galaxy Size Mods (Conflict)
 
 **Integration Type:** Mutual exclusion
 
-**Mechanism:** Multiple mods defining `setup_scenario` with same names or conflicting priorities.
+**Mechanism:** Multiple mods defining `setup_scenario` with identical names or conflicting priorities.
 
-**Behaviour:** Undefined. Engine may:
-- Use first loaded
-- Merge (unlikely)
-- Show duplicates in dropdown
-- Crash
+**Conduct:** Undefined. The engine may:
+- Use the first loaded
+- Merge (improbable)
+- Display duplicates in the dropdown
+- Terminate
 
 **Recommendation:** Use only one galaxy size mod at a time.
 
@@ -147,14 +147,14 @@ Engine → Draws from combined pool → Unique names
 
 **Integration Type:** Independent coexistence
 
-**Mechanism:** UI mods modify interface elements. This mod only adds dropdown entries.
+**Mechanism:** UI mods modify interface elements. This mod only includes dropdown records.
 
 **Compatibility:** Verified compatible with:
 - UI Overhaul Dynamic
 - Better UI
 - Tiny UI
 
-**Contract:** No shared files, no load order dependency.
+**Contract:** No shared files and no load order dependency.
 
 ## Launcher Integration
 
@@ -166,7 +166,7 @@ Engine → Draws from combined pool → Unique names
 
 ### Paradox Launcher v2 (Current)
 
-**Mechanism:** Reads `.mod` files from `mod/` directory, expects descriptor in mod folder.
+**Mechanism:** Reads `.mod` files from the `mod/` directory and expects the descriptor in the mod directory.
 
 **Supported:** Yes (via `ui-galaxy-sizes/descriptor.mod`)
 
@@ -192,7 +192,7 @@ Engine → Draws from combined pool → Unique names
 - Adding localisation
 - Fixing typos
 
-**Version Pinning:** Descriptor `version` helps launcher detect changes.
+**Version Pinning:** The descriptor `version` assists the launcher in detecting changes.
 
 ## Multiplayer Integration
 
@@ -202,10 +202,10 @@ Engine → Draws from combined pool → Unique names
 
 **Requirements:**
 - All players have identical mod version
-- All players have mod enabled
+- Every player has the mod active
 - Host selects scenario
 
-**Verification:** Launcher shows mod version in multiplayer lobby.
+**Verification:** The launcher displays the mod version in the multiplayer lobby.
 
 ## Development Tool Integrations
 
@@ -220,17 +220,17 @@ Engine → Draws from combined pool → Unique names
 
 **Trigger:** GitHub release publication (`github-release.yml`), or a `v*.*.*` tag push and manual dispatch (`steam-workshop-release.yml`, `nexus-mods-release.yml`).
 
-**Output:** Versioned ZIP for distribution.
+**Output:** Versioned archive for distribution.
 
 ## Integration Summary Table
 
 | Integration | Type | Direction | Criticality |
 |-------------|------|-----------|-------------|
-| Stellaris Engine (generation) | Core | Engine → Mod | Critical |
-| Stellaris Engine (localisation) | Core | Engine → Mod | High |
-| Stellaris Engine (descriptor) | Core | Launcher → Mod | Critical |
+| Stellaris Engine (generation) | Central | Engine → Mod | Critical |
+| Stellaris Engine (localisation) | Central | Engine → Mod | High |
+| Stellaris Engine (descriptor) | Central | Launcher → Mod | Critical |
 | Steam Workshop | Distribution | Platform → User | High |
-| GitHub Releases | Distribution | Repo → User | High |
+| GitHub Releases | Distribution | Repository → User | High |
 | Nexus Mods | Distribution | Platform → User | Medium |
 | Paradox Mods | Distribution | Platform → User | Medium |
 | UI Star Names | Content | Mod → Engine | High (Ludicrous) |
@@ -238,8 +238,8 @@ Engine → Draws from combined pool → Unique names
 | UI mods | Independent | Mod ↔ Mod | Compatible |
 | Multiplayer | Runtime | Host → Clients | High |
 | Save games | Persistence | Engine → Mod | Breaking if changed |
-| Validation scripts | Development | Repo → CI | High |
-| Packaging script | Release | Repo → Artefact | High |
+| Validation scripts | Development | Repository → Continuous integration | High |
+| Packaging script | Release | Repository → Artefact | High |
 
 ## Not Applicable: Traditional Integrations
 

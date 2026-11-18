@@ -21,40 +21,39 @@ All error handling occurs within the Stellaris engine when it parses and consume
 
 When Stellaris loads the mod, it validates each file:
 
-| Error Type | Engine Behaviour | Mod Impact |
+| Error Type | Engine Conduct | Mod Impact |
 |------------|------------------|------------|
 | Invalid `.mod` descriptor | Mod hidden in launcher, error logged | Mod unusable |
-| Malformed scenario file | Scenario ignored, error logged | Size missing from dropdown |
-| Missing required parameter | Default value used, warning logged | Unexpected generation |
+| Malformed scenario file | Scenario ignored, error logged | Size absent from dropdown |
+| Absent required parameter | Default value used, warning logged | Unexpected generation |
 | Invalid parameter value | Clamped to bounds, warning logged | Unexpected generation |
-| Duplicate scenario name | First wins, warning logged | One size missing |
+| Duplicate scenario name | First prevails, warning logged | One size absent |
 | Unknown parameter | Ignored, warning logged | Parameter ineffective |
 
 ### Generation-Time Errors
 
 During galaxy generation:
 
-| Error Type | Engine Behaviour | Mod Impact |
+| Error Type | Engine Conduct | Mod Impact |
 |------------|------------------|------------|
-| Out of memory | Generation fails, error dialog | Player cannot play size |
-| Invalid shape for size | Falls back to default shape | Wrong topology |
+| Out of memory | Generation fails, error dialogue | Player cannot play size |
+| Invalid shape for size | Falls back to default shape | Incorrect topology |
 | Insufficient system names | Duplicates used, warning logged | Duplicate names |
 | Empire placement failure | Fewer empires placed, warning | Less competition |
 | Hyperlane generation failure | Sparse connections, warning | Disconnected systems |
 
 ### Runtime Errors (Engine)
 
-| Error Type | Engine Behaviour |
+| Error Type | Engine Conduct |
 |------------|------------------|
 | Save game corruption | Load fails, backup offered |
-| Mod version mismatch | Mod disabled, save may break |
-| Missing mod dependency | Features unavailable |
+| Mod version mismatch | Mod deactivated, save may break |
+| Absent mod dependency | Capabilities unavailable |
 
 ## Mod-Level Error Prevention
 
-### Static Validation (CI)
-
-Prevents errors before release:
+### Static Validation (Continuous Integration)
+**Prevents errors before release:**
 
 ```bash
 # Descriptor validation
@@ -71,16 +70,16 @@ scripts/validate-localisation.sh
 
 | Safeguard | Implementation |
 |-----------|----------------|
-| Parameter bounds | Documented in data-model.md, validated in CI |
-| Required parameters | Checklist in validation scripts |
-| Cross-scenario consistency | CI validates identical parameter sets |
-| Shape support consistency | CI validates declared shapes against the engine set |
-| Priority uniqueness | CI validates unique, ordered priorities |
-| Localisation completeness | CI validates 6 keys present |
+| Parameter bounds | Documented in data-model.md, validated in continuous integration |
+| Required parameters | Checklist in the validation scripts |
+| Cross-scenario consistency | Continuous integration validates identical parameter sets |
+| Shape support consistency | Continuous integration validates declared shapes against the engine set |
+| Priority uniqueness | Continuous integration validates unique, ordered priorities |
+| Localisation completeness | Continuous integration validates that all six keys are present |
 
 ### Parameter Validation Rules
 
-**Enforced by CI:**
+**Enforced by continuous integration:**
 
 ```yaml
 # Per scenario
@@ -93,8 +92,8 @@ num_fallen_empires: integer >= 0
 num_fallen_empires_default: integer >= 0, <= num_fallen_empires
 crisis_strength: float >= 0
 num_nebulae: integer >= 0
-supports_shape: exactly 11 entries, all from known set
-priority: unique integer across scenarios
+supports_shape: each record from the known set
+priority: unique integer throughout scenarios
 ```
 
 **Enforced by Engine (at parse time):**
@@ -114,43 +113,43 @@ priority: unique integer across scenarios
 - Wrong mod directory
 
 **Mitigations:**
-- CI validates descriptor syntax
-- Version pinning in descriptor
-- Clear installation instructions in README
+- Continuous integration validates the descriptor syntax
+- Version pinning in the descriptor
+- Clear installation instructions in the README
 
-### Scenario: Size Missing from Dropdown
+### Scenario: Size Absent from Dropdown
 
-**Symptoms:** 5 or fewer sizes shown
+**Symptoms:** Five or fewer sizes displayed
 
 **Causes:**
-- Scenario file missing
+- Scenario file absent
 - Scenario parse error
 - Duplicate scenario name
-- Localisation missing (shows raw key)
+- Localisation absent (displays a raw key)
 
 **Mitigations:**
-- CI validates all 6 scenario files exist
-- CI validates parseable syntax
-- CI validates unique names
-- CI validates localisation keys
+- Continuous integration validates that all six scenario files exist
+- Continuous integration validates the syntax
+- Continuous integration validates unique names
+- Continuous integration validates the localisation keys
 
 ### Scenario: Generation Fails or Hangs
 
-**Symptoms:** "Generating galaxy..." indefinitely, or error dialog
+**Symptoms:** "Generating galaxy..." indefinitely, or error dialogue
 
 **Causes:**
-- `num_stars` too high for memory
+- `num_stars` too high for available memory
 - Invalid parameter combination
-- Engine bug
+- Engine defect
 
 **Mitigations:**
 - Parameter bounds documented and validated
-- Tested on target Stellaris versions
-- Ludicrous (2000) tested on 16GB+ RAM systems
+- Tested against the target Stellaris versions
+- Ludicrous (2000) tested on systems with 16GB or more memory
 
 ### Scenario: Unexpected Generation Results
 
-**Symptoms:** Wrong star count, missing empires, no nebulae, etc.
+**Symptoms:** Incorrect star count, absent empires, no nebulae, etc.
 
 **Causes:**
 - Parameter value error
@@ -166,33 +165,33 @@ priority: unique integer across scenarios
 
 ### User-Facing Errors
 
-Users see engine errors, not mod errors. Common messages:
+Users observe engine errors, not mod errors. Frequent messages:
 
-| Engine Message | Likely Mod Cause | User Action |
+| Engine Message | Probable Mod Cause | User Action |
 |----------------|------------------|-------------|
-| "Mod incompatible" | Version mismatch | Update Stellaris or mod |
-| "Failed to load mod" | Descriptor error | Reinstall mod, verify files |
-| "Galaxy generation failed" | Parameters too high | Try smaller size |
-| "Missing localisation" | Localisation file issue | Verify mod integrity |
+| "Mod incompatible" | Version mismatch | Update Stellaris or the mod |
+| "Failed to load mod" | Descriptor error | Reinstall the mod, verify the files |
+| "Galaxy generation failed" | Parameters too high | Try a smaller size |
+| "Absent localisation" | Localisation file issue | Verify the mod integrity |
 
 ### Debugging Steps for Users
 
-1. Check `game.log` for mod-related entries
-2. Verify Stellaris version matches `supported_version`
-3. Verify mod files intact (reinstall)
-4. Try smaller galaxy size
-5. Disable other mods to isolate
-6. Report on GitHub with log excerpt
+1. Check `game.log` for mod-related records
+2. Verify the Stellaris version corresponds to `supported_version`
+3. Verify the mod files are intact (reinstall)
+4. Try a smaller galaxy size
+5. Deactivate other mods to isolate the issue
+6. Report on GitHub with a log excerpt
 
 ## Mod Author Error Handling
 
 ### Development Workflow
 
-1. Edit scenario files
-2. Run validation scripts locally
-3. Test in-game on target version
-4. CI runs validation on PR
-5. Release only after CI passes
+1. Edit the scenario files
+2. Run the validation scripts locally
+3. Test in-game against the target version
+4. Continuous integration executes validation on the pull request
+5. Release only after continuous integration passes
 
 ### Validation Scripts
 

@@ -23,12 +23,12 @@ setup_scenario.txt → Engine parser → Galaxy Size UI dropdown → Player sele
 ```
 
 **Configuration:**
-- `priority` determines sort order in dropdown (lower = earlier)
-- `name` must match localisation key
+- `priority` determines the sort order in the dropdown (lower = earlier)
+- `name` must correspond to a localisation key
 
 **Failure Modes:**
-- Invalid parameter → Engine logs error, scenario may not appear
-- Missing localisation → Raw key displayed (e.g., "ui_ludicrous")
+- Invalid parameter → Engine logs an error, scenario may not appear
+- Absent localisation → Raw key displayed (e.g., "ui_ludicrous")
 - Duplicate priority → Undefined sort order
 
 ### Localisation Provider
@@ -37,7 +37,7 @@ setup_scenario.txt → Engine parser → Galaxy Size UI dropdown → Player sele
 
 **Responsibilities:**
 - Map scenario keys to English display labels
-- Follow Stellaris localisation format (`key:0 "Label"`)
+- Follow the Stellaris localisation format (`key:0 "Label"`)
 
 **Dependencies:**
 - Stellaris localisation system (consumer)
@@ -48,13 +48,13 @@ YAML file → Localisation loader → UI string table → Galaxy Size dropdown l
 ```
 
 **Configuration:**
-- Locale directory name: `engligh` (note: typo in directory name, should be `english`)
+- Locale directory name: `engligh` (note: a typo in the directory name; `english` is the intended spelling)
 - File naming: `*_l_english.yml`
 
 **Failure Modes:**
-- Missing file → All scenario names show as raw keys
+- Absent file → All scenario names display as raw keys
 - Malformed YAML → Localisation load failure
-- Key mismatch → Specific scenario shows raw key
+- Key mismatch → Specific scenario displays a raw key
 
 ## Host and Composition
 
@@ -76,8 +76,8 @@ YAML file → Localisation loader → UI string table → Galaxy Size dropdown l
 ```
 
 **Configuration:**
-- `path="mod/ui-galaxy-sizes"` must match directory name
-- `supported_version` must match target Stellaris version
+- `path="mod/ui-galaxy-sizes"` must correspond to the directory name
+- `supported_version` must correspond to the target Stellaris version
 
 ### Mod Descriptor (Local)
 
@@ -152,7 +152,7 @@ Player selects size → Engine loads scenario → Generator applies all paramete
 
 **Invariants:**
 - All scenarios define identical parameter set
-- `supports_shape` list identical across Gigantic..Ludicrous; Minuscule uses the vanilla tiny set
+- `supports_shape` list identical throughout Gigantic..Ludicrous; Minuscule uses the vanilla tiny set
 - `priority` values unique and ordered
 
 ## Browser State and Localisation
@@ -176,15 +176,15 @@ Not applicable — this is a Stellaris mod, not a web application. The "browser"
 
 ### UI Star Names Integration
 
-**Interface:** Optional dependency for Ludicrous scenario
+**Interface:** Optional dependency for the Ludicrous scenario
 
 **Contract:**
-- If UI Star Names mod active, generator uses extended name pool
-- If inactive, generator uses vanilla name pool (insufficient for 2000 stars)
+- If the UI Star Names mod is active, the generator uses the extended name pool
+- If inactive, the generator uses the vanilla name pool (insufficient for 2000 stars)
 
 **Data Exchanged:**
 - Input: Name pool (2000+ unique system names)
 - Output: Named star systems
 
 **Failure Mode:**
-- Duplicate/generic names if dependency missing
+- Duplicate or generic names if the dependency is absent

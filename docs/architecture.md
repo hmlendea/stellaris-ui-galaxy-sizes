@@ -4,7 +4,7 @@ This document elaborates on the root `ARCHITECTURE.md` with implementation-level
 
 ## Architectural Style
 
-**Declarative data-driven Stellaris mod** — The mod consists entirely of static configuration files consumed by the Stellaris engine. There is no runtime logic, no scripting layer, no compiled artefacts, and no executable code. The engine owns all execution; the mod only supplies parameters.
+**Declarative data-driven Stellaris mod** — The mod consists entirely of static configuration files consumed by the Stellaris engine. There is no runtime logic, no scripting layer, no compiled artefacts, and no executable code. The engine possesses all execution; the mod only supplies parameters.
 
 ## System Context
 
@@ -14,40 +14,40 @@ flowchart LR
     Launcher -->|Loads mod descriptors| Engine[Stellaris Engine]
     Engine -->|Reads setup_scenario| GalaxyGen[Galaxy Generator]
     GalaxyGen -->|Generates galaxy| Save[Save Game]
-    StarNames[UI Star Names Mod] -.->|Provides 2000 names| GalaxyGen
+    StarNames[UI Star Names Mod] -.->|Supplies 2000 names| GalaxyGen
 ```
 
 ### External Boundaries
 
 | Boundary | Description |
 |----------|-------------|
-| Stellaris Launcher | Loads `.mod` descriptors, validates `supported_version`, registers mod |
+| Stellaris Launcher | Loads `.mod` descriptors, validates `supported_version`, and registers the mod |
 | Stellaris Engine | Parses `setup_scenario` blocks at galaxy generation time |
-| Universum Infinitum: Star Names | Optional mod providing extended system name pool for 2,000-star galaxies |
+| Universum Infinitum - Star Names | Optional mod supplying an extended system name pool for 2,000-star galaxies |
 
 ## Component Catalogue
 
 | Component | Type | Responsibility | Location |
 |-----------|------|----------------|----------|
-| Root Descriptor | Mod metadata | Declares mod identity, version, path, supported version | `ui-galaxy-sizes.mod` |
-| Local Descriptor | Mod metadata | Alternative descriptor for Paradox Mods/manual install | `ui-galaxy-sizes/descriptor.mod` |
+| Root Descriptor | Mod metadata | Declares mod identity, version, path, and supported version | `ui-galaxy-sizes.mod` |
+| Local Descriptor | Mod metadata | Alternative descriptor for Paradox Mods and manual installation | `ui-galaxy-sizes/descriptor.mod` |
 | Localisation | Display strings | Maps scenario keys to English labels | `localisation/engligh/ui-galaxy-sizes_l_english.yml` |
-| Minuscule Scenario | Generation params | 100-star galaxy definition | `map/setup_scenarios/ui_minuscule.txt` |
-| Gigantic Scenario | Generation params | 1,200-star galaxy definition | `map/setup_scenarios/ui_gigantic.txt` |
-| Immense Scenario | Generation params | 1,400-star galaxy definition | `map/setup_scenarios/ui_immense.txt` |
-| Colossal Scenario | Generation params | 1,600-star galaxy definition | `map/setup_scenarios/ui_colossal.txt` |
-| Titanic Scenario | Generation params | 1,800-star galaxy definition | `map/setup_scenarios/ui_titanic.txt` |
-| Ludicrous Scenario | Generation params | 2,000-star galaxy definition | `map/setup_scenarios/ui_ludicrous.txt` |
+| Minuscule Scenario | Generation parameters | 100-star galaxy definition | `map/setup_scenarios/ui_minuscule.txt` |
+| Gigantic Scenario | Generation parameters | 1,200-star galaxy definition | `map/setup_scenarios/ui_gigantic.txt` |
+| Immense Scenario | Generation parameters | 1,400-star galaxy definition | `map/setup_scenarios/ui_immense.txt` |
+| Colossal Scenario | Generation parameters | 1,600-star galaxy definition | `map/setup_scenarios/ui_colossal.txt` |
+| Titanic Scenario | Generation parameters | 1,800-star galaxy definition | `map/setup_scenarios/ui_titanic.txt` |
+| Ludicrous Scenario | Generation parameters | 2,000-star galaxy definition | `map/setup_scenarios/ui_ludicrous.txt` |
 
 ## Data Architecture
 
 ### Mod Descriptor Schema
 
-Both `.mod` files share the same structure:
+Both `.mod` files share an identical structure:
 
 ```text
 version="1.5.0"
-name="Universum Infinitum: Galaxy Sizes"
+name="Universum Infinitum - Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={ "Galaxy Generation" }
 supported_version="v4.5.*"
@@ -55,7 +55,7 @@ supported_version="v4.5.*"
 
 | Field | Purpose | Constraints |
 |-------|---------|-------------|
-| `version` | Mod version | Must match release tag |
+| `version` | Mod version | Must correspond to the release tag |
 | `name` | Display name | Human-readable |
 | `path` | Mount path | Must be `mod/ui-galaxy-sizes` |
 | `tags` | Workshop categories | Array of strings |
@@ -79,7 +79,7 @@ l_english:
 
 ### Scenario Schema (`setup_scenario`)
 
-All six scenarios share the same parameter structure:
+Every scenario shares an identical parameter structure:
 
 ```text
 setup_scenario = {
@@ -153,7 +153,7 @@ setup_scenario = {
 }
 ```
 
-### Parameter Scaling Across Scenarios
+### Parameter Scaling Throughout Scenarios
 
 | Parameter | Minuscule | Gigantic | Immense | Colossal | Titanic | Ludicrous |
 |-----------|-----------|----------|---------|----------|---------|-----------|
@@ -178,7 +178,7 @@ setup_scenario = {
 | `num_hyperlanes.max` | 3 | 3 | 3 | 3 | 3 | 3 |
 | `supports_shape` count | 4 | 10 | 10 | 10 | 10 | 10 |
 
-### Invariant Parameters (Same Across All Scenarios)
+### Invariant Parameters (Identical Across Every Scenario)
 
 | Parameter | Value |
 |-----------|-------|
@@ -188,8 +188,8 @@ setup_scenario = {
 | `cluster_count.method` | one_every_x_empire |
 | `cluster_count.value` | 1 |
 | `max_hyperlane_distance` | 50 |
-| `home_system_partitions` | Identical across all |
-| `open_space_partitions` | Identical across all |
+| `home_system_partitions` | Identical throughout every scenario |
+| `open_space_partitions` | Identical throughout every scenario |
 | `nebula_size` | 60 (40 on Minuscule) |
 | `nebula_min_dist` | 100 (Minuscule), 200 (others) |
 | `num_wormhole_pairs` | { min = 0 max = 5 } |
@@ -250,7 +250,7 @@ sequenceDiagram
         GalaxyGen->>StarNames: Requests 2000 system names
         StarNames-->>GalaxyGen: Returns name pool
     else UI Star Names inactive
-        GalaxyGen->>GalaxyGen: Uses vanilla name pool (duplicates likely)
+        GalaxyGen->>GalaxyGen: Uses the vanilla name pool (duplicates probable)
     end
     GalaxyGen-->>Player: Returns generated galaxy
 ```
@@ -265,13 +265,13 @@ sequenceDiagram
 
 ### Localisation Completeness
 
-- All six scenario `name` keys must have corresponding `l_english` entries
-- Missing localisation keys display as raw keys in UI
+- Every scenario `name` key must have a corresponding `l_english` record
+- Absent localisation keys display as raw keys in the UI
 
 ### Parameter Consistency
 
-- All scenarios must define the same parameter set
-- `supports_shape` list must be identical across scenarios
+- Every scenario must define an identical parameter set
+- The `supports_shape` list must be identical throughout scenarios
 - `priority` values must be unique and ordered
 
 ## Dependency Direction and Rules
@@ -317,7 +317,7 @@ Distribution packages contain:
 
 ### Activation
 
-Player adds mod to a playset in Stellaris launcher and activates it.
+Player includes the mod in a playset in the Stellaris launcher and activates it.
 
 ## Compatibility Contracts
 
@@ -325,7 +325,7 @@ Player adds mod to a playset in Stellaris launcher and activates it.
 |----------|-------------|------------|
 | `supported_version` | Mod works with Stellaris `4.5.x` | Launcher validates at load |
 | Scenario schema | All `setup_scenario` parameters valid | Engine validates at generation |
-| Localisation keys | All scenario names localised | Engine displays keys if missing |
+| Localisation keys | Every scenario name localised | The engine displays raw keys if they are absent |
 | Priority ordering | Unique, monotonic priorities | Engine sorts by priority |
 
 ## Testing and Verification

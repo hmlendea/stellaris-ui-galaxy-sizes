@@ -2,7 +2,7 @@
 
 ## Configuration Sources
 
-The mod has no runtime configuration system. All configuration is static, declared in files that are read by the Stellaris engine at galaxy generation time.
+The mod has no runtime configuration system. Every configuration is static, declared in files read by the Stellaris engine at galaxy generation time.
 
 ### Configuration Files
 
@@ -10,12 +10,12 @@ The mod has no runtime configuration system. All configuration is static, declar
 |------|---------|---------------|
 | `ui-galaxy-sizes.mod` | Root mod metadata | Mod author (version bump) |
 | `ui-galaxy-sizes/descriptor.mod` | Local mod metadata | Mod author (version bump) |
-| `localisation/engligh/ui-galaxy-sizes_l_english.yml` | Display names | Mod author / translators |
+| `localisation/engligh/ui-galaxy-sizes_l_english.yml` | Display names | Mod author or translators |
 | `map/setup_scenarios/ui_*.txt` | Generation parameters | Mod author |
 
 ### Configuration Precedence
 
-No precedence — each file serves a distinct purpose and is consumed by a different subsystem:
+No precedence applies — each file serves a distinct purpose and is consumed by a different subsystem:
 
 ```
 Launcher → .mod files → Mod registration
@@ -29,7 +29,7 @@ Localisation → *_l_english.yml → UI display
 
 ```text
 version="1.5.0"
-name="Universum Infinitum: Galaxy Sizes"
+name="Universum Infinitum - Galaxy Sizes"
 path="mod/ui-galaxy-sizes"
 tags={ "Galaxy Generation" }
 supported_version="v4.5.*"
@@ -39,15 +39,15 @@ supported_version="v4.5.*"
 
 | Field | Required | Description | Validation |
 |-------|----------|-------------|------------|
-| `version` | Yes | Mod version | Semantic version, matches release |
+| `version` | Yes | Mod version | Semantic version, corresponds to the release |
 | `name` | Yes | Display name | Fixed string |
 | `path` | Yes | Mount path | Must be `mod/ui-galaxy-sizes` |
 | `tags` | Yes | Workshop categories | Array, at least one |
-| `supported_version` | Yes | Game version pattern | Must match running Stellaris |
+| `supported_version` | Yes | Game version pattern | Must correspond to the running Stellaris version |
 
 ### Version Management
 
-Both descriptor files must have identical `version` and `supported_version`. Update both when releasing.
+Both descriptor files must carry an identical `version` and `supported_version`. Update both when releasing.
 
 ## Localisation Configuration
 
@@ -71,14 +71,14 @@ l_english:
 
 ### Locale Support
 
-Currently only English (`l_english`). To add languages:
-1. Create `localisation/<locale>/` directory
-2. Add `ui-galaxy-sizes_l_<locale>.yml`
+Currently only English (`l_english`) is supplied. To include additional languages:
+1. Create a `localisation/<locale>/` directory
+2. Include `ui-galaxy-sizes_l_<locale>.yml`
 3. Translate all six keys
 
 ### Directory Name Note
 
-The directory is named `engligh` (typo). Should be `english` for consistency with Stellaris conventions, but engine accepts any directory name.
+The directory is named `engligh` (a historic typo). `english` is the intended spelling for consistency with Stellaris conventions, but the engine accepts any directory name.
 
 ## Scenario Configuration
 
@@ -91,8 +91,8 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 #### Identity (Required)
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `name` | String | Scenario key, must match filename |
-| `priority` | Integer | UI sort order, unique across all scenarios |
+| `name` | String | Scenario key, must correspond to the filename |
+| `priority` | Integer | UI sort order, unique throughout all scenarios |
 
 #### Scale (Required)
 | Parameter | Type | Description |
@@ -106,11 +106,11 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 | `num_empires` | Range | Min/max AI empires |
 | `num_empire_default` | Integer | Default AI empires |
 | `fallen_empire_default` | Integer | Default fallen empires |
-| `fallen_empire_max` | Integer | Max fallen empires |
+| `fallen_empire_max` | Integer | Maximum fallen empires |
 | `marauder_empire_default` | Integer | Default marauders |
-| `marauder_empire_max` | Integer | Max marauders (≤ 3, vanilla clan pool) |
+| `marauder_empire_max` | Integer | Maximum marauders (≤ 3, vanilla clan pool) |
 | `nomad_empire_default` | Integer | Default nomads |
-| `nomad_empire_max` | Integer | Max nomads |
+| `nomad_empire_max` | Integer | Maximum nomads |
 | `advanced_empire_default` | Integer | Default advanced AI |
 
 #### Planetary (Constant)
@@ -135,7 +135,7 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 #### Hyperlanes (Partially Scaled)
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `max_hyperlane_distance` | Integer | Max length (50) |
+| `max_hyperlane_distance` | Integer | Maximum length (50) |
 | `num_hyperlanes` | Range | Density multiplier |
 | `num_hyperlanes_default` | Integer | Default density |
 
@@ -150,7 +150,7 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 |-----------|------|-------------|
 | `num_nebulas` | Integer | Count |
 | `nebula_size` | Integer | Radius (60) |
-| `nebula_min_dist` | Integer | Min separation |
+| `nebula_min_dist` | Integer | Minimum separation |
 
 #### Wormholes (Constant)
 | Parameter | Type | Value |
@@ -167,20 +167,20 @@ Each `map/setup_scenarios/ui_<size>.txt` contains a `setup_scenario` block with 
 #### Shapes (Constant)
 | Parameter | Type | Value |
 |-----------|------|-------|
-| `supports_shape` | String (Minuscule ×4, others ×10) | All engine shapes for large sizes |
+| `supports_shape` | String (Minuscule ×4, others ×10) | Every engine shape for large sizes |
 
 ### Validation Rules
 
-1. `name` must match filename (`ui_<size>.txt`)
+1. `name` must correspond to the filename (`ui_<size>.txt`)
 2. `priority` unique and ordered (-1, 5, 6, 7, 8, 9)
 3. `num_stars` > 0
 4. `num_empires.min` ≤ `num_empires.max`
-5. `num_empire_default` within `num_empires` range
-6. All `*_default` within respective `*_max`
+5. `num_empire_default` within the `num_empires` range
+6. Every `*_default` within the respective `*_max`
 7. `crisis_strength` ≥ 0
 8. `cluster_count.max` ≥ `cluster_count.value`
 9. `num_hyperlanes.min` ≤ `num_hyperlanes.max`
-10. Every `supports_shape` present in the engine shape set; identical across Gigantic..Ludicrous
+10. Every `supports_shape` present in the engine shape set; identical throughout Gigantic..Ludicrous
 11. `fallen_empire_max` ≤ 6 and `marauder_empire_max` ≤ 3 (vanilla type pools)
 
 ## Player-Configurable Settings
@@ -190,10 +190,10 @@ The following scenario parameters are exposed to players in the New Game screen:
 | Setting | Scenario Parameter | Player Control |
 |---------|-------------------|----------------|
 | AI Empires | `num_empires` range, `num_empire_default` | Slider within min/max |
-| Fallen Empires | `fallen_empire_max`, `fallen_empire_default` | Slider 0 to max |
-| Marauders | `marauder_empire_max`, `marauder_empire_default` | Slider 0 to max |
-| Nomads | `nomad_empire_max`, `nomad_empire_default` | Slider 0 to max |
-| Advanced AI | `advanced_empire_default` | Slider 0 to max |
+| Fallen Empires | `fallen_empire_max`, `fallen_empire_default` | Slider 0 to maximum |
+| Marauders | `marauder_empire_max`, `marauder_empire_default` | Slider 0 to maximum |
+| Nomads | `nomad_empire_max`, `nomad_empire_default` | Slider 0 to maximum |
+| Advanced AI | `advanced_empire_default` | Slider 0 to maximum |
 | Crisis Strength | `crisis_strength` | Multiplier slider |
 | Hyperlane Density | `num_hyperlanes` range, `num_hyperlanes_default` | Slider within range |
 | Wormhole Pairs | `num_wormhole_pairs` range, `num_wormhole_pairs_default` | Slider within range |
@@ -204,28 +204,28 @@ Non-configurable (fixed per scenario): `num_stars`, `radius`, `cluster_*`, `part
 
 ## Environment-Specific Configuration
 
-None — the mod has no environment-specific configuration. It is purely declarative and version-bound to Stellaris `v4.5.*`.
+None — the mod has no environment-specific configuration. It is purely declarative and bound to Stellaris `v4.5.*`.
 
 ## Configuration Change Process
 
 ### Modifying Scenario Parameters
 
 1. Edit `map/setup_scenarios/ui_<size>.txt`
-2. Update `version` in both `.mod` files
+2. Update the `version` in both `.mod` files
 3. Test generation for every declared shape
 4. Verify parameter bounds
-5. Release new version
+5. Release the new version
 
-### Adding Localisation
+### Including Localisation
 
-1. Create `localisation/<locale>/` directory
-2. Add `ui-galaxy-sizes_l_<locale>.yml` with six keys
-3. Update `version` in both `.mod` files
-4. Test in-game language switch
+1. Create a `localisation/<locale>/` directory
+2. Include `ui-galaxy-sizes_l_<locale>.yml` with six keys
+3. Update the `version` in both `.mod` files
+4. Test in-game language switching
 
-### Updating Supported Version
+### Updating the Supported Version
 
-1. Update `supported_version` in both `.mod` files (e.g., `v4.6.*`)
-2. Verify all scenario parameters valid for new version
-3. Update `version` in both `.mod` files
-4. Test on target Stellaris version
+1. Update `supported_version` in both `.mod` files (e.g. `v4.6.*`)
+2. Verify every scenario parameter remains valid for the new version
+3. Update the `version` in both `.mod` files
+4. Test against the target Stellaris version

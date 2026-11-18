@@ -12,7 +12,7 @@ The mod is purely declarative configuration. It contains:
 - No entity management
 - No delete/restore flows
 
-Players cannot inspect, edit, or delete mod data from within the game. All data is static files.
+Players cannot inspect, edit, or delete mod data from within the game. All data consists of static files.
 
 ## Closest Analogous Behaviours (Context)
 
@@ -49,23 +49,23 @@ Players cannot inspect, edit, or delete mod data from within the game. All data 
 
 **Note:** Players edit *game settings*, not mod data. Mod parameters define the bounds.
 
-### Delete (Remove Mod)
+### Delete (Extract the Mod)
 
-**Player Action:** Unsubscribe (Steam) or delete files (manual install).
+**Player Action:** Unsubscribe (Steam) or delete the files (manual install).
 
 **Effect:**
-1. Mod sizes disappear from dropdown
-2. Existing saves referencing mod scenarios may fail to load
-3. Vanilla sizes unaffected
+1. Mod sizes disappear from the dropdown
+2. Existing saves that reference mod scenarios may fail to load
+3. Vanilla sizes are unaffected
 
-**Mod Role:** None (passive removal).
+**Mod Role:** None (passive extraction).
 
 ## Mod Author Edit Flow (Development)
 
-For mod authors, "edit" means modifying scenario files:
+For mod authors, "edit" denotes modifying scenario files:
 
 1. Edit `ui-galaxy-sizes/map/setup_scenarios/ui_<size>.txt`
-2. Run validation scripts
+2. Run the validation scripts
 3. Test in-game
 4. Follow `change-guide.md` for release
 

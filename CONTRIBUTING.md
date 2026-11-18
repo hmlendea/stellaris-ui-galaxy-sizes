@@ -1,11 +1,11 @@
-# Contributing to Universum Infinitum: Galaxy Sizes
+# Contributing to Universum Infinitum - Galaxy Sizes
 
 This document covers the guidelines and processes for contributing to this project, including how to report issues, suggest enhancements, submit code changes, and follow project standards.
 
 ## 📑 Table of Contents
 
 - [Table of Contents](#-table-of-contents)
-- [How to Contribute](#-how-to-contribute)
+- [Contributing](#-contributing)
   - [Reporting Issues](#reporting-issues)
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Code Contributions](#code-contributions)
@@ -14,10 +14,12 @@ This document covers the guidelines and processes for contributing to this proje
     - [Pull Request Guidelines](#pull-request-guidelines)
   - [Documentation](#documentation)
 - [Code of Conduct](#-code-of-conduct)
+- [Security](#-security)
+- [Donations](#-donations)
 - [License](#-license)
 - [Getting Assistance](#-getting-assistance)
 
-## 🤝 How to Contribute
+## 🤝 Contributing
 
 ### Reporting Issues
 
@@ -28,9 +30,9 @@ This document covers the guidelines and processes for contributing to this proje
 
 ### Suggesting Enhancements
 
-- Check the roadmap and existing discussions.
-- Explain the use case and expected behaviour.
-- Consider implementation complexity.
+- Check the existing discussions.
+- Explain the use case and expected conduct.
+- Consider the implementation complexity.
 
 ### Code Contributions
 
@@ -67,14 +69,19 @@ cd stellaris-ui-galaxy-sizes
 - Revise relevant docs for changes.
 - Follow the documentation style guide.
 - Preview changes locally if possible.
+- When updating dependencies or modifying anything that affects the project structure, update the relevant documentation files (`README.md`, `SECURITY.md`, `ARCHITECTURE.md`, `docs/`, or any other project-specific documentation files) to reflect the changes.
 
-## 📋 Code of Conduct
+## 📜 Code of Conduct
 
 This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## 🔒 Security
 
-This project follows the [Security Policy](./SECURITY.md). Please do not disclose suspected vulnerabilities publicly before maintainers have had an opportunity to validate and remediate them.
+Report security vulnerabilities per the [Security Policy](./SECURITY.md).
+
+## 💝 Donations
+
+This project is developed and maintained during spare time. If you find it useful, consider [donating](https://hmlendea.go.ro/funding) and giving it a star ⭐️ on GitHub!
 
 ## 📄 License
 
